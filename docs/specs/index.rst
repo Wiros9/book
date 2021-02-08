@@ -129,7 +129,6 @@ technical documentation is provided and maintained by the Lino core team.
    projects/min
    voga/index
 
-
 Topic guides
 ============
 

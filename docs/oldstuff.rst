@@ -7,7 +7,6 @@ Old stuff
 
    /examples/polly/index
    /examples/belref/index
-   /tours/index
    /copyright
    /community/index
    /dev/framework

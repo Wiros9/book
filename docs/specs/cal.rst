@@ -1673,6 +1673,10 @@ The positions field makes sense only when frequency
 silently ignored with other frequencies. When this field is set, the value of
 :attr:`RecurrenceSet.every` is ignored.
 
+Lino uses `dateutil.rrule
+<https://dateutil.readthedocs.io/en/stable/rrule.html>`_
+when positions are used, so the edge cases described there might apply.
+
 The following examples use a utility function:
 
 >>> settings.SITE.verbose_client_info_message = True

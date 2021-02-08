@@ -12,6 +12,7 @@ This section contains specs for :ref:`noi`.
     :glob:
 
     general
+    tour/index
     tickets
     working
     comments
