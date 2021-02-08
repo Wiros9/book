@@ -12,11 +12,14 @@ Setting up a Lino production server
 Here is a set of conventions we suggest to use as a :term:`site maintainer` when
 setting up a Lino :term:`production server`.
 
-Set up a master environment
-===========================
 
-If you are the first :term:`site maintainer` on this :term:`server <production
-server>`, you must set up the :term:`master environment`.
+Activate the master environment
+===============================
+
+Add the following line to your :xfile:`.bashrc` in order to have the
+:term:`master environment` activated each time you connect to the server::
+
+    . /usr/local/lino/shared/env/master/bin/activate
 
 .. glossary::
 
@@ -26,7 +29,15 @@ server>`, you must set up the :term:`master environment`.
     maintainers <site maintainer>` on this :term:`production server`.  It mainly
     contains :ref:`getlino`.
 
-The :term:`master environment` should be outside of your home::
+The :term:`master environment` of a :term:`production server` is by convention
+in :file:`/usr/local/lino/shared/env`.
+
+
+Set up a master environment
+===========================
+
+If you are the first :term:`site maintainer` on this :term:`server <production
+server>`, you must set up the :term:`master environment`::
 
     $ sudo mkdir -p /usr/local/lino/shared/env
     $ cd /usr/local/lino/shared/env
@@ -35,13 +46,6 @@ The :term:`master environment` should be outside of your home::
     $ virtualenv -p python3 master
     $ . /usr/local/lino/shared/env/master/bin/activate
 
-Add the following line to your :xfile:`.bashrc`::
-
-    . /usr/local/lino/shared/env/master/bin/activate
-
-
-Install getlino and run ``getlino configure``
-=============================================
 
 Install :mod:`getlino` into the :term:`master environment`::
 
