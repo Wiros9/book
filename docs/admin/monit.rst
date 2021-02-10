@@ -1,11 +1,11 @@
 .. _monit:
 
-============================================
-Using `monit` to monitor a production server
-============================================
+===================================
+Monitoring a Lino production server
+===================================
 
-This page collects some hints for configuring monit on a Lino production
-server.
+The functionality described here is automatically installed when running
+:cmd:`getlino configure` as root and with the `--monit` option.
 
 Installation
 ============
@@ -13,7 +13,6 @@ Installation
 Simply run::
 
     $ sudo apt install monit
-
 
 
 Configuration
@@ -25,8 +24,6 @@ A file in :file:`/etc/monit/conf.d` with the following content::
 
   check program status with path /usr/local/bin/healthcheck.sh
       if status != 0 then alert
-
-
 
 
 .. xfile:: healthcheck.sh
@@ -63,5 +60,3 @@ Weblinks
 - https://www.tecmint.com/how-to-install-and-setup-monit-linux-process-and-services-monitoring-program/
 - https://tutorialinux.com/monitor-all-the-things-with-monit/
 - `monit documentation <https://mmonit.com/monit/documentation/monit.html>`__
-
-

@@ -16,9 +16,10 @@ install into an existing :term:`virtualenv`, you should activate it before
 running :cmd:`getlino configure` in order to use it as your
 :option:`--shared-env`.
 
-:cmd:`getlino configure` asks a lot of questions, one question for each server
-configuration option. Read the docs below for more explanations. You can answer
-ENTER to each question if you don't care.
+:cmd:`getlino configure` (unless invoked with `--batch`) asks a lot of
+questions, one question for each server configuration option. Read the docs
+below for more explanations. You can answer ENTER to each question if you don't
+care.
 
 :cmd:`getlino configure` creates or reads and updates a configuration file where
 it stores your answers.  Depending on whether you are root, the configuration
@@ -34,6 +35,15 @@ without being root, because only then it will also write a
 :xfile:`.bash_aliases` file in your home directory.
 
 .. rubric:: Run-time behaviour options:
+
+.. option:: --web-server
+
+  Which web server to use on this production server. This can be "nginx",
+  "apache" or empty. When not given, getlino will not setup any web server
+  configuration.
+
+  You should not change this value when there is already at least one Lino site
+  on this server.
 
 .. option:: --batch
 

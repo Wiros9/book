@@ -16,8 +16,9 @@ setting up a Lino :term:`production server`.
 Activate the master environment
 ===============================
 
-Add the following line to your :xfile:`.bashrc` in order to have the
-:term:`master environment` activated each time you connect to the server::
+For every new maintainer of a production site, add the following line to your
+:xfile:`.bashrc` in order to have the :term:`master environment` activated each
+time you connect to the server::
 
     . /usr/local/lino/shared/env/master/bin/activate
 
@@ -31,6 +32,13 @@ Add the following line to your :xfile:`.bashrc` in order to have the
 
 The :term:`master environment` of a :term:`production server` is by convention
 in :file:`/usr/local/lino/shared/env`.
+
+Configure the domain name of your server
+========================================
+
+If your customers want to access their Lino from outside of their intranet, then
+you need to setup a domain name.
+
 
 
 Set up a master environment
@@ -53,15 +61,16 @@ Install :mod:`getlino` into the :term:`master environment`::
 
 Run :cmd:`getlino configure` as root::
 
-   $ sudo env PATH=$PATH getlino configure --no-clone --appy --https
+   $ sudo env PATH=$PATH getlino configure --no-clone --appy --web-server nginx --https
 
-The ``env PATH=$PATH`` is needed to work around the controversial Debian feature
-of overriding the :envvar:`PATH` for security reasons (`source
+Note: The ``env PATH=$PATH`` is needed to work around the controversial Debian
+feature of overriding the :envvar:`PATH` for security reasons (`source
 <https://stackoverflow.com/questions/257616/why-does-sudo-change-the-path>`__).
 
-If your customers want to access their Lino from outside of their intranet, then
-you need to setup a domain name and add the ``--https`` option in above
-command line.
+The ``--web-server`` option can be either ``nginx`` or ``apache``. Your choice.
+
+The ``--https`` option causes :cmd:`getlino configure` to (1) install certbot
+and (2) have it request a new certificate for every :cmd:`getlino startsite`.
 
 When at least one :term:`Lino site` of a server uses :mod:`lino_xl.lib.appypod`,
 then the server must have a LibreOffice service running so that the users of
