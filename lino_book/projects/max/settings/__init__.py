@@ -19,8 +19,8 @@ class Site(Site):
     project_model = 'contacts.Person'
     # use_websockets = True
 
-    # languages = 'en de fr'
-    languages = 'en de fr et nl pt-br es'
+    languages = 'en de fr'
+    # languages = 'en de fr et nl pt-br es'
 
     user_types_module = 'lino_xl.lib.xl.user_types'
 

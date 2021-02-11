@@ -11,7 +11,8 @@ potentially used in more than on application.
 A Lino plugin corresponds to what *Django* calls an "application". Lino's
 :class:`Plugin <lino.core.plugin.Plugin>` class is comparable to Django's
 `AppConfig <https://docs.djangoproject.com/en/3.1/ref/applications/>`_ class,
-but has some additional features, which makes that they are the preferred way.
+but has some additional features, which makes them the preferred way.
+
 
 .. contents::
   :local:
@@ -19,9 +20,9 @@ but has some additional features, which makes that they are the preferred way.
 Usage overview
 ==============
 
-A plugin can define database models, actors, actions, fixtures,
-template files, javascript snippets, and metadata.  None of these
-components are mandatory.
+A plugin can define database models, actors, actions, fixtures, template files,
+javascript snippets, dependencies,  and :term:`configuration settings <plugin
+configuration setting>`.  None of these are mandatory.
 
 The :term:`application developer` defines which plugins to install in the
 application's :meth:`get_installed_apps
@@ -30,8 +31,8 @@ application's :meth:`get_installed_apps
 The plugin developer defines a plugin in the :xfile:`__init__.py` file of the
 package.  Lino expects this file to define a class named ``Plugin``, which
 inherits from the abstract base :class:`Plugin <lino.core.plugin.Plugin>` class.
-Your :class:`Plugin <lino.core.plugin.Plugin>` class holds the **metadata**
-about your plugin: configuration values, menu commands, dependencies, ...
+Your :class:`Plugin <lino.core.plugin.Plugin>` class is the central description
+of your plugin.
 
 Here is a fictive example::
 
@@ -39,7 +40,7 @@ Here is a fictive example::
 
     class Plugin(ad.Plugin):
         verbose_name = _("Better calendar")
-        extends = 'lino_xl.lib.cal'
+        extends = 'mylib.cal'
         needs_plugins  = ['lino_xl.lib.contacts']
 
         def setup_main_menu(self, site, user_type, m):
@@ -86,10 +87,10 @@ follows::
         print(Foo.objects.get(pk=pk))
 
 This approach has the advantage of providing :doc:`plugin_inheritance`. One of
-the basic reasons for using plugins is that users of some plugin can extend it
-and use their extension instead of the original plugin. Which means that the
-plugin developer does not know (and does not *want* to know) where the model
-classes are actually defined.
+the basic reasons for using plugins is that another developer can extend it and
+use their extension instead of the original plugin. Which means that the plugin
+developer does not know (and does not *want* to know) where the model classes
+are actually defined.
 
 Note that :attr:`rt.models <lino.api.rt.models>` is populated only
 *after* having imported the models. So you cannot use it at the
@@ -118,11 +119,9 @@ The values of plugin attributes can be configured at three levels.
 
 As a **plugin developer** you specify a hard-coded default value.
 
-As an **application developer** you can specify default values in your
-application* by overriding the
-:meth:`Site.get_plugin_configs` or the
-:meth:`Site.setup_plugins` method of
-your Site class.  For example::
+As an :term:`application developer` you can specify default values in your
+application by overriding the :meth:`Site.get_plugin_configs` of your Site
+class.  For example::
 
     class Site(Site):
 
@@ -131,7 +130,7 @@ your Site class.  For example::
             yield ('countries', 'country_code', 'BE')
             yield ('contacts', 'hide_region', True)
 
-The old style works also::
+The old style using :meth:`Site.setup_plugins` still works but is deprecated::
 
     class Site(Site):
 
@@ -171,3 +170,10 @@ Keep in mind that you can indeed never be sure that your :setting:`SITE`
 instance is actually being used. A local system admin can always decide to
 import your :xfile:`settings.py` module and to re-instantiate your `Site` class
 another time. That's part of our game and we don't want it to be forbidden.
+
+
+.. glossary::
+
+  plugin configuration setting
+
+    A setting that can easily be set in a :xfile:`settings.py` file.

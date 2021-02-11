@@ -99,7 +99,7 @@ Site administrator
   - Calendar : Calendars, Rooms, Recurring events, Guest roles, Calendar entry types, Recurrency policies, Remote Calendars, Absence reasons, Planner rows
   - Office : Comment Types, Library volumes, Upload types, Excerpt Types
   - Clients : Client Contact types
-  - Career : Education Types, Education Levels, Job Sectors, Job Functions, Work Regimes, Statuses, Contract Durations, Languages
+  - Career : Education Types, Education Levels, Activity sectors, Job titles, Work Regimes, Statuses, Contract Durations, Languages
   - Trends : Trend areas, Trend stages
   - Polls : Choice Sets
   - Activities : Topics, Timetable Slots

@@ -8,7 +8,9 @@
 .. currentmodule:: lino_xl.lib.properties
 
 The :mod:`lino_xl.lib.properties` plugin adds the notions of configurable
-properties.  **It is probably deprecated.**  The idea was to have a very
+properties.
+
+**It plugin is deprecated.**  The idea was to have a very
 customizable set of "properties" that can be used for "everything".  But life
 shows that it is usually better to use combinations of customer-specific
 choicelists and database models.
@@ -43,14 +45,15 @@ Examples
 Configure --> Properties --> Property Types
 
 >>> rt.show('properties.PropTypes')
-==== ================ ====================== ================== ================== ================== ===================== ================== ==================== =============== ================== ==================
- ID   Designation      Designation (de)       Designation (fr)   Designation (et)   Designation (nl)   Designation (pt-br)   Designation (es)   Choices List         default value   Limit to choices   Multiple choices
----- ---------------- ---------------------- ------------------ ------------------ ------------------ --------------------- ------------------ -------------------- --------------- ------------------ ------------------
- 1    Present or not   Vorhanden oder nicht   Présent ou pas     Olemas või mitte   Ja of niet                                                                                       No                 No
- 2    Rating           Bewertung              Appréciation(?)    Hinnang            Hoe goed                                                    properties.HowWell   2               No                 No
- 3    Division         Abteilung              Division                                                                                                                               No                 No
-==== ================ ====================== ================== ================== ================== ===================== ================== ==================== =============== ================== ==================
+==== ================ ====================== ================== ==================== =============== ================== ==================
+ ID   Designation      Designation (de)       Designation (fr)   Choices List         default value   Limit to choices   Multiple choices
+---- ---------------- ---------------------- ------------------ -------------------- --------------- ------------------ ------------------
+ 1    Present or not   Vorhanden oder nicht   Présent ou pas                                          No                 No
+ 2    Rating           Bewertung              Appréciation(?)    properties.HowWell   2               No                 No
+ 3    Division         Abteilung              Division                                                No                 No
+==== ================ ====================== ================== ==================== =============== ================== ==================
 <BLANKLINE>
+
 
 >>> rt.show('properties.PropGroups')
 No data to display
