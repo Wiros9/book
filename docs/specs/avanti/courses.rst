@@ -408,16 +408,16 @@ Abwesenheitskontrolle
 Liste der Einschreibungen mit hoher Abwesenheitsrate zwecks Kontrolle durch den Begleiter.
 
 >>> rt.login("romain").show(courses.DitchingEnrolments)
-============== ========================== ============================== =================
- Missing rate   Participant                Activity                       Primary coach
--------------- -------------------------- ------------------------------ -----------------
- 29,17          ABID Abdul Báásid (162)    Alphabetisation (16/01/2017)   Romain Raffault
- 29,17          ARSHUN Aloyoshenká (135)   Alphabetisation (16/01/2017)   Romain Raffault
- 25,00          ABBASI Aáishá (118)        Alphabetisation (16/01/2017)   Romain Raffault
- 25,00          BEK-MURZIN Agápiiá (160)   Alphabetisation (16/01/2017)   Romain Raffault
- 25,00          CISSE Chátá (150)          Alphabetisation (16/01/2017)   Romain Raffault
- 25,00          FOFANA Denzel (147)        Alphabetisation (16/01/2017)   Romain Raffault
-============== ========================== ============================== =================
+============== ================================= ============================== =================
+ Missing rate   Participant                       Activity                       Primary coach
+-------------- --------------------------------- ------------------------------ -----------------
+ 29,17          ABID Abdul Báásid (162/romain)    Alphabetisation (16/01/2017)   Romain Raffault
+ 29,17          ARSHUN Aloyoshenká (135/romain)   Alphabetisation (16/01/2017)   Romain Raffault
+ 25,00          ABBASI Aáishá (118/romain)        Alphabetisation (16/01/2017)   Romain Raffault
+ 25,00          BEK-MURZIN Agápiiá (160/romain)   Alphabetisation (16/01/2017)   Romain Raffault
+ 25,00          CISSE Chátá (150/romain)          Alphabetisation (16/01/2017)   Romain Raffault
+ 25,00          FOFANA Denzel (147/romain)        Alphabetisation (16/01/2017)   Romain Raffault
+============== ================================= ============================== =================
 <BLANKLINE>
 
 
@@ -432,8 +432,8 @@ Clients with more than one enrolment
 >>> qs = qs.filter(ecount__gt=1)
 >>> obj = qs[0]
 >>> rt.show(courses.EnrolmentsByPupil, obj, header_level=4)
-Enrolments in Activities of ABAD Aábdeen (114) (Also Cancelled)
-===============================================================
+Enrolments in Activities of ABAD Aábdeen (114/nathalie) (Also Cancelled)
+========================================================================
 ================= ============================== ======== ======== ===============
  Date of request   Activity                       Author   Remark   Workflow
 ----------------- ------------------------------ -------- -------- ---------------

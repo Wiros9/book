@@ -60,20 +60,20 @@ We have two social workers Nathalie and Nelly.
 <BLANKLINE>
 
 >>> rt.login('robin').show("uploads.Uploads", column_names="id user project project__user end_date needed")
-==== ============= ====================== ================= ============= ========
- ID   Uploaded by   Client                 Primary coach     Valid until   Needed
----- ------------- ---------------------- ----------------- ------------- --------
- 10   nathalie      ABDALLAH Aáish (127)   Robin Rood        22/03/2018    Yes
- 9    nathalie      ABDALLAH Aáish (127)   Robin Rood        22/03/2018    No
- 8    nathalie      ABDALLA Aádil (120)    Rolf Rompen       12/03/2018    No
- 7    nathalie      ABDALLA Aádil (120)    Rolf Rompen       12/03/2018    No
- 6    nathalie      ABBASI Aáishá (118)    Romain Raffault   02/03/2018    No
- 5    nathalie      ABBASI Aáishá (118)    Romain Raffault   02/03/2018    No
- 4    nathalie      ABBAS Aábid (115)      nelly             20/02/2018    Yes
- 3    nathalie      ABBAS Aábid (115)      nelly             20/02/2018    Yes
- 2    nathalie      ABAD Aábdeen (114)     nathalie          10/02/2018    Yes
- 1    nathalie      ABAD Aábdeen (114)     nathalie          10/02/2018    Yes
-==== ============= ====================== ================= ============= ========
+==== ============= ============================= ================= ============= ========
+ ID   Uploaded by   Client                        Primary coach     Valid until   Needed
+---- ------------- ----------------------------- ----------------- ------------- --------
+ 10   nathalie      ABDALLAH Aáish (127/robin)    Robin Rood        22/03/2018    Yes
+ 9    nathalie      ABDALLAH Aáish (127/robin)    Robin Rood        22/03/2018    No
+ 8    nathalie      ABDALLA Aádil (120/rolf)      Rolf Rompen       12/03/2018    No
+ 7    nathalie      ABDALLA Aádil (120/rolf)      Rolf Rompen       12/03/2018    No
+ 6    nathalie      ABBASI Aáishá (118/romain)    Romain Raffault   02/03/2018    No
+ 5    nathalie      ABBASI Aáishá (118/romain)    Romain Raffault   02/03/2018    No
+ 4    nathalie      ABBAS Aábid (115/nelly)       nelly             20/02/2018    Yes
+ 3    nathalie      ABBAS Aábid (115/nelly)       nelly             20/02/2018    Yes
+ 2    nathalie      ABAD Aábdeen (114/nathalie)   nathalie          10/02/2018    Yes
+ 1    nathalie      ABAD Aábdeen (114/nathalie)   nathalie          10/02/2018    Yes
+==== ============= ============================= ================= ============= ========
 <BLANKLINE>
 
 Note that uploads #4 and #3 were not uploaded by the client's primary coach.
@@ -102,7 +102,7 @@ Note about security. You might wonder why Sandra is able to see data that she
 isn't allow to see:
 
 >>> print(rec['data']['project'])
-ABBAS Aábid (115)
+ABBAS Aábid (115/nelly)
 
 This is *not* a security issue because we are at the command line interface
 where access rights are not verified.  If Sandra would do a manual AJAX call,
@@ -161,10 +161,10 @@ the  :attr:`Upload.end_date` field and check the :attr:`Upload.needed` field.
 
 
 >>> rt.login(dd.plugins.clients.demo_coach).show("uploads.MyExpiringUploads")
-==================== ================== ================== ============= ============ ============= ========
- Client               Upload type        Description        Uploaded by   Valid from   Valid until   Needed
--------------------- ------------------ ------------------ ------------- ------------ ------------- --------
- ABAD Aábdeen (114)   Residence permit   Residence permit   nathalie                   10/02/2018    Yes
- ABAD Aábdeen (114)   Work permit        Work permit        nathalie                   10/02/2018    Yes
-==================== ================== ================== ============= ============ ============= ========
+============================= ================== ================== ============= ============ ============= ========
+ Client                        Upload type        Description        Uploaded by   Valid from   Valid until   Needed
+----------------------------- ------------------ ------------------ ------------- ------------ ------------- --------
+ ABAD Aábdeen (114/nathalie)   Residence permit   Residence permit   nathalie                   10/02/2018    Yes
+ ABAD Aábdeen (114/nathalie)   Work permit        Work permit        nathalie                   10/02/2018    Yes
+============================= ================== ================== ============= ============ ============= ========
 <BLANKLINE>

@@ -252,7 +252,7 @@ Bestehendem Haushalt beitreten
 javascript:Lino.households.MembersByPerson.insert.run(null,{ "base_params": { "person": 178 },
 "data_record": { "data": { "disabled_fields": { "birth_date": true, "first_name": true,
 "gender": true, "last_name": true }, "household": null, "householdHidden": null, "person":
-"ALVANG Aleks\u00e1ndr (178)", "personHidden": 178, "primary": false, "role": "Kind",
+"ALVANG Aleks\u00e1ndr (178/romain)", "personHidden": 178, "primary": false, "role": "Kind",
 "roleHidden": "05" }, "phantom": true, "title": "Mitglied erstellen" }, "param_values": {
 "aged_from": null, "aged_to": null, "end_date": null, "gender": null, "genderHidden": null,
 "start_date": null }, "record_id": null })

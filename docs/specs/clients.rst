@@ -173,15 +173,15 @@ For example here are the partners having  the client contact type "school":
 Here are the actual client contacts of that type:
 
 >>> rt.login('robin').show(clients.ClientContactsByType, obj)
-================== ================ ========================== =========
- Organization       Contact person   Client                     Remarks
------------------- ---------------- -------------------------- ---------
- Favourite School                    ABDALLA Aádil (120)
- Best School                         ABED Abdul Báári (159)
- Favourite School                    ARSHUN Aloyoshenká (135)
- Best School                         BERENDT Antoshá (165)
- Favourite School                    FALL Dembe (145)
-================== ================ ========================== =========
+================== ================ ================================= =========
+ Organization       Contact person   Client                            Remarks
+------------------ ---------------- --------------------------------- ---------
+ Favourite School                    ABDALLA Aádil (120/rolf)
+ Best School                         ABED Abdul Báári (159/nathalie)
+ Favourite School                    ARSHUN Aloyoshenká (135/romain)
+ Best School                         BERENDT Antoshá (165/robin)
+ Favourite School                    FALL Dembe (145/nelly)
+================== ================ ================================= =========
 <BLANKLINE>
 
 

@@ -5,18 +5,16 @@
 2021
 ====
 
-This is the 2021 :term:`change log` for :ref:`book`.
-General information about how to read and maintain this document in :ref:`dev.changes`.
+This is the 2021 :term:`change log` for :ref:`book`. General information about
+how to read and maintain this document in :ref:`dev.changes`.
 
 2021-01-29
 ==========
 
-Fixed :ticket:`3948`:
-Lino didn't behave correctly when (a) no weekday at
-all was selected (which for Lino means "any weekday"), and it caused an internal
-server error when no recursion rule was found.
-This was in the :meth:`get_next_suggested_date` of a :class:`lino_xl.lib.cal.RecurrenceSet`.
-
+Fixed :ticket:`3948`: Lino didn't behave correctly when (a) no weekday at all
+was selected (which for Lino means "any weekday"), and (b) caused an internal
+server error when no recursion rule was found. This was in the
+:meth:`get_next_suggested_date` of a :class:`lino_xl.lib.cal.RecurrenceSet`.
 
 Fixed :ticket:`3946`: When a partner is :class:`lino_xl.lib.lists.Member` of
 some list, this is no longer a reason to refuse deleting the partner. When you
@@ -29,6 +27,7 @@ for". Added a custom :attr:`details_of_master_template
 <lino.core.actor.Actor.details_of_master_template>`. Note that the custom
 :attr:`label`, "Contact for" is also needed for situations where the master is
 not known.
+
 
 2021-01-17
 ==========
@@ -67,10 +66,12 @@ Continued on :ticket:`1162` (A CMS using Lino). The
 finished. Internal changes: :func:`lino.core.dashboard.DashboardItem.render` now
 yields html chunks instead of etree elements.  :func:`show_dashboard` and
 :func:`show_menu` are now defined in :mod:`lino.api.doctest`, no longer as
-methods of a request.
+methods of a request. The function :func:`lino.api.doctest.rst2menu` is now used
+in :ref:`dev.admin_main`.
 
-The function :func:`lino.api.doctest.rst2menu` is now used in
-:ref:`dev.admin_main`.
+The menu of a multilingual site now shows the languages in the main menu, and
+users can dynamically switch to another language than the on defined in their
+preferences.
 
 
 2021-01-08

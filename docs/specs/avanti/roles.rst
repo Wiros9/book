@@ -337,18 +337,18 @@ System admins can see the full names:
 >>> obj = courses.Course.objects.get(pk=1)
 >>> rt.login('rolf').show('courses.EnrolmentsByCourse', obj, show_links=True)
 ... #doctest: +NORMALIZE_WHITESPACE -REPORT_UDIFF
-================= ================= ========================================== ======== ============= =========== ======== ===== ========= ======== ============== ==================================================
- ID                Date of request   Participant                                Gender   Nationality   Childcare   School   Bus   Evening   Remark   Missing rate   Workflow
------------------ ----------------- ------------------------------------------ -------- ------------- ----------- -------- ----- --------- -------- -------------- --------------------------------------------------
- `31 <Detail>`__   30/01/2017        `ARNOLD Alexei (129) <Detail>`__           Male                   No          No       No    No                 25,00          **Confirmed** → [Cancelled] [Requested] [Trying]
- `25 <Detail>`__   03/02/2017        `ABDELNOUR Aámir (125) <Detail>`__         Male                   No          No       No    No                                **Requested** → [Confirm] [Cancelled] [Trying]
- `22 <Detail>`__   04/02/2017        `ARENT Afánásiiá (124) <Detail>`__         Female                 No          No       No    No                 25,00          **Trying** → [Requested]
- `19 <Detail>`__   06/02/2017        `DEMEULENAERE Dorothée (121) <Detail>`__   Female                 No          No       No    No                 25,00          **Confirmed** → [Cancelled] [Requested] [Trying]
- `13 <Detail>`__   09/02/2017        `ABBASI Aáishá (118) <Detail>`__           Female                 No          No       No    No                                **Requested** → [Confirm] [Cancelled] [Trying]
- `10 <Detail>`__   11/02/2017        `ALEKSANDROV Akim (116) <Detail>`__        Male                   No          No       No    No                 25,00          **Trying** → [Requested]
- `7 <Detail>`__    12/02/2017        `ABBAS Aábid (115) <Detail>`__             Male                   No          No       No    No                 25,00          **Confirmed** → [Cancelled] [Requested] [Trying]
- `1 <Detail>`__    15/02/2017        `ABEZGAUZ Adrik (112) <Detail>`__          Male                   No          No       No    No                                **Requested** → [Confirm] [Cancelled] [Trying]
-================= ================= ========================================== ======== ============= =========== ======== ===== ========= ======== ============== ==================================================
+================= ================================================ ======== ============= =========== ======== ===== ========= ======== ============== ==================================================
+ ID                Participant                                      Gender   Nationality   Childcare   School   Bus   Evening   Remark   Missing rate   Workflow
+----------------- ------------------------------------------------ -------- ------------- ----------- -------- ----- --------- -------- -------------- --------------------------------------------------
+ `31 <Detail>`__   `ARNOLD Alexei (129/nathalie) <Detail>`__        Male                   No          No       No    No                 25,00          **Confirmed** → [Cancelled] [Requested] [Trying]
+ `25 <Detail>`__   `ABDELNOUR Aámir (125/nelly) <Detail>`__         Male                   No          No       No    No                                **Requested** → [Confirm] [Cancelled] [Trying]
+ `22 <Detail>`__   `ARENT Afánásiiá (124/robin) <Detail>`__         Female                 No          No       No    No                 25,00          **Trying** → [Requested]
+ `19 <Detail>`__   `DEMEULENAERE Dorothée (121/nelly) <Detail>`__   Female                 No          No       No    No                 25,00          **Confirmed** → [Cancelled] [Requested] [Trying]
+ `13 <Detail>`__   `ABBASI Aáishá (118/romain) <Detail>`__          Female                 No          No       No    No                                **Requested** → [Confirm] [Cancelled] [Trying]
+ `10 <Detail>`__   `ALEKSANDROV Akim (116/nathalie) <Detail>`__     Male                   No          No       No    No                 25,00          **Trying** → [Requested]
+ `7 <Detail>`__    `ABBAS Aábid (115/nelly) <Detail>`__             Male                   No          No       No    No                 25,00          **Confirmed** → [Cancelled] [Requested] [Trying]
+ `1 <Detail>`__    `ABEZGAUZ Adrik (112/nelly) <Detail>`__          Male                   No          No       No    No                                **Requested** → [Confirm] [Cancelled] [Trying]
+================= ================================================ ======== ============= =========== ======== ===== ========= ======== ============== ==================================================
 <BLANKLINE>
 
 Teachers and coordinators *can* see the full names (they need it
@@ -357,35 +357,35 @@ click on a name to see any detail.
 
 >>> rt.login('laura').show('courses.EnrolmentsByCourse', obj, show_links=True)
 ... #doctest: +NORMALIZE_WHITESPACE -REPORT_UDIFF
-================= ================= =============================== ======== ============= =========== ======== ===== ========= ======== ============== ==================================================
- ID                Date of request   Participant                     Gender   Nationality   Childcare   School   Bus   Evening   Remark   Missing rate   Workflow
------------------ ----------------- ------------------------------- -------- ------------- ----------- -------- ----- --------- -------- -------------- --------------------------------------------------
- `31 <Detail>`__   30/01/2017        *ARNOLD Alexei (129)*           Male                   No          No       No    No                 25,00          **Confirmed** → [Cancelled] [Requested] [Trying]
- `25 <Detail>`__   03/02/2017        *ABDELNOUR Aámir (125)*         Male                   No          No       No    No                                **Requested** → [Confirm] [Cancelled] [Trying]
- `22 <Detail>`__   04/02/2017        *ARENT Afánásiiá (124)*         Female                 No          No       No    No                 25,00          **Trying** → [Requested]
- `19 <Detail>`__   06/02/2017        *DEMEULENAERE Dorothée (121)*   Female                 No          No       No    No                 25,00          **Confirmed** → [Cancelled] [Requested] [Trying]
- `13 <Detail>`__   09/02/2017        *ABBASI Aáishá (118)*           Female                 No          No       No    No                                **Requested** → [Confirm] [Cancelled] [Trying]
- `10 <Detail>`__   11/02/2017        *ALEKSANDROV Akim (116)*        Male                   No          No       No    No                 25,00          **Trying** → [Requested]
- `7 <Detail>`__    12/02/2017        *ABBAS Aábid (115)*             Male                   No          No       No    No                 25,00          **Confirmed** → [Cancelled] [Requested] [Trying]
- `1 <Detail>`__    15/02/2017        *ABEZGAUZ Adrik (112)*          Male                   No          No       No    No                                **Requested** → [Confirm] [Cancelled] [Trying]
-================= ================= =============================== ======== ============= =========== ======== ===== ========= ======== ============== ==================================================
+================= ===================================== ======== ============= =========== ======== ===== ========= ======== ============== ==================================================
+ ID                Participant                           Gender   Nationality   Childcare   School   Bus   Evening   Remark   Missing rate   Workflow
+----------------- ------------------------------------- -------- ------------- ----------- -------- ----- --------- -------- -------------- --------------------------------------------------
+ `31 <Detail>`__   *ARNOLD Alexei (129/nathalie)*        Male                   No          No       No    No                 25,00          **Confirmed** → [Cancelled] [Requested] [Trying]
+ `25 <Detail>`__   *ABDELNOUR Aámir (125/nelly)*         Male                   No          No       No    No                                **Requested** → [Confirm] [Cancelled] [Trying]
+ `22 <Detail>`__   *ARENT Afánásiiá (124/robin)*         Female                 No          No       No    No                 25,00          **Trying** → [Requested]
+ `19 <Detail>`__   *DEMEULENAERE Dorothée (121/nelly)*   Female                 No          No       No    No                 25,00          **Confirmed** → [Cancelled] [Requested] [Trying]
+ `13 <Detail>`__   *ABBASI Aáishá (118/romain)*          Female                 No          No       No    No                                **Requested** → [Confirm] [Cancelled] [Trying]
+ `10 <Detail>`__   *ALEKSANDROV Akim (116/nathalie)*     Male                   No          No       No    No                 25,00          **Trying** → [Requested]
+ `7 <Detail>`__    *ABBAS Aábid (115/nelly)*             Male                   No          No       No    No                 25,00          **Confirmed** → [Cancelled] [Requested] [Trying]
+ `1 <Detail>`__    *ABEZGAUZ Adrik (112/nelly)*          Male                   No          No       No    No                                **Requested** → [Confirm] [Cancelled] [Trying]
+================= ===================================== ======== ============= =========== ======== ===== ========= ======== ============== ==================================================
 <BLANKLINE>
 
 
 >>> rt.login('martina').show('courses.EnrolmentsByCourse', obj, show_links=True)
 ... #doctest: +NORMALIZE_WHITESPACE -REPORT_UDIFF
-================= ================= =============================== ======== ============= =========== ======== ===== ========= ======== ============== ==================================================
- ID                Date of request   Participant                     Gender   Nationality   Childcare   School   Bus   Evening   Remark   Missing rate   Workflow
------------------ ----------------- ------------------------------- -------- ------------- ----------- -------- ----- --------- -------- -------------- --------------------------------------------------
- `31 <Detail>`__   30/01/2017        *ARNOLD Alexei (129)*           Male                   No          No       No    No                 25,00          **Confirmed** → [Cancelled] [Requested] [Trying]
- `25 <Detail>`__   03/02/2017        *ABDELNOUR Aámir (125)*         Male                   No          No       No    No                                **Requested** → [Confirm] [Cancelled] [Trying]
- `22 <Detail>`__   04/02/2017        *ARENT Afánásiiá (124)*         Female                 No          No       No    No                 25,00          **Trying** → [Requested]
- `19 <Detail>`__   06/02/2017        *DEMEULENAERE Dorothée (121)*   Female                 No          No       No    No                 25,00          **Confirmed** → [Cancelled] [Requested] [Trying]
- `13 <Detail>`__   09/02/2017        *ABBASI Aáishá (118)*           Female                 No          No       No    No                                **Requested** → [Confirm] [Cancelled] [Trying]
- `10 <Detail>`__   11/02/2017        *ALEKSANDROV Akim (116)*        Male                   No          No       No    No                 25,00          **Trying** → [Requested]
- `7 <Detail>`__    12/02/2017        *ABBAS Aábid (115)*             Male                   No          No       No    No                 25,00          **Confirmed** → [Cancelled] [Requested] [Trying]
- `1 <Detail>`__    15/02/2017        *ABEZGAUZ Adrik (112)*          Male                   No          No       No    No                                **Requested** → [Confirm] [Cancelled] [Trying]
-================= ================= =============================== ======== ============= =========== ======== ===== ========= ======== ============== ==================================================
+================= ===================================== ======== ============= =========== ======== ===== ========= ======== ============== ==================================================
+ ID                Participant                           Gender   Nationality   Childcare   School   Bus   Evening   Remark   Missing rate   Workflow
+----------------- ------------------------------------- -------- ------------- ----------- -------- ----- --------- -------- -------------- --------------------------------------------------
+ `31 <Detail>`__   *ARNOLD Alexei (129/nathalie)*        Male                   No          No       No    No                 25,00          **Confirmed** → [Cancelled] [Requested] [Trying]
+ `25 <Detail>`__   *ABDELNOUR Aámir (125/nelly)*         Male                   No          No       No    No                                **Requested** → [Confirm] [Cancelled] [Trying]
+ `22 <Detail>`__   *ARENT Afánásiiá (124/robin)*         Female                 No          No       No    No                 25,00          **Trying** → [Requested]
+ `19 <Detail>`__   *DEMEULENAERE Dorothée (121/nelly)*   Female                 No          No       No    No                 25,00          **Confirmed** → [Cancelled] [Requested] [Trying]
+ `13 <Detail>`__   *ABBASI Aáishá (118/romain)*          Female                 No          No       No    No                                **Requested** → [Confirm] [Cancelled] [Trying]
+ `10 <Detail>`__   *ALEKSANDROV Akim (116/nathalie)*     Male                   No          No       No    No                 25,00          **Trying** → [Requested]
+ `7 <Detail>`__    *ABBAS Aábid (115/nelly)*             Male                   No          No       No    No                 25,00          **Confirmed** → [Cancelled] [Requested] [Trying]
+ `1 <Detail>`__    *ABEZGAUZ Adrik (112/nelly)*          Male                   No          No       No    No                                **Requested** → [Confirm] [Cancelled] [Trying]
+================= ===================================== ======== ============= =========== ======== ===== ========= ======== ============== ==================================================
 <BLANKLINE>
 
 
@@ -393,20 +393,19 @@ But auditors see only the pupil's number and place:
 
 >>> rt.login('audrey').show('courses.EnrolmentsByCourse', obj, show_links=True)
 ... #doctest: +NORMALIZE_WHITESPACE -REPORT_UDIFF
-================= ================= ==================== ======== ============= =========== ======== ===== ========= ======== ============== ===============
- ID                Date of request   Participant          Gender   Nationality   Childcare   School   Bus   Evening   Remark   Missing rate   Workflow
------------------ ----------------- -------------------- -------- ------------- ----------- -------- ----- --------- -------- -------------- ---------------
- `31 <Detail>`__   30/01/2017        *(129) from Eupen*   Male                   No          No       No    No                 25,00          **Confirmed**
- `25 <Detail>`__   03/02/2017        *(125) from Eupen*   Male                   No          No       No    No                                **Requested**
- `22 <Detail>`__   04/02/2017        *(124) from Eupen*   Female                 No          No       No    No                 25,00          **Trying**
- `19 <Detail>`__   06/02/2017        *(121) from Eupen*   Female                 No          No       No    No                 25,00          **Confirmed**
- `13 <Detail>`__   09/02/2017        *(118) from Eupen*   Female                 No          No       No    No                                **Requested**
- `10 <Detail>`__   11/02/2017        *(116) from Eupen*   Male                   No          No       No    No                 25,00          **Trying**
- `7 <Detail>`__    12/02/2017        *(115) from Eupen*   Male                   No          No       No    No                 25,00          **Confirmed**
- `1 <Detail>`__    15/02/2017        *(112) from Eupen*   Male                   No          No       No    No                                **Requested**
-================= ================= ==================== ======== ============= =========== ======== ===== ========= ======== ============== ===============
+================= ==================== ======== ============= =========== ======== ===== ========= ======== ============== ===============
+ ID                Participant          Gender   Nationality   Childcare   School   Bus   Evening   Remark   Missing rate   Workflow
+----------------- -------------------- -------- ------------- ----------- -------- ----- --------- -------- -------------- ---------------
+ `31 <Detail>`__   *(129) from Eupen*   Male                   No          No       No    No                 25,00          **Confirmed**
+ `25 <Detail>`__   *(125) from Eupen*   Male                   No          No       No    No                                **Requested**
+ `22 <Detail>`__   *(124) from Eupen*   Female                 No          No       No    No                 25,00          **Trying**
+ `19 <Detail>`__   *(121) from Eupen*   Female                 No          No       No    No                 25,00          **Confirmed**
+ `13 <Detail>`__   *(118) from Eupen*   Female                 No          No       No    No                                **Requested**
+ `10 <Detail>`__   *(116) from Eupen*   Male                   No          No       No    No                 25,00          **Trying**
+ `7 <Detail>`__    *(115) from Eupen*   Male                   No          No       No    No                 25,00          **Confirmed**
+ `1 <Detail>`__    *(112) from Eupen*   Male                   No          No       No    No                                **Requested**
+================= ==================== ======== ============= =========== ======== ===== ========= ======== ============== ===============
 <BLANKLINE>
-
 
 
 Teachers can see the names of their pupils, but must not see all the clients in

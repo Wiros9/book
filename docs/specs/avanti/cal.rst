@@ -93,11 +93,11 @@ transition for it, so it is rather invisible for the end users.
 >>> base = '/choices/cal/Guests/partner'
 >>> show_choices("rolf", base + '?query=') #doctest: +ELLIPSIS
 <br/>
-ABAD Aábdeen (114)
-ABBASI Aáishá (118)
-ABDALLA Aádil (120)
-ABDALLAH Aáish (127)
-ABDELLA Aákif (128)
+ABAD Aábdeen (114/nathalie)
+ABBASI Aáishá (118/romain)
+ABDALLA Aádil (120/rolf)
+ABDALLAH Aáish (127/robin)
+ABDELLA Aákif (128/nathalie)
 ...
 
 >>> show_choices("audrey", base + '?query=') #doctest: +ELLIPSIS
