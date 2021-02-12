@@ -1,13 +1,9 @@
+.. doctest docs/specs/i18n.rst
 .. _book.specs.i18n:
 
 ====================
 Internationalization
 ====================
-
-.. to test just this doc:
-
-    $ doctest docs/specs/i18n.rst
-
 
 
 The :func:`lazy_format` function

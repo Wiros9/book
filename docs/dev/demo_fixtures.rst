@@ -21,7 +21,7 @@ the :attr:`demo_fixtures <lino.core.site.Site.demo_fixtures>` attribute. The
 `min1` application has the following value for this attribute:
 
 >>> from lino import startup
->>> startup('lino_book.projects.min1.settings.demo')
+>>> startup('lino_book.projects.min1.settings')
 >>> from django.conf import settings
 >>> settings.SITE.demo_fixtures
 'std demo demo2'

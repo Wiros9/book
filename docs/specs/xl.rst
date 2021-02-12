@@ -20,7 +20,7 @@ It also adds some utilities.
 .. include:: /../docs/shared/include/tested.rst
 
 >>> from lino import startup
->>> startup('lino_book.projects.min1.settings.doctests')
+>>> startup('lino_book.projects.min1.settings')
 >>> from lino.api.doctest import *
 
 Which means that code snippets in this document are tested using the

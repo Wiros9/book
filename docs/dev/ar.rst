@@ -38,7 +38,7 @@ A tablerequest has two iterators: :Attr:`data_iterator` and
 :attr:`sliced_data_iterator`.
 
 >>> from lino import startup
->>> startup('lino_book.projects.min1.settings.demo')
+>>> startup('lino_book.projects.min1.settings')
 >>> from lino.api.doctest import *
 
 >>> rt.show('countries.Places', limit=10)

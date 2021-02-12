@@ -1,7 +1,7 @@
 #25 : `makedoc` command
 =======================
 
-Idea: a Django management command that creates a series 
+Idea: a :term:`django-admin command` that creates a series 
 of .rst files in a local directory, called the "site docs".
 
 This will be useful for 

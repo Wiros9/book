@@ -61,7 +61,7 @@ stored in a file named :xfile:`settings.py`.
 
 But in practice it can be some arbitrary filename.  For example the
 :envvar:`DJANGO_SETTINGS_MODULE` of :mod:`lino_book.projects.min1` is
-:mod:`lino_book.projects.min1.settings.demo`. This layout is called a `settings
+:mod:`lino_book.projects.min1.settings`. This layout is called a `settings
 package <Settings packages>`_, it is useful when you want to have different
 variants of settings modules.
 

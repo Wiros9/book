@@ -20,7 +20,7 @@ The code snippets on this page use the :mod:`lino_book.projects.min1` demo
 project.
 
 >>> from lino import startup
->>> startup('lino_book.projects.min1.settings.doctests')
+>>> startup('lino_book.projects.min1.settings')
 >>> from lino.api.doctest import *
 
 

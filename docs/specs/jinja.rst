@@ -18,7 +18,7 @@ Code examples in this document use the :mod:`lino_book.projects.min1` demo
 project:
 
 >>> from lino import startup
->>> startup('lino_book.projects.min1.settings.doctests')
+>>> startup('lino_book.projects.min1.settings')
 >>> from lino.api.doctest import *
 
 
@@ -27,10 +27,11 @@ project:
 
   Inherits from :class:`lino.modlib.printing.DjangoBuildMethod`.
 
-Management commands
-===================
+django-admin commands
+=====================
 
-This plugin defines two :term:`management commands <management command>`.
+This plugin defines two :term:`:term:`django-admin commands <django-admin
+command>`.
 
 .. management_command:: showsettings
 

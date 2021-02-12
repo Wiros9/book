@@ -251,7 +251,7 @@ Version 1.6.12 (released :blogref:`20130924`)
 
   - New command :cmd:`fab test_sdist` (:blogref:`20130913`).
 
-  - New management command :manage:`dump2py`.
+  - New :term:`django-admin command` :manage:`dump2py`.
 
   - The :ref:`davlink` applet now works around some permission problems
     which occured after Oracle JRE 7u21

@@ -15,7 +15,7 @@ manipulating *Belgian national identification numbers*.
 
 >>> from lino import startup
 >>> # lino.startup('lino.projects.std.settings_test')
->>> startup('lino_book.projects.min1.settings.doctests')
+>>> startup('lino_book.projects.min1.settings')
 >>> from lino.api.doctest import *
 
 Which means that code examples in this document use the

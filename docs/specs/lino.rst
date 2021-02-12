@@ -7,29 +7,28 @@
 ==================================
 
 The :mod:`lino` package is automatically installed as a plugin on every
-:term:`Lino site`. It adds no database models, but a series of admin commands as
-well as the translations for messages of the :mod:`lino` package.
-
+:term:`Lino site`. It doesn't add any database model, but a series of
+:term:`django-admin commands <django-admin command>` and the translations for
+messages of the :mod:`lino` package.
 
 .. currentmodule:: lino
-
 
 .. contents::
    :depth: 1
    :local:
 
-
 .. include:: /../docs/shared/include/tested.rst
 
 >>> import lino
->>> lino.startup('lino_book.projects.min1.settings.doctests')
+>>> lino.startup('lino_book.projects.min1.settings')
+>>> from lino.api.doctest import *
 >>> from atelier.sheller import Sheller
->>> shell = Sheller()
+>>> shell = Sheller(settings.SITE.project_dir)
 
 .. _specs.lino.admin_commands:
 
-Django admin commands added by the ``lino`` plugin
-==================================================
+The `django-admin` commands added by the ``lino`` plugin
+========================================================
 
 The source code of these commands is in the :mod:`lino.management.commands`
 package.
@@ -72,18 +71,20 @@ of Django's ``shell`` command (i.e. doing ``manage.py shell <
 myscript.py``), but with the possibility of using **command line
 arguments**.
 
-For example if you have a file `myscript.py` with the following content...
+For example if you have a file :file:`myscript.py` with the following content in
+your project directory...
 
-::
+.. literalinclude:: ../../lino_book/projects/min1/myscript.py
 
-  import sys
-  from myapp.models import Partner
-  print(Partner.objects.get(pk=sys.args[1]))
 
 ... then you can run this script using::
 
     $ python manage.py run myscript.py 101
     Bäckerei Ausdemwald
+
+>>> shell("python manage.py run myscript.py 101")  #doctest: +NORMALIZE_WHITESPACE
+Bäckerei Ausdemwald
+
 
 This command modifies `sys.args`, `__file__` and `__name__` so that
 the invoked script sees them as if it had been called directly.
@@ -273,3 +274,10 @@ Historical commands
 .. management_command:: initdb_demo
 
     Old name for :manage:`prep`.
+
+
+Translation texts
+=================
+
+All translatable texts of the :mod:`lino` package are stored below
+:file:`lino/locale`.

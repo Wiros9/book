@@ -4,7 +4,7 @@ Glossary
 
 .. glossary::
 
-  management command
+  :term:`django-admin command`
 
     See the Django docs about
     `django-admin and manage.py¶
@@ -91,16 +91,16 @@ Glossary
     See :mod:`lino.modlib.cal.management.commands.watch_calendars`
 
   loaddata
-    one of Django's standard management commands.
+    one of Django's standard :term:`django-admin command`s.
     See `Django docs <http://docs.djangoproject.com/en/2.2/ref/django-admin/#loaddata-fixture-fixture>`_
 
   makeui
-    A Lino-specific Django management command that
+    A Lino-specific :term:`django-admin command` that
     writes local files needed for the front end.
     See :doc:`/topics/qooxdoo`.
 
   makedocs
-    A Lino-specific Django management command that
+    A Lino-specific :term:`django-admin command` that
     writes a Sphinx documentation tree about the models
     installed on this site.
     :mod:`lino.management.commands.makedocs`

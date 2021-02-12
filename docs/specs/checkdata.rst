@@ -8,7 +8,7 @@
 .. currentmodule:: lino.modlib.checkdata
 
 The :mod:`lino.modlib.checkdata` plugin adds support for defining
-application-level data integrity tests. It provides a Django admin command named
+application-level data integrity tests. It provides a :term:`django-admin command` named
 :manage:`checkdata`.
 
 

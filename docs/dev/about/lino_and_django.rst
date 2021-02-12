@@ -5,9 +5,9 @@ Lino and Django
 The differences between Lino and plain Django are visible mainly for
 the application developer.
 
-A first an most visible difference with plain Django projects is that
-your Lino applications have an out-of-the box **front end**.  You
-don't not need to write any URLconf, HTML, CSS nor Javascript.
+A first an most visible difference with plain Django projects is that your Lino
+applications have an out-of-the box :term:`front end`.  You don't not need to
+write any URLconf, HTML, CSS nor Javascript.
 
 But Lino is more than a front end. In fact the current front end is not even the
 only choice [#ui]_.  Here are the **under the hood** differences between Lino

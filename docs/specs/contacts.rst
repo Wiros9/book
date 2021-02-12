@@ -19,7 +19,7 @@ roles".
 .. include:: /../docs/shared/include/tested.rst
 
 >>> import lino
->>> lino.startup('lino_book.projects.min1.settings.doctests')
+>>> lino.startup('lino_book.projects.min1.settings')
 >>> from django.utils import translation
 >>> from lino.api.doctest import *
 >>> from django.db.models import Q

@@ -5,7 +5,7 @@ Backup
 ======
 
 You can make a Python dump of your database using the
-:manage:`dump2py` management command that comes with Lino.
+:manage:`dump2py` :term:`django-admin command` that comes with Lino.
   
 For example::
   
@@ -27,7 +27,7 @@ Or, if you don't use per-project :xfile:`manage.py` files::
       $ set DJANGO_SETTINGS_MODULE=myproject
       $ django-admin.py run mydump/restore.py
   
-Note that we are using here the :manage:`run` management command.
+Note that we are using here the :manage:`run` :term:`django-admin command`.
 This makes it possible to restore your data into another project,
 creating a copy of your database.
   

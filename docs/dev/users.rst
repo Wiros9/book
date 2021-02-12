@@ -16,7 +16,7 @@ See :doc:`/specs/users` for a more detailed documentation of the
 .. include:: /../docs/shared/include/tested.rst
 
 >>> from lino import startup
->>> startup('lino_book.projects.min1.settings.demo')
+>>> startup('lino_book.projects.min1.settings')
 >>> from lino.api.doctest import *
 >>> from atelier.sheller import Sheller
 >>> shell = Sheller("lino_book/projects/min1")

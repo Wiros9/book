@@ -119,7 +119,7 @@ table:
 ====================== ================== ======================================================== ========
 <BLANKLINE>
 
-TODO: a management command to cleanup broken GFK fields. This would
+TODO: a :term:`django-admin command` to cleanup broken GFK fields. This would
 execute the suggested actions (delete and clear) without any further
 user interaction. Attention: 
 
