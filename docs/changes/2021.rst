@@ -8,6 +8,12 @@
 This is the 2021 :term:`change log` for :ref:`book`. General information about
 how to read and maintain this document in :ref:`dev.changes`.
 
+2021-02-09
+==========
+
+Fixed a bug in :mod:`lino.modlib.ipdict` that caused it to not report when an IP
+had been blacklisted.
+
 2021-01-29
 ==========
 

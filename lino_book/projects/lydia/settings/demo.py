@@ -1,5 +1,5 @@
 # -*- coding: UTF-8 -*-
-# Copyright 2016-2018 Rumma & Ko Ltd
+# Copyright 2016-2021 Rumma & Ko Ltd
 # License: BSD (see file COPYING for details)
 
 import datetime
@@ -28,7 +28,3 @@ DEBUG = True
 #     dbf_table_ext='.FOX',
 #     #use_dbf_py=True,
 #     use_dbfread=True)
-
-
-# the following line should not be active in a checked-in version
-# DATABASES['default']['NAME'] = ':memory:'

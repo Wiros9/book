@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
-# Copyright 2014-2018 Rumma & Ko Ltd
+# Copyright 2014-2021 Rumma & Ko Ltd
 # License: BSD (see file COPYING for details)
+# pm test tests.test_iban
 
 """This module contains some quick tests:
 
@@ -10,24 +11,13 @@
   - Test whether the record is being validated.
 
 
-You can run only these tests by issuing::
-
-  $ cd lino/tutorials/mini
-  $ python manage.py test
-
 """
-
-from __future__ import unicode_literals
-from __future__ import print_function
-
-import logging
-logger = logging.getLogger(__name__)
 
 from django.core.exceptions import ValidationError
 from lino.utils.djangotest import RemoteAuthTestCase
 
 
-class QuickTest(RemoteAuthTestCase):
+class TestCase(RemoteAuthTestCase):
     maxDiff = None
 
     def test_sepa(self):
