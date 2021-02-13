@@ -8,7 +8,26 @@
 This is the 2021 :term:`change log` for :ref:`book`. General information about
 how to read and maintain this document in :ref:`dev.changes`.
 
-2021-02-09
+2021-02-13
+==========
+
+Release to PyPI: Lino, XL and Avanti.
+
+Minor bugfixes :  SignIn failed when :attr:`lino.core.site.Site.use_ip_dict` was
+not `True`.  When :class:`lino.modli.memo.PreviewableChecker` was called with
+--fix, it fixed the problems but didn't report how many problems were fixed.
+
+Fixed a regression: Insert button was missing in
+:class:`lino.modlib.comments.CommentsByRFC`.
+
+New feature: you can now set a new plugin setting
+:attr:`lino.modlib.comments.Plugin.emotion_range` to either "business" (default)
+or "social" to select between two alternative sets of emoticons. :ref:`avanti`
+uses the new "social" range, :ref:`noi` the default "business" range.
+
+Release to PyPI: Lino and Avanti.
+
+2021-02-12
 ==========
 
 Fixed a bug in :mod:`lino.modlib.ipdict` that caused it to not report when an IP
