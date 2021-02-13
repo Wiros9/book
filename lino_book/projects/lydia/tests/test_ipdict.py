@@ -18,26 +18,17 @@ import time
 from datetime import timedelta
 
 from django.core.exceptions import ValidationError
-from django.test import TestCase
+# from django.test import TestCase
 from lino.api import rt, dd
-from lino.core import constants
 from lino.utils.instantiator import create_row
+from lino.utils.test import DemoTestCase
 
 ipdict = dd.plugins.ipdict
 
-class TestCase(TestCase):
+class TestCase(DemoTestCase):
     maxDiff = None
 
     def test_this(self):
-        # There are no users in the database because no fixtures are specified.
-        # print("20210212", rt.models.users.User.objects.all())
-        UserTypes = rt.models.users.UserTypes
-
-        robin = create_row(rt.models.users.User,
-            username="robin", user_type=UserTypes.admin)
-        robin.set_password("good")
-        robin.full_clean()
-        robin.save()
 
         self.assertEqual(ipdict.max_failed_auth_per_ip, 4)
         self.assertEqual(ipdict.max_blacklist_time, timedelta(minutes=1))
@@ -47,19 +38,11 @@ class TestCase(TestCase):
         ipdict.max_blacklist_time = timedelta(seconds=1)
 
         self.assertEqual(ipdict.ip_records, {})
-        data = {
-            constants.URL_PARAM_FIELD_VALUES: ['robin', 'bad password'],
-            constants.URL_PARAM_ACTION_NAME: 'sign_in'}
 
-        url = "/api/users/UsersOverview/-99998"
         def login(pwd):
-            data[constants.URL_PARAM_FIELD_VALUES] = ['robin', pwd]
-            res = self.client.post(url, data)
-            self.assertEqual(res.status_code, 200)
-            content = res.content.decode()
-            d = json.loads(content)
-            # return str(d.keys())
-            return d['message']
+            d = self.login('robin', pwd)
+            return d.message
+
         self.assertEqual(login("bad"), 'Failed to log in as robin.')
         rec = ipdict.ip_records['127.0.0.1']
         self.assertEqual(rec.login_failures, 1)
@@ -75,7 +58,7 @@ class TestCase(TestCase):
         self.assertEqual(rec.login_failures, 4)
 
         # Even with the right password you cannot unlock a blacklisted ip
-        self.assertEqual(login("good"), 'Too many authentication failures from 127.0.0.1')
+        self.assertEqual(login("1234"), 'Too many authentication failures from 127.0.0.1')
 
         # After max_blacklist_time, the IP gets removed from the blacklist, but
         # every new failure will now blacklist it again, the
@@ -88,7 +71,7 @@ class TestCase(TestCase):
         self.assertEqual(rec.login_failures, 5)
 
         time.sleep(1)
-        self.assertEqual(login("good"), 'Now logged in as robin')
+        self.assertEqual(login("1234"), 'Now logged in as Robin Rood')
 
         # Once you manage to authenticate, your ip address gets removed from the
         # blacklist, i.e. when you log out and in for some reason, you get again

@@ -18,12 +18,21 @@ not `True`.  When :class:`lino.modli.memo.PreviewableChecker` was called with
 --fix, it fixed the problems but didn't report how many problems were fixed.
 
 Fixed a regression: Insert button was missing in
-:class:`lino.modlib.comments.CommentsByRFC`.
+:class:`lino.modlib.comments.CommentsByRFC`. All comment table summaries are now
+wrapped into :meth:`html_text <lino.core.requests.BaseRequest.html_text>`,
+leading to better text styling under :mod:`lino.modlib.extjs`.
 
 New feature: you can now set a new plugin setting
 :attr:`lino.modlib.comments.Plugin.emotion_range` to either "business" (default)
 or "social" to select between two alternative sets of emoticons. :ref:`avanti`
 uses the new "social" range, :ref:`noi` the default "business" range.
+
+.. currentmodule:: lino.utils.test
+
+Extend :class:`WebIndexTestCase` to use :meth:`DemoTestCase.login` instead of
+Django's client :meth:`force_login`.  So now the JavaScript files are being
+built for each user type, and a typo bug like :message:`AttrDict instance has no
+key 'ipdict'` (in Lino 21.2.0) would no longer go undetected.
 
 Release to PyPI: Lino and Avanti.
 
