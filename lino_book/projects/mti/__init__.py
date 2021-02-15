@@ -5,8 +5,6 @@
 
    settings
    tests.test_misc
-   tests.test_webindex
 
 
 """
-

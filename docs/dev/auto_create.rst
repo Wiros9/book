@@ -1,27 +1,34 @@
+.. doctest docs/dev/auto_create.rst
 .. _lino.tutorial.auto_create:
 
 ================================================
 `lookup_or_create` and the `auto_create` signal
 ================================================
 
-.. This document is part of the test suite.  To test only this
-   document, run::
-
-     $ cd lino_book/projects/auto_create
-     $ python manage.py test
-
 This document describes and tests the
 :meth:`lookup_or_create <lino.core.model.Model.lookup_or_create>`
 method and the
 :attr:`auto_create <lino.core.signals.auto_create>` signal.
-I wrote it primarily to reproduce and test the
-"NameError / global name 'dd' is not defined"
-on :blogref:`20130311`.
+
+
+
+.. contents::
+   :depth: 1
+   :local:
+
+.. include:: /../docs/shared/include/tested.rst
+
+>>> from lino import startup
+>>> startup('lino_book.projects.auto_create.settings')
+>>> from lino.api.doctest import *
+
+
 
 .. flush the database to remove data from a previous test run
 
     >>> from django.core.management import call_command
-    >>> call_command('initdb', interactive=False)
+    >>> call_command('initdb', interactive=False) #doctest: +ELLIPSIS
+    `initdb ` started on database .../lino_book/projects/auto_create/default.db.
     Operations to perform:
       Synchronize unmigrated apps: about, auto_create, bootstrap3, extjs, jinja, lino, staticfiles
       Apply all migrations: (none)
@@ -33,10 +40,9 @@ on :blogref:`20130311`.
       No migrations to apply.
 
 
-
 We define a single simple model and a handler for the auto_create signal:
 
-.. literalinclude:: models.py
+.. literalinclude:: ../../lino_book/projects/auto_create/models.py
 
 >>> from lino_book.projects.auto_create.models import Tag
 
@@ -62,4 +68,4 @@ Bar
 >>> print(list(Tag.objects.all()))
 [Tag #1 ('Foo'), Tag #2 ('Bar')]
 
-Voilà, that's all for the moment.
+Voilà.

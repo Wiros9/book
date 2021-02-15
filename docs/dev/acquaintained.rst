@@ -49,3 +49,5 @@ Getting acquaintained
    /dev/ovfields/index
 
    /dev/qtclient
+   myroles
+   auto_create

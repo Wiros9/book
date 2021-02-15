@@ -6,9 +6,8 @@ Django test cases for this project.
 
    test_ddh
    test_notify
-   test_webindex
    test_workflow
-   
-  
+
+
 
 """

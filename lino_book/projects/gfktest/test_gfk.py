@@ -1,16 +1,9 @@
 # -*- coding: UTF-8 -*-
-# Copyright 2015-2018 Rumma & Ko Ltd
+# Copyright 2015-2021 Rumma & Ko Ltd
 # License: BSD (see file COPYING for details)
 
 # go gfktest
 # python manage.py test
-
-from __future__ import unicode_literals
-from builtins import str
-# from lino.utils.test import DocTest
-import six
-
-from lino.utils.djangotest import WebIndexTestCase
 
 from django.db import models
 from django.conf import settings
@@ -42,7 +35,7 @@ class TestCase(TestCase):
                     msg = "Expected %d objects in %s but found %d"
                     msg %= (args[i], m.__name__, n)
                     self.fail(msg)
-        
+
         gfklist = [
             (f.model, f.fk_field, f.ct_field)
             for f in settings.SITE.kernel.GFK_LIST]
@@ -73,7 +66,7 @@ class TestCase(TestCase):
 
         # they are all still there:
         check_status(1, 1, 1, 1)
-        
+
         # delete the note manually
         Note.objects.all().delete()
         check_status(1, 1, 0, 1)
@@ -116,4 +109,3 @@ class TestCase(TestCase):
 ====================== ================== ======================================================== ========
 
 """)
-

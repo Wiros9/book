@@ -8,12 +8,7 @@ import unittest
 
 class Main(TestCase):
 
-    def do_test_demo_project(self, prjname):
-        """Run :manage:`test` and :manage:`demotest` in a subprocess in the given demo project.
-        """
-        pth = 'lino_book/projects/' + prjname
-        self.run_django_manage_test(pth)
-        self.run_django_admin_command_cd(pth, "demotest")
+    demo_projects_root = 'lino_book/projects'
 
     def test_mti(self):
         self.do_test_demo_project('mti')
@@ -54,8 +49,8 @@ class Main(TestCase):
     def test_mldbc(self):
         self.do_test_demo_project('mldbc')
 
-    # def test_belref(self):
-    #     self.run_django_manage_test("docs/tutorials/belref")
+    def test_belref(self):
+        self.do_test_demo_project('belref')
 
     def test_events(self):
         self.do_test_demo_project("events")
