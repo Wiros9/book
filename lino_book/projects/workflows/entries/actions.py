@@ -1,7 +1,7 @@
 ## Copyright 2013-2018 Rumma & Ko Ltd
 ## This file is part of the Lino project.
 
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 from lino.api import dd, rt
 from lino.modlib.notify.actions import NotifyingAction
 

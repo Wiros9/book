@@ -16,7 +16,7 @@ logger = logging.getLogger(__name__)
 
 from lino.utils.instantiator import Instantiator, i2d
 from lino.utils import Cycler
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 from django.conf import settings
 from lino.utils import date_offset
 from lino.api import dd, rt

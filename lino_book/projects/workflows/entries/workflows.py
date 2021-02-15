@@ -1,7 +1,7 @@
 ## Copyright 2013-2020 Rumma & Ko Ltd
 ## This file is part of the Lino project.
 
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 from .choicelists import EntryStates
 from .actions import WakeupEntry, StartEntry, FinishEntry

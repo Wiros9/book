@@ -37,6 +37,19 @@ package.
 Useful commands
 ---------------
 
+.. management_command:: demotest
+
+  Run a series of standard read-only tests in this project.
+
+  Unlike :manage:`test` this command not create a temporary database, it uses
+  the demo database content populated by :manage:`prep`. So it assumes that
+  :manage:`prep` has run successfully.
+
+  These tests use the Django test client to simulate a :manage:`runserver`
+  followed some browser requests. They log in once with every user. This causes
+  e.g. the JS cache files to get generated if necessary.
+
+
 .. management_command:: linod
 
 Run a Lino daemon for this :term:`site <Lino site>`. See :doc:`/admin/linod`.

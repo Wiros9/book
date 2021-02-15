@@ -8,6 +8,13 @@
 This is the 2021 :term:`change log` for :ref:`book`. General information about
 how to read and maintain this document in :ref:`dev.changes`.
 
+2021-02-14
+==========
+
+Fixed :ticket:`3968` (extjs combobox doesn't submit empty value). It is possible
+that this bugfix reopens :ticket:`3653` (Learning choosers don't work in React
+front end).
+
 2021-02-13
 ==========
 

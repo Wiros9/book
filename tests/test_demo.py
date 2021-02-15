@@ -1,164 +1,136 @@
 # how to run a single test:
-# $ python -m unittest tests.test_demo.TestCase.test_noi1e_maketour
+# $ python -m unittest tests.test_demo.Main.test_noi1e_maketour
+# $ python -m unittest tests.test_demo.Main.test_lydia
 
-from django import VERSION
-
-from lino import PYAFTER26
 from lino.utils.pythontest import TestCase
+import unittest
 
 
-class TestCase(TestCase):
+class Main(TestCase):
 
-    def test_translate(self):
-        self.run_django_manage_test('docs/dev/translate')
-
-    # def test_hello(self):
-    #     self.run_django_manage_test('docs/tutorials/hello')
-
-    # def test_dumpy(self):
-    #     self.run_django_manage_test('docs/tutorials/dumpy')
-
-    # def test_lets(self):
-    #     self.run_django_manage_test('docs/tutorials/lets')
-
-    # def test_letsmti(self):
-    #     self.run_django_manage_test('docs/tutorials/letsmti')
-
-    # def test_pisa(self):
-    #     self.run_django_manage_test('lino_book/projects/pisa')
-
-    # def test_de_BE(self):
-    #     self.run_django_manage_test('lino_book/projects/de_BE')
-
-    # def test_myroles(self):
-    #     self.run_django_manage_test('lino_book/projects/myroles')
+    def do_test_demo_project(self, prjname):
+        """Run :manage:`test` and :manage:`demotest` in a subprocess in the given demo project.
+        """
+        pth = 'lino_book/projects/' + prjname
+        self.run_django_manage_test(pth)
+        self.run_django_admin_command_cd(pth, "demotest")
 
     def test_mti(self):
-        self.run_django_manage_test('lino_book/projects/mti')
+        self.do_test_demo_project('mti')
 
     def test_auto_create(self):
-        self.run_django_manage_test('lino_book/projects/auto_create')
+        self.do_test_demo_project('auto_create')
 
     def test_human(self):
-        self.run_django_manage_test('lino_book/projects/human')
+        self.do_test_demo_project('human')
 
     def test_actions(self):
-        self.run_django_manage_test('lino_book/projects/actions')
+        self.do_test_demo_project('actions')
 
     def test_actors(self):
-        self.run_django_manage_test('lino_book/projects/actors')
+        self.do_test_demo_project('actors')
 
     # def test_watch(self):
-    #     self.run_django_manage_test('lino_book/projects/watch_tutorial')
+    #     self.do_test_demo_project('watch_tutorial')
 
     def test_vtables(self):
-        self.run_django_manage_test('lino_book/projects/vtables')
+        self.do_test_demo_project('vtables')
 
     def test_tables(self):
-        self.run_django_manage_test('lino_book/projects/tables')
-
-    def test_diamond(self):
-        self.run_django_manage_test('lino_book/projects/diamond')
-
-    def test_diamond2(self):
-        # TODO: Even when using method described in
-        # https://code.djangoproject.com/ticket/28332
-        # we still have the problem of Django saying
-        # django.core.exceptions.FieldError: Local field u'street' in class
-        # 'PizzeriaBar' clashes with field of the same name from base class
-        # 'Pizzeria'.
-        if VERSION[0] == 1 and VERSION[1] < 11:
-            self.run_django_manage_test('lino_book/projects/diamond2')
+        self.do_test_demo_project('tables')
 
     def test_addrloc(self):
-        self.run_django_manage_test('lino_book/projects/addrloc')
+        self.do_test_demo_project('addrloc')
 
     def test_polls(self):
-        self.run_django_manage_test('lino_book/projects/polls')
+        self.do_test_demo_project('polls')
 
     def test_polls2(self):
-        self.run_django_manage_test('lino_book/projects/polls2')
+        self.do_test_demo_project('polls2')
 
     def test_gfktest(self):
-        self.run_django_manage_test('lino_book/projects/gfktest')
+        self.do_test_demo_project('gfktest')
 
     def test_mldbc(self):
-        self.run_django_manage_test('lino_book/projects/mldbc')
+        self.do_test_demo_project('mldbc')
 
     # def test_belref(self):
     #     self.run_django_manage_test("docs/tutorials/belref")
 
-    def test_float2decimal(self):
-        if PYAFTER26:
-            self.run_django_manage_test("lino_book/projects/float2decimal")
-
-    def test_integer_pk(self):
-        self.run_django_manage_test("lino_book/projects/integer_pk")
-
     def test_events(self):
-        self.run_django_manage_test("lino_book/projects/events")
+        self.do_test_demo_project("events")
 
     def test_watch(self):
-        self.run_django_manage_test("lino_book/projects/watch")
+        self.do_test_demo_project("watch")
 
     def test_belref(self):
-        self.run_django_manage_test("lino_book/projects/belref")
+        self.do_test_demo_project("belref")
 
     def test_babel_tutorial(self):
-        self.run_django_manage_test("lino_book/projects/babel_tutorial")
+        self.do_test_demo_project("babel_tutorial")
 
     def test_min1(self):
-        self.run_django_manage_test("lino_book/projects/min1")
+        self.do_test_demo_project("min1")
 
     def test_min2(self):
-        self.run_django_manage_test("lino_book/projects/min2")
+        self.do_test_demo_project("min2")
 
     def test_min9(self):
-        self.run_django_manage_test("lino_book/projects/min9")
+        self.do_test_demo_project("min9")
 
     def test_apc(self):
-        self.run_django_manage_test('lino_book/projects/apc')
+        self.do_test_demo_project('apc')
 
     def test_cosi_ee(self):
-        self.run_django_manage_test('lino_book/projects/cosi_ee')
+        self.do_test_demo_project('cosi_ee')
 
     def test_noi1e(self):
-        self.run_django_manage_test('lino_book/projects/noi1e')
+        self.do_test_demo_project('noi1e')
 
-    # Started to fail after firefox upgrade. Selenium seems too unstable.
-    # def test_noi1e_maketour(self):
-    #     self.run_django_admin_command_cd(
-    #         'lino_book/projects/noi1e', 'run', 'maketour.py')
+    @unittest.skip("""Had it working in 2021-02-xx, but then
+    it started to fail after a firefox upgrade.
+    Selenium seems too unstable.""")
+    def test_noi1e_maketour(self):
+        self.run_django_admin_command_cd(
+            'lino_book/projects/noi1e', 'run', 'maketour.py')
 
     def test_noi1r(self):
-        self.run_django_manage_test('lino_book/projects/noi1r')
+        self.do_test_demo_project('noi1r')
+
+    def test_anna(self):
+        self.do_test_demo_project('anna')
+
+    def test_liina(self):
+        self.do_test_demo_project('liina')
+
+    def test_avanti1(self):
+        self.do_test_demo_project('avanti1')
+
+    def test_lydia(self):
+        self.do_test_demo_project('lydia')
+
+    def test_roger(self):
+        self.do_test_demo_project('roger')
+
+    def test_nomti(self):
+        self.do_test_demo_project('nomti')
+
+    def test_lets2(self):
+        self.do_test_demo_project('lets2')
+
+
+class Misc(TestCase):
+    def test_translate(self):
+        self.run_django_manage_test('docs/dev/translate')
 
     def test_bs3(self):
         self.run_django_manage_test('lino_book/projects/bs3')
 
-    def test_anna(self):
-        self.run_django_manage_test('lino_book/projects/anna')
+    def test_diamond(self):
+        self.run_django_manage_test('lino_book/projects/diamond')
 
-    def test_liina(self):
-        self.run_django_manage_test('lino_book/projects/liina')
+    def test_integer_pk(self):
+        self.run_django_manage_test('lino_book/projects/integer_pk')
 
-    def test_avanti1(self):
-        self.run_django_manage_test('lino_book/projects/avanti1')
-
-    def test_lydia(self):
-        self.run_django_manage_test('lino_book/projects/lydia')
-
-    def test_roger(self):
-        self.run_django_manage_test('lino_book/projects/roger')
-
-    def test_nomti(self):
-        self.run_django_manage_test('lino_book/projects/nomti')
-
-    def test_lets2(self):
-        self.run_django_manage_test('lino_book/projects/lets2')
-
-    # def test_gerd(self):
-    #     self.run_django_manage_test('lino_welfare/projects/gerd')
-    #
-    # def test_mathieu(self):
-    #     self.run_django_manage_test('lino_welfare/projects/mathieu')
+    def test_float2decimal(self):
+        self.run_django_manage_test('lino_book/projects/float2decimal')
