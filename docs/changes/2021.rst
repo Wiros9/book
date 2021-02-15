@@ -8,6 +8,15 @@
 This is the 2021 :term:`change log` for :ref:`book`. General information about
 how to read and maintain this document in :ref:`dev.changes`.
 
+2021-02-15
+==========
+
+Internal optimizations:  New :term:`django-admin command` :manage:`demotest`
+increases test coverage. Removed some DeprecationWarnings.
+:meth:`lino_react.react.views.ApiElement.post` no longer passes
+`http.QueryDict(request.body)` but `request.POST` as data to
+:func:`action_request <lino.core.views.action_request>`.
+
 2021-02-14
 ==========
 
