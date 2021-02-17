@@ -4,6 +4,12 @@
 Getting started with Sphinx
 ===========================
 
+.. glossary::
+
+  Sphinx
+
+    The documentation system used by the developers of the Lino framework.
+
 Read the `reStructuredText Primer
 <http://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html>`__
 to get an introduction to the syntax.

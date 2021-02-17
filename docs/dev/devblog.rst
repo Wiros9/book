@@ -32,6 +32,16 @@ happens surprisingly often that I want to know why I did some change
 one year ago.  And I was often amazed about how many things both my
 customers and I were able to forget during one year.
 
+.. glossary::
+
+  developer blog
+
+    A blog written by a developer using his editor of choice and the team's
+    static html generator (i.e. Sphinx).
+
+    It usually has at most one entry per day, each entry having potentially a
+    series of headings
+
 Qualities of a developer blog
 =============================
 
