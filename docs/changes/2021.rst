@@ -8,6 +8,12 @@
 This is the 2021 :term:`change log` for :ref:`book`. General information about
 how to read and maintain this document in :ref:`dev.changes`.
 
+2021-02-17
+==========
+
+Rename :class:`lino.mixins.Uploadable` to
+:class:`lino.modlib.uploads.mixins.UploadBase`.
+
 2021-02-15
 ==========
 
