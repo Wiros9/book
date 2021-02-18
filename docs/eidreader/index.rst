@@ -42,10 +42,10 @@ authentication).
 
 **Relation with other projects**
 
-- This applet is "underground work" and not yet officially 
+- This applet is "underground work" and not yet officially
   supported by any of the national software frameworks for
   `Estonia <http://www.id.ee/index.php?id=36143>`_
-  and `Belgium  <http://www.fedict.belgium.be/en/>`_ 
+  and `Belgium  <http://www.fedict.belgium.be/en/>`_
 
 - Other than the official Belgian `eid-applet
   <https://code.google.com/p/eid-applet>`_, EIDReader does *not* ask
@@ -80,5 +80,3 @@ authentication).
     install
     applets
     issues
-    
-

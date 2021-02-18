@@ -26,7 +26,7 @@ extlinks = {}
 intersphinx_mapping = {}
 extensions = []
 
-configure(globals(), 'lino_book.projects.max.settings.doctests')
+configure(globals(), 'lino_book.projects.min9.settings')
 
 language = 'en'
 

@@ -92,7 +92,7 @@ Concepts
 .. include:: /../docs/shared/include/tested.rst
 
 >>> from lino import startup
->>> startup('lino_book.projects.max.settings.demo')
+>>> startup('lino_book.projects.min9.settings')
 >>> from lino.api.doctest import *
 
 Studies, trainings and work experiences

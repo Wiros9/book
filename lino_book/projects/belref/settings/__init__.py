@@ -2,8 +2,6 @@
 # Copyright 2013-2016 Rumma & Ko Ltd
 # License: BSD (see file COPYING for details)
 
-from __future__ import unicode_literals
-
 from lino.projects.std.settings import *
 
 from django.utils.translation import gettext_lazy as _

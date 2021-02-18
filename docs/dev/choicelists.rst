@@ -29,10 +29,8 @@ their :attr:`name`.  You can subclass the choices and add application logic.
 
 .. include:: /../docs/shared/include/tested.rst
 
-The examples in this document use the :mod:`lino_book.projects.max` project.
-
 >>> from lino import startup
->>> startup('lino_book.projects.max.settings.demo')
+>>> startup('lino_book.projects.min9.settings')
 >>> from lino.api.doctest import *
 >>> from django.utils import translation
 
@@ -320,7 +318,7 @@ Because :class:`lino_xl.lib.contacts.Person` inherits from
 >>> Person = rt.models.contacts.Person
 >>> list(Person.objects.filter(gender=Genders.male))
 ... # doctest: +ELLIPSIS
-[Person #201 ('Mr Albert Adam'), Person #205 ('Mr Ilja Adam'), ...]
+[Person #211 ('Mr Albert Adam'), Person #215 ('Mr Ilja Adam'), Person #114 ('Mr Hans Altenberg'), ...]
 
 Here is a list of all male first names in our contacts database:
 
@@ -386,7 +384,6 @@ Seeing all choicelists in your application
 [('about.TimeZones', 'about.TimeZones (Time zones)'),
  ('addresses.AddressTypes', 'addresses.AddressTypes (Address types)'),
  ('addresses.DataSources', 'addresses.DataSources (Data sources)'),
- ('bevat.DeclarationFields', 'bevat.DeclarationFields (Declaration fields)'),
  ('cal.AccessClasses', 'cal.AccessClasses (Access classes)'),
  ('cal.DisplayColors', 'cal.DisplayColors (Display colors)'),
  ('cal.DurationUnits', 'cal.DurationUnits'),
@@ -402,13 +399,8 @@ Seeing all choicelists in your application
  ('calview.Planners', 'calview.Planners'),
  ('changes.ChangeTypes', 'changes.ChangeTypes (Change Types)'),
  ('checkdata.Checkers', 'checkdata.Checkers (Data checkers)'),
- ('clients.ClientEvents', 'clients.ClientEvents (Observed events)'),
- ('clients.ClientStates', 'clients.ClientStates (Client states)'),
- ('clients.KnownContactTypes',
-  'clients.KnownContactTypes (Known contact types)'),
  ('comments.CommentEvents', 'comments.CommentEvents (Observed events)'),
  ('comments.Emotions', 'comments.Emotions (Emotions)'),
- ('concepts.LinkTypes', 'concepts.LinkTypes (Link Types)'),
  ('contacts.CivilStates', 'contacts.CivilStates (Civil states)'),
  ('contacts.PartnerEvents', 'contacts.PartnerEvents (Observed events)'),
  ('countries.PlaceTypes', 'countries.PlaceTypes'),
@@ -418,7 +410,6 @@ Seeing all choicelists in your application
  ('cv.CefLevel', 'cv.CefLevel (CEF levels)'),
  ('cv.EducationEntryStates', 'cv.EducationEntryStates'),
  ('cv.HowWell', 'cv.HowWell'),
- ('deploy.WishTypes', 'deploy.WishTypes (Wish types)'),
  ('excerpts.Shortcuts', 'excerpts.Shortcuts (Excerpt shortcuts)'),
  ('households.MemberDependencies',
   'households.MemberDependencies (Household Member Dependencies)'),
@@ -434,12 +425,8 @@ Seeing all choicelists in your application
  ('notes.SpecialTypes', 'notes.SpecialTypes (Special note types)'),
  ('notify.MailModes', 'notify.MailModes (Notification modes)'),
  ('notify.MessageTypes', 'notify.MessageTypes (Message Types)'),
- ('outbox.RecipientTypes', 'outbox.RecipientTypes'),
  ('phones.ContactDetailTypes',
   'phones.ContactDetailTypes (Contact detail types)'),
- ('polls.PollStates', 'polls.PollStates (Poll states)'),
- ('polls.ResponseStates', 'polls.ResponseStates (Response states)'),
- ('postings.PostingStates', 'postings.PostingStates (Posting states)'),
  ('printing.BuildMethods', 'printing.BuildMethods'),
  ('products.DeliveryUnits', 'products.DeliveryUnits (Delivery units)'),
  ('products.PriceFactors', 'products.PriceFactors (Price factors)'),
@@ -449,10 +436,6 @@ Seeing all choicelists in your application
  ('system.Genders', 'system.Genders'),
  ('system.PeriodEvents', 'system.PeriodEvents (Observed events)'),
  ('system.YesNo', 'system.YesNo (Yes or no)'),
- ('tickets.LinkTypes', 'tickets.LinkTypes (Dependency types)'),
- ('tickets.SiteStates', 'tickets.SiteStates (Site states)'),
- ('tickets.TicketEvents', 'tickets.TicketEvents (Observed events)'),
- ('tickets.TicketStates', 'tickets.TicketStates (Ticket states)'),
  ('uploads.Shortcuts', 'uploads.Shortcuts (Upload shortcuts)'),
  ('uploads.UploadAreas', 'uploads.UploadAreas (Upload areas)'),
  ('users.UserTypes', 'users.UserTypes (User types)'),
@@ -463,11 +446,8 @@ Seeing all choicelists in your application
  ('vat.VatColumns', 'vat.VatColumns (VAT columns)'),
  ('vat.VatRegimes', 'vat.VatRegimes (VAT regimes)'),
  ('vat.VatRules', 'vat.VatRules (VAT rules)'),
- ('votes.Ratings', 'votes.Ratings (Ratings)'),
- ('votes.VoteEvents', 'votes.VoteEvents (Observed events)'),
- ('votes.VoteStates', 'votes.VoteStates (Vote states)'),
- ('working.ReportingTypes', 'working.ReportingTypes (Reporting types)'),
  ('xl.Priorities', 'xl.Priorities (Priorities)')]
+
 
 The :attr:`lino_xl.lib.properties.PropType.choicelist` field uses this function
 for its choices.

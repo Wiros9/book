@@ -19,7 +19,7 @@ Read also :doc:`printing`.
 .. include:: /../docs/shared/include/tested.rst
 
 >>> from lino import startup
->>> startup('lino_book.projects.max.settings.doctests')
+>>> startup('lino_book.projects.min9.settings')
 >>> from lino.api.shell import *
 >>> from lino.api.doctest import *
 

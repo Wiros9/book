@@ -1,3 +1,5 @@
+# $ python -m unittest tests.test_misc
+
 import sys
 
 from unipath import Path
@@ -5,7 +7,6 @@ from unipath import Path
 from django import VERSION
 
 from lino.utils.pythontest import TestCase
-from lino import PYAFTER26
 from lino_book import SETUP_INFO
 from lino.utils.html2xhtml import HAS_TIDYLIB
 import lino
@@ -15,7 +16,7 @@ LINO_SRC = Path(lino.__file__).parent.parent + '/'
 
 
 class LinoTestCase(TestCase):
-    django_settings_module = "lino_book.projects.max.settings.demo"
+    django_settings_module = "lino_book.projects.min9.settings"
     project_root = Path(__file__).parent.parent
 
 # LinoTestCase = TestCase
@@ -26,7 +27,7 @@ class PackagesTests(LinoTestCase):
 
 
 class TestAppsTests(LinoTestCase):
-    
+
     def test_20100212(self):
         self.run_django_admin_test_cd("lino_book/projects/20100212")
 
@@ -61,5 +62,3 @@ class CoreTests(TestCase):
     # TODO: implement pseudo tests for QuantityField
     # def test_fields(self):
     #     self.run_simple_doctests('lino/core/fields.py')
-
-

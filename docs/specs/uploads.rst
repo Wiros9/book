@@ -19,7 +19,7 @@ described in :doc:`/specs/avanti/uploads`.
 .. include:: /../docs/shared/include/tested.rst
 
 >>> from lino import startup
->>> startup('lino_book.projects.min9.settings.doctests')
+>>> startup('lino_book.projects.min9.settings')
 >>> from lino.api.doctest import *
 
 
@@ -262,3 +262,10 @@ No data to display
 
     Declare an upload shortcut field. This is designed to be called from within
     your :attr:`workflows_module <lino.core.site.Site.workflows_module>`.
+
+
+.. xfile:: uploads
+
+  A directory below your :xfile:`media` directory. This is where web uploads
+  (i.e. files uploaded via the web interface) are stored.  Lino creates this
+  directory at startup if it doesn't exist.

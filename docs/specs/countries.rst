@@ -8,7 +8,7 @@
 .. currentmodule:: lino_xl.lib.countries
 
 The :mod:`lino_xl.lib.countries` plugin defines models and choicelists for
-managing names of countries, provinces, cities and villages, with spcial focus
+managing names of countries, provinces, cities and villages, with special focus
 on their usage in postal addresses.
 
 .. contents::
@@ -18,7 +18,7 @@ on their usage in postal addresses.
 .. include:: /../docs/shared/include/tested.rst
 
 >>> from lino import startup
->>> startup('lino_book.projects.min9.settings.doctests')
+>>> startup('lino_book.projects.min9.settings')
 >>> from lino.api.doctest import *
 
 See also :mod:`lino_xl.lib.statbel.countries`.
@@ -27,9 +27,9 @@ See also :mod:`lino_xl.lib.statbel.countries`.
 Countries and places
 ====================
 
-This plugin classifies geographical regions into two database models:
-"countries" and "cities". It is not interested in bigger areas than countries
-like continents (for these you would write another plugin).
+This plugin differentiates two big types of geographical regions: "countries"
+and "cities". It is not interested in bigger areas than countries like
+continents (for these you would write another plugin).
 
 .. glossary::
 
@@ -46,70 +46,71 @@ operator`.  There are several demo fixtures, some with quite complete lists, but
 these fixtures don't claim to be complete or fully up to date.
 
 >>> rt.show(countries.Countries)
-============================= ================== ================================= ==========
- Designation                   Designation (et)   Designation (fr)                  ISO code
------------------------------ ------------------ --------------------------------- ----------
- Belgium                       Belgia             Belgique                          BE
- Congo (Democratic Republic)   Kongo vabariik     Congo (République democratique)   CD
- Estonia                       Eesti              Estonie                           EE
- France                        Prantsusmaa        France                            FR
- Germany                       Saksamaa           Allemagne                         DE
- Maroc                         Marokko            Maroc                             MA
- Netherlands                   Madalmaad          Pays-Bas                          NL
- Russia                        Venemaa            Russie                            RU
-============================= ================== ================================= ==========
+============================= ================================ ================================= ==========
+ Designation                   Designation (de)                 Designation (fr)                  ISO code
+----------------------------- -------------------------------- --------------------------------- ----------
+ Belgium                       Belgien                          Belgique                          BE
+ Congo (Democratic Republic)   Kongo (Demokratische Republik)   Congo (République democratique)   CD
+ Estonia                       Estland                          Estonie                           EE
+ France                        Frankreich                       France                            FR
+ Germany                       Deutschland                      Allemagne                         DE
+ Maroc                         Marokko                          Maroc                             MA
+ Netherlands                   Niederlande                      Pays-Bas                          NL
+ Russia                        Russland                         Russie                            RU
+============================= ================================ ================================= ==========
 <BLANKLINE>
 
+
 >>> rt.show(countries.Places)
-============= ======================== ==================== ==================== ============== ========== ====================
- Country       Designation              Designation (et)     Designation (fr)     Place Type     zip code   Part of
-------------- ------------------------ -------------------- -------------------- -------------- ---------- --------------------
- Belgium       Aalst                    Aalst                Alost                City           9300       Flandre de l'Est
- Belgium       Aalst-bij-Sint-Truiden                                             Village        3800       Limbourg
+============= ======================== ==================== ==================== ============== ========== ================================
+ Country       Designation              Designation (de)     Designation (fr)     Place Type     zip code   Part of
+------------- ------------------------ -------------------- -------------------- -------------- ---------- --------------------------------
+ Belgium       Aalst                    Aalst                Alost                City           9300       Flandre de l'Est / Ostflandern
+ Belgium       Aalst-bij-Sint-Truiden                                             Village        3800       Limbourg / Limburg
  Belgium       Angleur                                                            City           4031
  Belgium       Ans                                                                City           4430
- Belgium       Anvers                   Anvers               Anvers               Province
+ Belgium       Anvers                   Antwerpen            Anvers               Province
  Belgium       Baardegem                                                          Village        9310       9300 Aalst / Alost
- Belgium       Baelen                   Baelen               Baelen               City           4837       Liège
+ Belgium       Baelen                   Baelen               Baelen               City           4837       Liège / Lüttich
  Belgium       Blégny                                                             City           4670
- Belgium       Brabant flamant          Brabant flamant      Brabant flamant      Province
- Belgium       Brabant wallon           Brabant wallon       Brabant wallon       Province
- Belgium       Brussels                 Brussels             Bruxelles            City           1000
+ Belgium       Brabant flamant          Flämisch-Brabant     Brabant flamant      Province
+ Belgium       Brabant wallon           Wallonisch-Brabant   Brabant wallon       Province
+ Belgium       Brussels                 Brüssel              Bruxelles            City           1000
  Belgium       Burdinne                                                           City           4210
  Belgium       Burg-Reuland                                                       City           4790
- Belgium       Butgenbach               Butgenbach           Butgenbach           City           4750       Liège
- Belgium       Büllingen                Büllingen            Bullange             City           4760       Liège
+ Belgium       Butgenbach               Bütgenbach           Butgenbach           City           4750       Liège / Lüttich
+ Belgium       Büllingen                Büllingen            Bullange             City           4760       Liège / Lüttich
  Belgium       Cerfontaine                                                        City           5630
  Belgium       Cuesmes                                                            City           7033
  Belgium       Erembodegem                                                        Village        9320       9300 Aalst / Alost
  Belgium       Eupen                                                              City           4700
- Belgium       Flandre de l'Est         Flandre de l'Est     Flandre de l'Est     Province
- Belgium       Flandre de l'Ouest       Flandre de l'Ouest   Flandre de l'Ouest   Province
+ Belgium       Flandre de l'Est         Ostflandern          Flandre de l'Est     Province
+ Belgium       Flandre de l'Ouest       Westflandern         Flandre de l'Ouest   Province
  Belgium       Gijzegem                                                           Village        9308       9300 Aalst / Alost
- Belgium       Hainaut                  Hainaut              Hainaut              Province
+ Belgium       Hainaut                  Hennegau             Hainaut              Province
  Belgium       Herdersem                                                          Village        9310       9300 Aalst / Alost
  Belgium       Hofstade                                                           Village        9308       9300 Aalst / Alost
  Belgium       Kelmis                   Kelmis               La Calamine          City           4720
  Belgium       Kettenis                                                           Village        4701
  Belgium       La Reid                                                            City           4910
- Belgium       Limbourg                 Limbourg             Limbourg             Province
- Belgium       Liège                    Liège                Liège                Province
- Belgium       Liège                    Liège                Liège                City           4000       Liège
- Belgium       Luxembourg               Luxembourg           Luxembourg           Province
+ Belgium       Limbourg                 Limburg              Limbourg             Province
+ Belgium       Liège                    Lüttich              Liège                Province
+ Belgium       Liège                    Lüttich              Liège                City           4000       Liège / Lüttich
+ Belgium       Luxembourg               Luxemburg            Luxembourg           Province
  Belgium       Meldert                                                            Village        9310       9300 Aalst / Alost
- Belgium       Mons                     Mons                 Mons                 City           7000
+ Belgium       Mons                     Bergen               Mons                 City           7000
  Belgium       Moorsel                                                            Village        9310       9300 Aalst / Alost
  Belgium       Mortier                                                            City           4670
- Belgium       Namur                    Namur                Namur                Province
- Belgium       Namur                    Namur                Namur                City           5000
+ Belgium       Namur                    Namür                Namur                Province
+ Belgium       Namur                    Namür                Namur                City           5000
  Belgium       Nieuwerkerken                                                      Village        9320       9300 Aalst / Alost
  Belgium       Nispert                                                            Township                  4700 Eupen
  Belgium       Ostende                  Ostende              Ostende              City           8400
  Belgium       Ottignies                                                          City           1340
  Belgium       Ouren                                                              Township                  4790 Burg-Reuland
  Belgium       Raeren                                                             Village        4730
- Belgium       Recht                    Recht                Recht                City           4780       Liège
- Belgium       Sankt Vith               Sankt Vith           Saint-Vith           City           4780       Liège
+ Belgium       Recht                    Recht                Recht                City           4780       Liège / Lüttich
+ Belgium       Sankt Vith               Sankt Vith           Saint-Vith           City           4780       Liège / Lüttich
  Belgium       Thieusies                                                          City           7061
  Belgium       Trembleur                                                          City           4670
  Germany       Aachen                   Aachen               Aix-la-Chapelle      City
@@ -134,7 +135,7 @@ these fixtures don't claim to be complete or fully up to date.
  France        Metz                                                               City
  France        Nancy                                                              City
  France        Nice                     Nizza                Nice                 City
- France        Paris                    Pariis               Paris                City
+ France        Paris                    Paris                Paris                City
  France        Strasbourg                                                         City
  Netherlands   Amsterdam                                                          City
  Netherlands   Breda                                                              City
@@ -142,7 +143,7 @@ these fixtures don't claim to be complete or fully up to date.
  Netherlands   Maastricht                                                         City
  Netherlands   Rotterdam                                                          City
  Netherlands   Utrecht                                                            City
-============= ======================== ==================== ==================== ============== ========== ====================
+============= ======================== ==================== ==================== ============== ========== ================================
 <BLANKLINE>
 
 

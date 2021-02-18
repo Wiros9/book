@@ -1,21 +1,16 @@
+.. doctest docs/tested/e006.rst
 .. _lino.tested.e006:
 
 Django 1.7 complains about clashing fields
 ==========================================
 
-
-.. to test only this document:
-
-    $ python setup.py test -s tests.DocsTests.test_e006
-
-    doctest init:
-
-    >>> from lino import startup
-    >>> startup('lino_book.projects.docs.settings.doctests')
-    >>> from lino.api.doctest import *
-
 This document describes the main issue in :ticket:`38` (Make Lino run
 with Django 1.8).
+
+>>> from lino import startup
+>>> startup('lino_book.projects.min9.settings')
+>>> from lino.api.doctest import *
+
 
 How to reproduce it:
 
@@ -76,8 +71,9 @@ field occurs *twice* in the list of fields:
 >>> Person = rt.models.contacts.Person
 >>> from lino import AFTER17
 >>> from lino.core.fields import VirtualField
->>> rmu([f.name for f in Person._meta._get_fields(reverse=False) if not isinstance(f, VirtualField)])
-['id', 'email', 'language', 'url', 'phone', 'gsm', 'fax', 'country', 'city', 'zip_code', 'region', 'addr1', 'street_prefix', 'street', 'street_no', 'street_box', 'addr2', 'prefix', 'name', 'remarks', 'partner_ptr', 'title', 'first_name', 'middle_name', 'last_name', 'gender', 'birth_date']
+>>> [f.name for f in Person._meta._get_fields(reverse=False)
+...     if not isinstance(f, VirtualField)]
+['id', 'email', 'language', 'url', 'phone', 'gsm', 'fax', 'modified', 'created', 'country', 'city', 'zip_code', 'region', 'addr1', 'street_prefix', 'street', 'street_no', 'street_box', 'addr2', 'prefix', 'name', 'remarks', 'payment_term', 'vat_regime', 'vat_id', 'purchase_account', 'partner_ptr', 'title', 'first_name', 'middle_name', 'last_name', 'gender', 'birth_date']
 
 See the :meth:`._get_fields` method of
 :class:`django.db.models.options.Options` (in Django 1.7+).

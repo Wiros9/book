@@ -2,16 +2,10 @@
 # Copyright 2013-2020 Rumma & Ko Ltd
 # License: BSD (see file COPYING for details)
 
+# how to run only this module:
+# go min9
+# python manage.py test tests.test_delete_veto
 
-"""This module contains tests that are run on a demo database without
-any fixture.
-
-You can run only these tests by issuing::
-
-  $ cd lino_book/projects/min9
-  $ python manage.py test tests.test_delete_veto
-
-"""
 
 import logging ; logger = logging.getLogger(__name__)
 
@@ -84,7 +78,8 @@ class QuickTest(RemoteAuthTestCase):
 """)
         # ba = contacts.Persons.get_action_by_name('merge_row')
         # self.assertEqual(ba, '')
-        utpl = "/api/contacts/Persons/{0}?fv={1}&fv=&fv=&fv=&fv=false&fv=fff&an=merge_row"
+        # utpl = "/api/contacts/Persons/{0}?fv={1}&fv=&fv=&fv=&fv=false&fv=fff&an=merge_row"
+        utpl = "/api/contacts/Persons/{0}?fv={1}&fv=false&fv=false&fv=false&fv=false&fv=false&fv=test&an=merge_row"
         url = utpl.format(p1.pk, p1.pk)
         res = self.client.get(url, REMOTE_USER='root')
         self.assertEqual(res.status_code, 200)

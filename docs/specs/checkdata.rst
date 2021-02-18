@@ -20,7 +20,7 @@ application-level data integrity tests. It provides a :term:`django-admin comman
 .. include:: /../docs/shared/include/tested.rst
 
 >>> from lino import startup
->>> startup('lino_book.projects.min9.settings.doctests')
+>>> startup('lino_book.projects.min9.settings')
 >>> from lino.api.doctest import *
 >>> from django.core.management import call_command
 >>> from atelier.sheller import Sheller
@@ -93,12 +93,15 @@ checkers` to see a table of all available checkers.
  cal.LongEntryChecker                Too long-lasting calendar entries
  cal.ObsoleteEventTypeChecker        Obsolete generated calendar entries
  countries.PlaceChecker              Check data of geographical places.
+ finan.FinancialVoucherItemChecker   Check for invalid account/partner combination
  ledger.VoucherChecker               Check integrity of ledger vouchers
  memo.PreviewableChecker             Check for previewables needing update
  mixins.DupableChecker               Check for missing phonetic words
  phones.ContactDetailsOwnerChecker   Check for mismatches between contact details and owner
  printing.CachedPrintableChecker     Check for missing target files
+ sepa.BankAccountChecker             Check for partner mismatches in bank accounts
  system.BleachChecker                Find unbleached html content
+ vat.VatColumnsChecker               Check VAT columns configuration.
 =================================== ========================================================
 <BLANKLINE>
 
@@ -156,11 +159,11 @@ The demo database deliberately contains some data problems.
 ----------------- ------------------------------------------- ----------------------------------------------------------- ----------------------------------------
  Robin Rood        *All Souls' Day (31.10.2014)*               Event conflicts with 5 other events.                        Check for conflicting calendar entries
  Robin Rood        *All Saints' Day (01.11.2014)*              Event conflicts with 3 other events.                        Check for conflicting calendar entries
- Robin Rood        *Armistice with Germany (11.11.2014)*       Event conflicts with Seminar (11.11.2014 11:10).            Check for conflicting calendar entries
- Rando Roosi       *Dinner (31.10.2014 09:40)*                 Event conflicts with All Souls' Day (31.10.2014).           Check for conflicting calendar entries
- Romain Raffault   *Petit-déjeuner (31.10.2014 10:20)*         Event conflicts with All Souls' Day (31.10.2014).           Check for conflicting calendar entries
- Robin Rood        *Meeting (01.11.2014 11:10)*                Event conflicts with All Saints' Day (01.11.2014).          Check for conflicting calendar entries
- Robin Rood        *Seminar (11.11.2014 11:10)*                Event conflicts with Armistice with Germany (11.11.2014).   Check for conflicting calendar entries
+ Robin Rood        *Armistice with Germany (11.11.2014)*       Event conflicts with Beratung (11.11.2014 11:10).           Check for conflicting calendar entries
+ Robin Rood        *Seminar (31.10.2014 09:40)*                Event conflicts with All Souls' Day (31.10.2014).           Check for conflicting calendar entries
+ Romain Raffault   *Evaluation (31.10.2014 10:20)*             Event conflicts with All Souls' Day (31.10.2014).           Check for conflicting calendar entries
+ Rolf Rompen       *Erstgespräch (01.11.2014 11:10)*           Event conflicts with All Saints' Day (01.11.2014).          Check for conflicting calendar entries
+ Rolf Rompen       *Beratung (11.11.2014 11:10)*               Event conflicts with Armistice with Germany (11.11.2014).   Check for conflicting calendar entries
  Romain Raffault   *Absent for private reasons (31.10.2014)*   Event conflicts with All Souls' Day (31.10.2014).           Check for conflicting calendar entries
 ================= =========================================== =========================================================== ========================================
 <BLANKLINE>
@@ -185,11 +188,11 @@ the same checker...
 ----------------- ------------------------------------------- -----------------------------------------------------------
  Robin Rood        *All Souls' Day (31.10.2014)*               Event conflicts with 5 other events.
  Robin Rood        *All Saints' Day (01.11.2014)*              Event conflicts with 3 other events.
- Robin Rood        *Armistice with Germany (11.11.2014)*       Event conflicts with Seminar (11.11.2014 11:10).
- Rando Roosi       *Dinner (31.10.2014 09:40)*                 Event conflicts with All Souls' Day (31.10.2014).
- Romain Raffault   *Petit-déjeuner (31.10.2014 10:20)*         Event conflicts with All Souls' Day (31.10.2014).
- Robin Rood        *Meeting (01.11.2014 11:10)*                Event conflicts with All Saints' Day (01.11.2014).
- Robin Rood        *Seminar (11.11.2014 11:10)*                Event conflicts with Armistice with Germany (11.11.2014).
+ Robin Rood        *Armistice with Germany (11.11.2014)*       Event conflicts with Beratung (11.11.2014 11:10).
+ Robin Rood        *Seminar (31.10.2014 09:40)*                Event conflicts with All Souls' Day (31.10.2014).
+ Romain Raffault   *Evaluation (31.10.2014 10:20)*             Event conflicts with All Souls' Day (31.10.2014).
+ Rolf Rompen       *Erstgespräch (01.11.2014 11:10)*           Event conflicts with All Saints' Day (01.11.2014).
+ Rolf Rompen       *Beratung (11.11.2014 11:10)*               Event conflicts with Armistice with Germany (11.11.2014).
  Romain Raffault   *Absent for private reasons (31.10.2014)*   Event conflicts with All Souls' Day (31.10.2014).
 ================= =========================================== ===========================================================
 <BLANKLINE>
@@ -203,7 +206,7 @@ Running the :command:`checkdata` command
 
 >>> call_command('checkdata')
 Found 8 and fixed 0 data problems in Calendar entries.
-Done 20 checks, found 8 and fixed 0 problems.
+Done 31 checks, found 8 and fixed 0 problems.
 
 You can see the list of all available checkers also from the command
 line using::
@@ -221,12 +224,15 @@ line using::
  cal.LongEntryChecker                Too long-lasting calendar entries
  cal.ObsoleteEventTypeChecker        Obsolete generated calendar entries
  countries.PlaceChecker              Check data of geographical places.
+ finan.FinancialVoucherItemChecker   Check for invalid account/partner combination
  ledger.VoucherChecker               Check integrity of ledger vouchers
  memo.PreviewableChecker             Check for previewables needing update
  mixins.DupableChecker               Check for missing phonetic words
  phones.ContactDetailsOwnerChecker   Check for mismatches between contact details and owner
  printing.CachedPrintableChecker     Check for missing target files
+ sepa.BankAccountChecker             Check for partner mismatches in bank accounts
  system.BleachChecker                Find unbleached html content
+ vat.VatColumnsChecker               Check VAT columns configuration.
 =================================== ========================================================
 <BLANKLINE>
 
@@ -249,11 +255,11 @@ rebuild.
 >>> shell("python manage.py checkdata --prune")
 Prune 8 existing messages...
 Found 8 and fixed 0 data problems in Calendar entries.
-Done 20 checks, found 8 and fixed 0 problems.
+Done 31 checks, found 8 and fixed 0 problems.
 
 NB the above example uses :mod:`atelier.sheller` instead of :mod:`call_command
 <django.core.management.call_command>`.  Both methods are functionally
-equivalent. 
+equivalent.
 
 
 Language of checkdata messages

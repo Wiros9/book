@@ -1,7 +1,6 @@
 # -*- coding: UTF-8 -*-
-from __future__ import unicode_literals
 
-from lino_book.projects.docs.settings.demo import *
+from lino_book.projects.min9.settings import *
 
 class Site(Site):
     title = "My Lino Mini site"

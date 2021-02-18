@@ -1,8 +1,6 @@
 # Deprecated. No longer being tested.
 
-from __future__ import print_function
-
-from lino_book.projects.docs.settings import *
+from lino_book.projects.min9.settings import *
 
 EMAIL_TEMPLATE = """\
 To: {recipients}
@@ -28,7 +26,7 @@ class Site(Site):
         super(Site, self).do_site_startup()
 
         from lino.utils.sendchanges import subscribe, register
-        
+
         register('contacts.Person', '*',
                  'created_body.eml', 'updated_body.eml')
         e = register('contacts.Partner', 'name',

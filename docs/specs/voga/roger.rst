@@ -205,7 +205,7 @@ Database structure
  sepa.Account               sepa.Accounts                  6         26
  sessions.Session           users.Sessions                 3         ...
  system.SiteConfig          system.SiteConfigs             11        1
- uploads.Upload             uploads.Uploads                11        0
+ uploads.Upload             uploads.Uploads                12        0
  uploads.UploadType         uploads.UploadTypes            8         1
  uploads.Volume             uploads.Volumes                5         0
  users.Authority            users.Authorities              3         0

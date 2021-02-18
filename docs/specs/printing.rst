@@ -8,7 +8,7 @@
 ..  Initialize doctest:
 
     >>> from lino import startup
-    >>> startup('lino_book.projects.min9.settings.doctests')
+    >>> startup('lino_book.projects.min9.settings')
     >>> from lino.api.shell import *
     >>> from lino.api.doctest import *
 

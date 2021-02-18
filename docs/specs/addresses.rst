@@ -20,7 +20,7 @@ partner.  See also :ref:`team.mt.addresses`.
 .. include:: /../docs/shared/include/tested.rst
 
 >>> from lino import startup
->>> startup('lino_book.projects.min9.settings.doctests')
+>>> startup('lino_book.projects.min9.settings')
 >>> from lino.api.doctest import *
 >>> from django.db.models import Q
 

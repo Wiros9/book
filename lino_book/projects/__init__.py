@@ -53,18 +53,10 @@ Poorly documented examples at different development states:
 
    min2
    chatter
-   max
    cms
    belref
    estref
 
-
-Technical
-
-.. autosummary::
-   :toctree:
-
-   docs
 
 Sleeping:
 

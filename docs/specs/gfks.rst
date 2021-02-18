@@ -18,7 +18,7 @@ fields or inherit from the :class:`Controllable` mixin.
 .. include:: /../docs/shared/include/tested.rst
 
 >>> from lino import startup
->>> startup('lino_book.projects.min9.settings.doctests')
+>>> startup('lino_book.projects.min2.settings.demo')
 >>> from lino.api.doctest import *
 
 Which means that code snippets in this document are tested using the
@@ -99,29 +99,36 @@ The ``ContentTypes`` table
 The :class:`ContentTypes` table shows all models defined in your application.
 
 >>> rt.show(gfks.ContentTypes) #doctest: +ELLIPSIS +NORMALIZE_WHITESPACE
-==== ================== =========================
- ID   app label          python model class name
----- ------------------ -------------------------
- 1    countries          country
- 2    countries          place
- 3    system             siteconfig
- 4    contacts           companytype
- 5    contacts           roletype
- 6    contacts           role
- 7    contacts           partner
- 8    contacts           person
- 9    contacts           company
- 10   contenttypes       contenttype
- 11   gfks               helptext
- ...
- 59   notify             message
- 60   changes            change
- 61   comments           commenttype
- 62   comments           comment
- 63   comments           mention
- 64   comments           reaction
- 65   sessions           session
-==== ================== =========================
+==== ============== =========================
+ ID   app label      python model class name
+---- -------------- -------------------------
+ 1    system         siteconfig
+ 2    users          user
+ 3    users          authority
+ 4    countries      country
+ 5    countries      place
+ 6    contacts       partner
+ 7    contacts       person
+ 8    contacts       companytype
+ 9    contacts       company
+ 10   contacts       roletype
+ 11   contacts       role
+ 12   contenttypes   contenttype
+ 13   gfks           helptext
+ 14   checkdata      problem
+ 15   cal            remotecalendar
+ 16   cal            room
+ 17   cal            eventtype
+ 18   cal            guestrole
+ 19   cal            calendar
+ 20   cal            subscription
+ 21   cal            task
+ 22   cal            eventpolicy
+ 23   cal            recurrentevent
+ 24   cal            event
+ 25   cal            guest
+ 26   sessions       session
+==== ============== =========================
 <BLANKLINE>
 
 
@@ -227,12 +234,13 @@ List of models which inherit from :class:`Controllable
 <lino.modlib.gfks.mixins.Controllable>`:
 
 >>> print(' '.join([fmn(m) for m in rt.models_by_base(Controllable)]))
-cal.Event cal.Task checkdata.Problem comments.Comment comments.Mention excerpts.Excerpt notes.Note notify.Message uploads.Upload
+cal.Event cal.Task checkdata.Problem
+
 
 >>> obj = contacts.Person.objects.all()[0]
->>> d = gfk2lookup(notes.Note.owner, obj)
+>>> d = gfk2lookup(cal.Event.owner, obj)
 >>> pprint(d)
-{'owner_id': 211, 'owner_type': <ContentType: Person>}
+{'owner_id': 114, 'owner_type': <ContentType: Person>}
 
 If the object has a non-integer primary key, then it cannot be target
 of a GFK.  In this case we filter only on the content type because
@@ -240,5 +248,5 @@ anyway the list will be empty.  `countries.Country` is actually the
 only model with a non-integer primary key.
 
 >>> obj = countries.Country.objects.all()[0]
->>> gfk2lookup(notes.Note.owner, obj)
+>>> gfk2lookup(cal.Event.owner, obj)
 {'owner_type': <ContentType: Country>}

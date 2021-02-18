@@ -18,7 +18,7 @@ Theoretically it's easy
 =======================
 
 When your development environment is correctly installed as explained
-in :doc:`install`, then --theoretically-- it's easy to build the Lino
+in :doc:`install/index`, then --theoretically-- it's easy to build the Lino
 Book: you just run :cmd:`inv bd` in the root directory of your
 ``book`` repository::
 
@@ -90,12 +90,12 @@ Note that the :file:`docs/conf.py` contains (among others) the
 following lines::
 
     from lino.sphinxcontrib import configure
-    configure(globals(), 'lino_book.projects.max.settings.doctests')
+    configure(globals(), 'lino_book.projects.min9.settings')
 
 This calls the :func:`lino.sphinxcontrib.configure` function which
 basically does exactly what we need here: it sets the
 :envvar:`DJANGO_SETTINGS_MODULE` to
-:mod:`lino_book.projects.max.settings.doctests`.
+:mod:`lino_book.projects.min9.settings`.
 
 So Sphinx uses the :mod:`lino_book.projects.max` project when
 generating the docs.

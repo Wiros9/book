@@ -51,3 +51,4 @@ Getting acquaintained
    /dev/qtclient
    myroles
    auto_create
+   /tested/ddh

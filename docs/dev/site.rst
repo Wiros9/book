@@ -57,7 +57,7 @@ In other words, Lino is going to automatically set certain Django
 settings.  Including for example :setting:`INSTALLED_APPS` and
 :setting:`DATABASES`.  To be precise, here are these settings:
 
->>> from lino_book.projects.docs.settings import Site
+>>> from lino_book.projects.min9.settings import Site
 >>> pseudoglobals = {}
 >>> SITE = Site(pseudoglobals)
 >>> sorted(pseudoglobals.keys())
@@ -110,15 +110,15 @@ Other Django setting for which Lino sets default values are:
 Additional local apps
 =====================
 
-An optional second positional argument can be specified by local
-system administrators in order to specify additional *local apps*
-These will go into the :setting:`INSTALLED_APPS` setting, together
-with any other plugins needed by them.
+An optional second positional argument can be specified by the  :term:`site
+maintainer` in order to specify additional *local plugins* These will go into
+the :setting:`INSTALLED_APPS` setting, together with any other plugins needed by
+them.
 
->>> from lino_book.projects.docs.settings import Site
+>>> from lino_book.projects.min9.settings import Site
 >>> pseudoglobals = {}
 >>> Site(pseudoglobals, "lino_xl.lib.events")  #doctest: +ELLIPSIS
-<lino_book.projects.docs.settings.Site object at ...>
+<lino_book.projects.min9.settings.Site object at ...>
 >>> print('\n'.join(pseudoglobals['INSTALLED_APPS']))
 ... #doctest: +REPORT_UDIFF +NORMALIZE_WHITESPACE
 lino
@@ -127,29 +127,52 @@ lino.modlib.about
 lino.modlib.jinja
 lino.modlib.bootstrap3
 lino.modlib.extjs
-lino.modlib.printing
-lino.modlib.system
-lino.modlib.users
-django.contrib.contenttypes
-lino.modlib.gfks
-lino.modlib.changes
-lino.modlib.memo
-lino.modlib.notify
-lino.modlib.languages
 lino.modlib.office
 lino_xl.lib.xl
 lino_xl.lib.countries
-lino_xl.lib.contacts
+lino.modlib.printing
+lino.modlib.system
+lino_book.projects.min9.modlib.contacts
+django.contrib.contenttypes
+lino.modlib.gfks
+lino_xl.lib.excerpts
+lino.modlib.users
+lino.modlib.checkdata
+lino_xl.lib.addresses
+lino_xl.lib.phones
+lino_xl.lib.cal
+lino_xl.lib.reception
+lino_xl.lib.courses
+lino.modlib.weasyprint
 lino.modlib.uploads
-lino_xl.lib.polls
-lino_xl.lib.concepts
-lino.modlib.tinymce
+lino_xl.lib.ledger
+lino_xl.lib.sepa
+lino.modlib.memo
+lino_xl.lib.notes
+lino_xl.lib.humanlinks
+lino_xl.lib.households
+lino_xl.lib.calview
+lino_xl.lib.pages
 lino.modlib.export_excel
+lino_xl.lib.dupable_partners
+lino.modlib.tinymce
+lino_xl.lib.appypod
+lino.modlib.notify
+lino.modlib.changes
+lino.modlib.comments
+lino_xl.lib.properties
+lino.modlib.languages
+lino_xl.lib.cv
+lino_cosi.lib.cosi
+lino_xl.lib.b2c
+lino_xl.lib.products
+lino_xl.lib.vat
+lino_xl.lib.sales
+lino_xl.lib.finan
 lino_xl.lib.events
 django.contrib.sessions
 
-
-As an application developer you won't specifiy this argument,
+As an application developer you won't specify this argument,
 then you should specify your installed apps by overriding
 :meth:`get_installed_apps <lino.core.site.Site.get_installed_apps>`.
 

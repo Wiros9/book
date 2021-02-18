@@ -134,7 +134,7 @@ The database models
  tickets.Ticket                     tickets.Tickets                  28        116
  tickets.TicketType                 tickets.TicketTypes              5         3
  tinymce.TextFieldTemplate          tinymce.TextFieldTemplates       5         2
- uploads.Upload                     uploads.Uploads                  11        0
+ uploads.Upload                     uploads.Uploads                  12        0
  uploads.UploadType                 uploads.UploadTypes              8         1
  uploads.Volume                     uploads.Volumes                  5         0
  users.Authority                    users.Authorities                3         0

@@ -17,7 +17,7 @@ built-in `Ext.form.HtmlEditor` editor that comes with ExtJS.
 .. include:: /../docs/shared/include/tested.rst
 
 >>> from lino import startup
->>> startup('lino_book.projects.min9.settings.demo')
+>>> startup('lino_book.projects.min9.settings')
 >>> from lino.api.doctest import *
 
 Dependencies

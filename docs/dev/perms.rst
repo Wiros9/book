@@ -21,7 +21,7 @@ and permission system (see :doc:`/dev/about/auth` if you wonder why).
 .. include:: /../docs/shared/include/tested.rst
 
 >>> from lino import startup
->>> startup('lino_book.projects.min9.settings.demo')
+>>> startup('lino_book.projects.min9.settings')
 >>> from lino.api.doctest import *
 
 
@@ -119,11 +119,12 @@ from "profile" to "type".
 ========== =====================
  Username   User type
 ---------- ---------------------
- rando      900 (Administrator)
  robin      900 (Administrator)
+ rolf       900 (Administrator)
  romain     900 (Administrator)
 ========== =====================
 <BLANKLINE>
+
 
 Relation between user roles and user types
 ==========================================

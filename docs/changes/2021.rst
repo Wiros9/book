@@ -14,6 +14,12 @@ how to read and maintain this document in :ref:`dev.changes`.
 Rename :class:`lino.mixins.Uploadable` to
 :class:`lino.modlib.uploads.mixins.UploadBase`.
 
+Fixed a typo bug in :class:`renderer_mixin.JsCacheRenderer` which caused Lino to
+create an empty media directory "upload" (instead of "uploads") at startup. This
+bug might be the cause for missing group write permission of files that were
+uploaded to a production site.  If you encounter this problem, check whether
+your :xfile:`uploads` directory has the sticky group bit set.
+
 2021-02-15
 ==========
 

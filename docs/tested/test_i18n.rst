@@ -7,21 +7,21 @@ Code snippets for testing Lino's i18n
 
 .. to run (almost) only this test:
 
-    $ 
+    $
 
     Doctest init:
 
     >>> from lino import startup
-    >>> startup('lino_book.projects.docs.settings.demo')
+    >>> startup('lino_book.projects.min9.settings')
     >>> from lino.api.shell import *
-    
+
 
 Users Overview in different languages
 =====================================
 
-We use the `users.UsersOverview` table for testing some 
+We use the `users.UsersOverview` table for testing some
 basic i18n functionality.
-Since we are interested only in the column headers and not to see 
+Since we are interested only in the column headers and not to see
 all users, we add a filter:
 
 >>> kw = dict(known_values=dict(username='robin'))
@@ -80,4 +80,3 @@ Now we look at this table in different languages:
  robin             900 (Administrador)   en
 ================= ===================== ========
 <BLANKLINE>
-

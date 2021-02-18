@@ -22,7 +22,7 @@ choicelists and database models.
 .. include:: /../docs/shared/include/tested.rst
 
 >>> import lino
->>> lino.startup('lino_book.projects.max.settings.doctests')
+>>> lino.startup('lino_book.projects.min9.settings')
 >>> from lino.api.doctest import *
 >>> from django.db.models import Q
 

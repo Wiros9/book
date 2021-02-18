@@ -15,7 +15,7 @@ The :mod:`lino_xl.lib.tickets` plugin adds functionality for managing tickets.
 .. include:: /../docs/shared/include/tested.rst
 
 >>> from lino import startup
->>> startup('lino_book.projects.max.settings.demo')
+>>> startup('lino_book.projects.noi1e.settings.demo')
 >>> from lino.api.doctest import *
 
 
@@ -25,7 +25,7 @@ Overview
 A `ticket <Tickets>`_ is a question, issue or problem reported by a human who
 asks us for help.  It is the smallest unit for organizing our work.
 
-This plugins also installs :doc:`comments`. Users can comment on a ticket.
+This plugin also installs :doc:`comments`. Users can comment on a ticket.
 
 Tickets are grouped into sites_. Users must be **subscribed** to a *site* in
 order to report tickets on a site. All the subscribers of a site will get

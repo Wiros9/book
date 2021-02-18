@@ -5,16 +5,13 @@
 Generic Foreign Keys
 ====================
 
-This document tests some functionalities implemented by
-:mod:`lino.modlib.gfks`.
+This document tests some functionalities implemented by :mod:`lino.modlib.gfks`.
 
+.. include:: /../docs/shared/include/tested.rst
 
-.. doctest init:
-
-    >>> from lino import startup
-    >>> startup('lino_book.projects.docs.settings.doctests')
-    >>> from lino.api.doctest import *
-
+>>> from lino import startup
+>>> startup('lino_book.projects.min2.settings.demo')
+>>> from lino.api.doctest import *
 
 
 The detail view of :class:`lino.modlib.gfks.ContentTypes` has the

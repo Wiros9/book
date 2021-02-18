@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2014-2020 Rumma & Ko Ltd
+# Copyright 2014-2021 Rumma & Ko Ltd
 # License: BSD (see file COPYING for details)
 
 """Test some things which happen when a database object is deleted.
@@ -10,15 +10,16 @@ module by issuing either::
   $ go min9
   $ python manage.py test tests.test_min2
 
-When I delete a database object, Lino also deletes those objects who
-are related through a GenericForeignKey.
+When I delete a database object, Lino also deletes the objects that allow to get
+deleted in cascade. This works not only for direct ForeignKey fields but also
+for GenericForeignKey fields.
 
 For example excerpts (`excerpts.Excerpt`) are related to their
 "controller" or "owner" via a *generic* foreign key (as every
 Controllable).  What happens to an excerpt when you delete its owner?
 The default behaviour is to delete them silently (cascaded delete).
 
-Another example are notes (`notes.Note`) who are also Controllable.
+Another example are notes (`notes.Note`). These are also Controllable.
 But unlike excerpts, we don't want them to vanish when we delete their
 owner. We want Lino to tell us "Cannot delete this record because
 other database objects are referring to it".
@@ -111,7 +112,7 @@ class QuickTest(RemoteAuthTestCase):
 
         note.delete()
         self.assertEqual(Excerpt.objects.count(), 0)
-        self.assertEqual(ExcerptType.objects.count(), 5)
+        self.assertEqual(ExcerptType.objects.count(), 9)
 
     def test_dupable(self):
 

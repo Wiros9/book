@@ -127,8 +127,6 @@ lino_book.projects.belref.fixtures
 lino_book.projects.belref.settings
 lino_book.projects.combo
 lino_book.projects.combo.fixtures
-lino_book.projects.docs
-lino_book.projects.docs.settings
 lino_book.projects.estref
 lino_book.projects.estref.settings
 lino_book.projects.estref.tests
@@ -171,8 +169,6 @@ lino_book.projects.homeworkschool.settings
 lino_book.projects.i18n
 lino_book.projects.igen
 lino_book.projects.igen.tests
-lino_book.projects.max
-lino_book.projects.max.settings
 lino_book.projects.chatter
 lino_book.projects.chatter.settings
 lino_book.projects.chatter.tests
@@ -195,7 +191,6 @@ lino_book.projects.min9.modlib.contacts
 lino_book.projects.min9.modlib.contacts.fixtures
 lino_book.projects.min9.modlib.contacts.management
 lino_book.projects.min9.modlib.contacts.management.commands
-lino_book.projects.min9.settings
 lino_book.projects.min9.tests
 lino_book.projects.apc
 lino_book.projects.apc.settings

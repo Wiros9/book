@@ -2,14 +2,14 @@
 Getting started
 ================
 
-eidreader_run.png
+(obsolete)
 
 - you need a Belgien eID card and a card reader
-- eid-applet must be in your classPath or in the :file:`àpplets` 
-  directory as described in :ref:`eidreader.install`
+- eid-applet must be in your classPath or in the :file:`àpplets`
+  directory as described in :doc:`install`.
 - open the file :file:`applets/eid_test.html` in your browser.
-  Hint: 
-  invoking the browser from the command line will make the 
+  Hint:
+  invoking the browser from the command line will make the
   java console visible.
 
     $ firefox applets/eid_test.html

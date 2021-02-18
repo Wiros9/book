@@ -1,3 +1,4 @@
+.. doctest docs/tested/dynamic.rst 
 .. _lino.tested.dynamic:
 
 ==============
@@ -13,7 +14,7 @@ This document collects ideas on one possible way for working around
 General stuff:
 
 >>> from lino import startup
->>> startup('lino_book.projects.docs.settings.doctests')
+>>> startup('lino_book.projects.min9.settings')
 >>> from lino.api.doctest import *
 
 
@@ -38,7 +39,7 @@ inherit from all mixins found in all installed plugins.
 
 With at least one gotcha: these mixins must get defined in a module
 called :xfile:`bases.py`. That's because we cannot import any
-:xfile:`models.py` file before 
+:xfile:`models.py` file before
 
 Models that are candidates for dynamic factoring must use the
 `is_abstract_model <lino.core.site.Site.is_abstract_model>` method
@@ -60,7 +61,7 @@ Second
         class Meta:
             abstract = True
             verbose_name = _("Site configuration")
-    
+
 :xfile:`system/models.py`::
 
     from .mixins import *
@@ -82,7 +83,7 @@ Second
 
         class Meta:
             abstract = True
-    
+
 :xfile:`other/models.py`::
 
     from .mixins import *
