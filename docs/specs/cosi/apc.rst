@@ -44,7 +44,7 @@ The demo database contains 69 persons and 23 companies.
 
 
 >>> print(' '.join(settings.SITE.demo_fixtures))
-std few_countries minimal_ledger furniture demo demo_bookings payments demo2
+std few_countries minimal_ledger furniture demo demo_bookings payments demo2 demo3 checkdata
 
 
 
@@ -273,7 +273,7 @@ This site shows a series of due sales invoices
 --------------------------- -------- ----------------- ----------------------- ---------------------------- --------------------
  about.TimeZones             1        4                 Zeitzonen               Zeitzonen                    Time zones
  bevat.DeclarationFields     29       4                 Declaration fields      Declaration fields           Declaration fields
- checkdata.Checkers          8        45                Datentests              Tests de données             Data checkers
+ checkdata.Checkers          10       45                Datentests              Tests de données             Data checkers
  contacts.CivilStates        7        27                Zivilstände             Etats civils                 Civil states
  contacts.PartnerEvents      1        18                Beobachtungskriterien   Évènements observés          Observed events
  countries.PlaceTypes        23       16                None                    None                         None

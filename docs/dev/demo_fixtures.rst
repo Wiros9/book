@@ -52,7 +52,7 @@ application developer to specify a meaningful set of loading phases in the
 
 Our convention is to define the following loading phases::
 
-    std minimal_ledger demo demo_bookings payments demo2 checkdata
+    std minimal_ledger demo demo_bookings payments demo2 demo3 checkdata
 
 :fixture:`std`
 :fixture:`minimal_ledger`
@@ -60,8 +60,8 @@ Our convention is to define the following loading phases::
 :fixture:`demo_bookings`
 :fixture:`payments`
 :fixture:`demo2`
+:fixture:`demo3`
 :fixture:`checkdata`
-
 
 The loading order of demo data is important because the fixtures of the
 :ref:`xl` are inter-dependent.  They create users, cities, journals, contacts,
@@ -206,6 +206,7 @@ Should come after :fixture:`demo`.
 
 - :mod:`lino_xl.lib.ledger`
   Creates fictive monthly purchase invoices.
+  For some of them it creates a dummy upload file that represents the source document.
 
 - :mod:`lino_xl.lib.sales` creates fictive monthly sales.
 
@@ -262,6 +263,11 @@ Add final demo data.
 - :mod:`lino_xl.lib.dupable_partners.fixtures.demo2`
 - :mod:`lino_xl.lib.excerpts.fixtures.demo2`
 
+.. fixture:: demo3
+
+- :mod:`lino.modlib.uploads` creates an orphan file foo.pdf in uploads folder
+  and removes the file of one first upload entry to simulate some data issues to
+  detect by checkdata.
 
 .. fixture:: checkdata
 

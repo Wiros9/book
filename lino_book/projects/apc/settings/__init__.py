@@ -18,7 +18,7 @@ class Site(Site):
     # demo demo_bookings payments demo2'.split()
     demo_fixtures = 'std few_countries minimal_ledger \
     furniture \
-    demo demo_bookings payments demo2'.split()
+    demo demo_bookings payments demo2 demo3 checkdata'.split()
 
     def get_plugin_configs(self):
         yield super(Site, self).get_plugin_configs()

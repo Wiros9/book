@@ -142,7 +142,7 @@ Database structure
  cal.Task                   cal.Tasks                      18        0
  calview.DailyPlannerRow    calview.DailyPlannerRows       7         2
  changes.Change             changes.Changes                10        0
- checkdata.Problem          checkdata.Problems             6         21
+ checkdata.Problem          checkdata.Problems             6         23
  contacts.Company           contacts.Companies             26        31
  contacts.CompanyType       contacts.CompanyTypes          7         16
  contacts.Partner           contacts.Partners              24        103
@@ -205,7 +205,7 @@ Database structure
  sepa.Account               sepa.Accounts                  6         26
  sessions.Session           users.Sessions                 3         ...
  system.SiteConfig          system.SiteConfigs             11        1
- uploads.Upload             uploads.Uploads                12        0
+ uploads.Upload             uploads.Uploads                12        7
  uploads.UploadType         uploads.UploadTypes            8         1
  uploads.Volume             uploads.Volumes                5         0
  users.Authority            users.Authorities              3         0

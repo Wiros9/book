@@ -16,7 +16,7 @@ class Site(Site):
     # custom_layouts_module = "lino_book.projects.roger.settings.layouts"
 
     demo_fixtures = """std minimal_ledger
-    demo voga demo_bookings payments demo2 checkdata""".split()
+    demo voga demo_bookings payments demo2 demo3 checkdata""".split()
 
     def get_installed_apps(self):
         yield super(Site, self).get_installed_apps()

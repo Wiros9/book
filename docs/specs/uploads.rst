@@ -28,20 +28,33 @@ Overview
 
 .. glossary::
 
-  upload file
+  upload entry
 
     A database record that represents an independent media file that has been
     uploaded to the :term:`Lino site` either via the web interface or as a
     library file.
 
+  upload file
+
+    A synonym for :term:`upload entry`.
+
+  uploads folder
+
+    The root folder below which all uploaded files are being stored on the
+    server.
+
 We differentiate between **web uploads** and **library uploads**. They look
-quite similar to the end user who may even ignore that difference. But they
-differ by the way they arrived to the server. Web uploads were uploaded manually
-by some user via the web interface, while *library uploads* have been discovered
-by Lino in a :term:`library volume`. A third type of upload files are **fileless
-uploads**. Yes, you can even have upload files without an actual file. This
-represents the fact that some external document exists, but just hasn't been
-digitalized. There are people are interested in this kind of fact ;-)
+quite similar to the :term:`end user` who may even ignore that difference. But
+they differ by the way they arrived to the server. Web uploads were uploaded
+manually by some user via the web interface, while *library uploads* have been
+discovered by Lino in a :term:`library volume`. Web uploads are stored below the
+:term:`uploads folder` while library uploads are stored below the folder given
+by their :term:`library volume`.
+
+A third type of upload files are **fileless uploads**. Yes, you can even have
+upload files without an actual file. This represents the fact that some external
+document exists, but just hasn't been digitalized. There are people are
+interested in this kind of fact ;-)
 
 All :term:`upload files <upload file>` are stored in a single database table
 called :class:`Upload`.
@@ -269,3 +282,17 @@ No data to display
   A directory below your :xfile:`media` directory. This is where web uploads
   (i.e. files uploaded via the web interface) are stored.  Lino creates this
   directory at startup if it doesn't exist.
+
+
+Data checkers
+=============
+
+This plugin defines two :term:`data checkers <data checker>`:
+
+.. class:: UploadChecker
+.. class:: UploadsFolderChecker
+
+  Find orphaned files in uploads folder.
+
+  Walks through the :term:`uploads folder` and reports files for which there is
+  no upload entry

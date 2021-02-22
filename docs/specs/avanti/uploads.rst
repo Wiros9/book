@@ -21,7 +21,7 @@ This plugin requires the :mod:`lino_xl.lib.clients` plugin.
 .. include:: /../docs/shared/include/tested.rst
 
 >>> import lino
->>> lino.startup('lino_book.projects.avanti1.settings.doctests')
+>>> lino.startup('lino_book.projects.avanti1.settings')
 >>> from lino.api.doctest import *
 
 Although this plugin requires the :mod:`lino_xl.lib.clients` plugin, it does not

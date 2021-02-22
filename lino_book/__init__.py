@@ -25,8 +25,8 @@ __version__ = SETUP_INFO['version']
 # intersphinx_urls = dict(docs="http://www.lino-framework.org")
 srcref_url = 'https://github.com/lino-framework/book/blob/master/%s'
 
-# doc_trees = ['docs']
-doc_trees = [ 'docs', 'apcdocs']
+doc_trees = ['docs']
+# doc_trees = [ 'docs', 'apcdocs']
 intersphinx_urls = {
     'docs': "https://www.lino-framework.org",
     'apcdocs': "https://apcdocs.lino-framework.org",

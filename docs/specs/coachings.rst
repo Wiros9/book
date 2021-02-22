@@ -38,7 +38,7 @@ The :mod:`lino_xl.lib.coachings` plugin adds functionality for managing
 .. include:: /../docs/shared/include/tested.rst
 
 >>> import lino
->>> lino.startup('lino_book.projects.avanti1.settings.doctests')
+>>> lino.startup('lino_book.projects.avanti1.settings')
 >>> from lino.api.doctest import *
 
 

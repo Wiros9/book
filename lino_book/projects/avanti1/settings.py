@@ -1,12 +1,6 @@
-# -*- coding: UTF-8 -*-
-# Copyright 2017-2019 Rumma & Ko Ltd
-# License: BSD (see file COPYING for details)
-"""Defines and instantiates a demo version of a Lino Avanti Site."""
-
 import datetime
 
-from ..settings import *
-
+from lino_avanti.lib.avanti.settings import *
 
 class Site(Site):
 
@@ -14,9 +8,10 @@ class Site(Site):
     languages = "en de fr"
 
     def get_plugin_configs(self):
-        for i in super(Site, self).get_plugin_configs():
-            yield i
+        yield super(Site, self).get_plugin_configs()
+        yield ('clients', 'demo_coach', 'nathalie')
         yield ('beid', 'simulate_eidreader_path', self.project_dir.child('simulate_eidreader'))
+        yield ('uploads', 'remove_orphaned_files', True)
 
 SITE = Site(globals())
 

@@ -8,10 +8,12 @@
 .. currentmodule:: lino.modlib.checkdata
 
 The :mod:`lino.modlib.checkdata` plugin adds support for defining
-application-level data integrity tests. It provides a :term:`django-admin command` named
-:manage:`checkdata`.
-
-
+application-level data integrity tests.
+For the :term:`application developer` it provides a method to define :term:`data
+checkers <data checker>` for their models.
+For the :term:`site maintainer` it
+adds the :manage:`checkdata` :term:`django-admin command`.
+For the :term:`end user` it adds a set of `automatic actions`_.
 
 .. contents::
    :depth: 1
@@ -20,56 +22,63 @@ application-level data integrity tests. It provides a :term:`django-admin comman
 .. include:: /../docs/shared/include/tested.rst
 
 >>> from lino import startup
->>> startup('lino_book.projects.min9.settings')
+>>> startup('lino_book.projects.roger.settings.demo')
 >>> from lino.api.doctest import *
 >>> from django.core.management import call_command
 >>> from atelier.sheller import Sheller
->>> shell = Sheller("lino_book/projects/min9")
-
-Which means that code snippets in this document are tested using the
-:mod:`lino_book.projects.min9` demo project.
+>>> shell = Sheller(settings.SITE.project_dir.parent)
 
 Overview
 ========
 
-A :term:`data problem` is an issue with database integrity that is not detected
-by the DBMS because seeing it requires higher business intelligence.  Some data
-issues can be fixed automatically, others need human interaction.  Lino provides
-a framework for managing and handling data problems in different ways.
-
-The application developer defines the rules for detecting data problems by
-writing :term:`data checkers <data checker>`.
-
-Lino automatically adds a button "Update data problems" on objects for which
-there is at least one :term:`data checker` available.
-
-The application developer can also add a :class:`ProblemsByOwner`
-table to the :term:`detail layout` of any model.
-
+This plugin provides a framework for managing and handling :term:`data problems
+<data problem>`.
 
 .. glossary::
 
   data problem
 
-    A "soft" database integrity problem, which is not detected by the database
-    engine because it requires application intelligence to detect.
+    A problem in the database that cannot be detected by the DBMS because
+    finding it requires business intelligence.
+
+    Some data problems can be fixed automatically, others need human interaction.
+
+The application developer defines the rules for detecting data problems by
+writing :term:`data checkers <data checker>`.
+
+.. glossary::
 
   data checker
 
     A piece of code that tests for :term:`data problems <data problem>`.
 
+  unbound data checker
+
     Data checkers are usually attached to a given database model. If they are
-    not attached to a model, they are called **unbound checkers**. Lino has
-    different ways to run these checkers.  When a data checker finds a problem,
-    Lino creates a :term:`problem message`.
+    not attached to a model, they are called **unbound**.  :term:`Data problems
+    <data problem>` reported by an unbound data checker have an empty
+    :attr:`owner <Problem.owner>` field.
+
+Lino has different ways to run these checkers.  When a data checker finds a
+problem, Lino creates a :term:`problem message`.
+
+.. glossary::
 
   problem message
 
     A message that describes one or several :term:`data problems <data problem>`
-    detected in a given database object. Problem messages are themselves
-    database objects, but considered temporary data and may be updated
-    automatically without user confirmation. Each problem message is assigned to
-    a *responsible user*.
+    detected in a given database object.
+
+Problem messages are themselves database objects, but considered temporary
+data and may be updated automatically without user confirmation.
+
+Each :term:`problem message` is assigned to a *responsible user*. This user can
+see their problems in the :class:`MyProblems` table, which generates a welcome
+message if it contains data.
+
+The application developer can decide to add a :class:`ProblemsByOwner` table to
+the :term:`detail layout` of any model.  This enables the end users to focus on
+the data problems related to a given database object.
 
 
 Data checkers
@@ -79,28 +88,30 @@ In the web interface you can select :menuselection:`Explorer --> System --> Data
 checkers` to see a table of all available checkers.
 
 ..
-    >>> show_menu_path(checkdata.Checkers)
+    >>> show_menu_path(checkdata.Checkers, language="en")
     Explorer --> System --> Data checkers
 
->>> rt.show(checkdata.Checkers)
+>>> rt.show(checkdata.Checkers, language="en")
 ... #doctest: +ELLIPSIS +NORMALIZE_WHITESPACE -REPORT_UDIFF
 =================================== ========================================================
  value                               text
 ----------------------------------- --------------------------------------------------------
- addresses.AddressOwnerChecker       Check for missing or non-primary address records
+ beid.SSINChecker                    Check for invalid SSINs
  cal.ConflictingEventsChecker        Check for conflicting calendar entries
  cal.EventGuestChecker               Entries without participants
  cal.LongEntryChecker                Too long-lasting calendar entries
  cal.ObsoleteEventTypeChecker        Obsolete generated calendar entries
  countries.PlaceChecker              Check data of geographical places.
+ courses.MemberChecker               Check membership payments
  finan.FinancialVoucherItemChecker   Check for invalid account/partner combination
  ledger.VoucherChecker               Check integrity of ledger vouchers
  memo.PreviewableChecker             Check for previewables needing update
- mixins.DupableChecker               Check for missing phonetic words
  phones.ContactDetailsOwnerChecker   Check for mismatches between contact details and owner
  printing.CachedPrintableChecker     Check for missing target files
  sepa.BankAccountChecker             Check for partner mismatches in bank accounts
  system.BleachChecker                Find unbleached html content
+ uploads.UploadChecker               Check metadata of upload files
+ uploads.UploadsFolderChecker        Find orphaned files in uploads folder
  vat.VatColumnsChecker               Check VAT columns configuration.
 =================================== ========================================================
 <BLANKLINE>
@@ -133,6 +144,8 @@ More examples of data checkers we recommend to explore:
 - :class:`lino_xl.lib.beid.mixins.BeIdCardHolderChecker`
 - :class:`lino_xl.lib.addresses.AddressOwnerChecker`
 - :class:`lino.mixins.dupable.DupableChecker`
+- :class:`lino.modlib.uploads.UploadChecker`
+- :class:`lino.modlib.uploads.UploadsFolderChecker`
 - :class:`lino_welfare.modlib.pcsw.models.SSINChecker`
 - :class:`lino_welfare.modlib.pcsw.models.ClientCoachingsChecker`
 - :class:`lino_welfare.modlib.isip.mixins.OverlappingContractsChecker`
@@ -144,30 +157,44 @@ Showing all data problems
 =========================
 
 In the web interface you can select :menuselection:`Explorer -->
-System --> data problems` to see all problems.
+System --> Data problems` to see all problems.
 
 ..
-    >>> show_menu_path(checkdata.AllProblems)
+    >>> show_menu_path(checkdata.AllProblems, language="en")
     Explorer --> System --> Data problems
 
 The demo database deliberately contains some data problems.
 
->>> rt.show(checkdata.AllProblems)
+>>> rt.show(checkdata.AllProblems, language="en")
 ... #doctest: +ELLIPSIS +NORMALIZE_WHITESPACE -REPORT_UDIFF
-================= =========================================== =========================================================== ========================================
- Responsible       Database object                             Message                                                     Checker
------------------ ------------------------------------------- ----------------------------------------------------------- ----------------------------------------
- Robin Rood        *All Souls' Day (31.10.2014)*               Event conflicts with 5 other events.                        Check for conflicting calendar entries
- Robin Rood        *All Saints' Day (01.11.2014)*              Event conflicts with 3 other events.                        Check for conflicting calendar entries
- Robin Rood        *Armistice with Germany (11.11.2014)*       Event conflicts with Beratung (11.11.2014 11:10).           Check for conflicting calendar entries
- Robin Rood        *Seminar (31.10.2014 09:40)*                Event conflicts with All Souls' Day (31.10.2014).           Check for conflicting calendar entries
- Romain Raffault   *Evaluation (31.10.2014 10:20)*             Event conflicts with All Souls' Day (31.10.2014).           Check for conflicting calendar entries
- Rolf Rompen       *Erstgespräch (01.11.2014 11:10)*           Event conflicts with All Saints' Day (01.11.2014).          Check for conflicting calendar entries
- Rolf Rompen       *Beratung (11.11.2014 11:10)*               Event conflicts with Armistice with Germany (11.11.2014).   Check for conflicting calendar entries
- Romain Raffault   *Absent for private reasons (31.10.2014)*   Event conflicts with All Souls' Day (31.10.2014).           Check for conflicting calendar entries
-================= =========================================== =========================================================== ========================================
+============= =========================================== ============================================================== ========================================
+ Responsible   Database object                             Message                                                        Checker
+------------- ------------------------------------------- -------------------------------------------------------------- ----------------------------------------
+ Robin Rood                                                File uploads/2015/05/foo.pdf has no upload entry.              Find orphaned files in uploads folder
+ Robin Rood    *Recurring event #4 Assumption of Mary*     Event conflicts with Activity #1 001  1.                       Check for conflicting calendar entries
+ Robin Rood    *Recurring event #11 Ascension of Jesus*    Event conflicts with Mittagessen (14.05.2015 11:10).           Check for conflicting calendar entries
+ Robin Rood    *Recurring event #12 Pentecost*             Event conflicts with 4 other events.                           Check for conflicting calendar entries
+ Rolf Rompen   *Mittagessen (14.05.2015 11:10)*            Event conflicts with Recurring event #11 Ascension of Jesus.   Check for conflicting calendar entries
+ Robin Rood    *First meeting (25.05.2015 13:30)*          Event conflicts with Recurring event #12 Pentecost.            Check for conflicting calendar entries
+ Robin Rood    *Absent for private reasons (25.05.2015)*   Event conflicts with Recurring event #12 Pentecost.            Check for conflicting calendar entries
+ Robin Rood    *Karl Kaivers (ME)*                         Member until 2015-12-31, but no payment.                       Check membership payments
+ Robin Rood    *Laura Laschet (ME)*                        Member until 2015-12-31, but no payment.                       Check membership payments
+ Robin Rood    *Josefine Leffin (MEL)*                     Member until 2015-12-31, but no payment.                       Check membership payments
+ Robin Rood    *Marie-Louise Meier (ME)*                   Member until 2015-12-31, but no payment.                       Check membership payments
+ Robin Rood    *Alfons Radermacher (ME)*                   Member until 2015-12-31, but no payment.                       Check membership payments
+ Robin Rood    *Christian Radermacher (MEL)*               Member until 2015-12-31, but no payment.                       Check membership payments
+ Robin Rood    *Edgard Radermacher (ME)*                   Member until 2015-12-31, but no payment.                       Check membership payments
+ Robin Rood    *Guido Radermacher (ME)*                    Member until 2015-12-31, but no payment.                       Check membership payments
+ Robin Rood    *Hedi Radermacher (ME)*                     Member until 2015-12-31, but no payment.                       Check membership payments
+ Robin Rood    *Jean Radermacher (ME)*                     Member until 2015-12-31, but no payment.                       Check membership payments
+ Robin Rood    *Erna Ärgerlich (ME)*                       Member until 2015-12-31, but no payment.                       Check membership payments
+ Robin Rood    *Jean Dupont (ME)*                          Member until 2015-12-31, but no payment.                       Check membership payments
+ Robin Rood    *Marie-Louise Vandenmeulenbos (MEC)*        Member until 2015-12-31, but no payment.                       Check membership payments
+ Robin Rood    *Bernd Brecht (ME)*                         Member until 2015-12-31, but no payment.                       Check membership payments
+ Robin Rood    *Jérôme Jeanémart (ME)*                     Member until 2015-12-31, but no payment.                       Check membership payments
+ Robin Rood    *Source document PRC_29_2015.pdf*           Upload entry uploads/2015/05/PRC_29_2015.pdf has no file       Check metadata of upload files
+============= =========================================== ============================================================== ========================================
 <BLANKLINE>
-
 
 
 Filtering data problem messages
@@ -177,24 +204,19 @@ The user can set the table parameters e.g. to see only messages of a given type
 ("checker"). The following snippet simulates the situation of selecting the
 :class:`ConflictingEventsChecker <lino_xl.lib.cal.ConflictingEventsChecker>`.
 
-TODO: the example isn't very eloquent because we all messages are generated by
-the same checker...
-
 >>> chk = checkdata.Checkers.get_by_value('cal.ConflictingEventsChecker')
 >>> rt.show(checkdata.ProblemsByChecker, chk)
 ... #doctest: +ELLIPSIS +NORMALIZE_WHITESPACE -REPORT_UDIFF
-================= =========================================== ===========================================================
- Responsible       Database object                             Message
------------------ ------------------------------------------- -----------------------------------------------------------
- Robin Rood        *All Souls' Day (31.10.2014)*               Event conflicts with 5 other events.
- Robin Rood        *All Saints' Day (01.11.2014)*              Event conflicts with 3 other events.
- Robin Rood        *Armistice with Germany (11.11.2014)*       Event conflicts with Beratung (11.11.2014 11:10).
- Robin Rood        *Seminar (31.10.2014 09:40)*                Event conflicts with All Souls' Day (31.10.2014).
- Romain Raffault   *Evaluation (31.10.2014 10:20)*             Event conflicts with All Souls' Day (31.10.2014).
- Rolf Rompen       *Erstgespräch (01.11.2014 11:10)*           Event conflicts with All Saints' Day (01.11.2014).
- Rolf Rompen       *Beratung (11.11.2014 11:10)*               Event conflicts with Armistice with Germany (11.11.2014).
- Romain Raffault   *Absent for private reasons (31.10.2014)*   Event conflicts with All Souls' Day (31.10.2014).
-================= =========================================== ===========================================================
+============= =========================================== ==============================================================
+ Responsible   Database object                             Message
+------------- ------------------------------------------- --------------------------------------------------------------
+ Robin Rood    *Recurring event #4 Assumption of Mary*     Event conflicts with Activity #1 001  1.
+ Robin Rood    *Recurring event #11 Ascension of Jesus*    Event conflicts with Mittagessen (14.05.2015 11:10).
+ Robin Rood    *Recurring event #12 Pentecost*             Event conflicts with 4 other events.
+ Rolf Rompen   *Mittagessen (14.05.2015 11:10)*            Event conflicts with Recurring event #11 Ascension of Jesus.
+ Robin Rood    *First meeting (25.05.2015 13:30)*          Event conflicts with Recurring event #12 Pentecost.
+ Robin Rood    *Absent for private reasons (25.05.2015)*   Event conflicts with Recurring event #12 Pentecost.
+============= =========================================== ==============================================================
 <BLANKLINE>
 
 
@@ -205,8 +227,12 @@ Running the :command:`checkdata` command
 
 
 >>> call_command('checkdata')
-Found 8 and fixed 0 data problems in Calendar entries.
-Done 31 checks, found 8 and fixed 0 problems.
+Found 6 and fixed 0 data problems in Calendar entries.
+Found 15 and fixed 0 data problems in Participants.
+Found 1 and fixed 0 data problems in Upload files.
+Found 1 and fixed 0 data problems in unbound data.
+Done 33 checks, found 23 and fixed 0 problems.
+
 
 You can see the list of all available checkers also from the command
 line using::
@@ -218,28 +244,30 @@ line using::
 =================================== ========================================================
  value                               text
 ----------------------------------- --------------------------------------------------------
- addresses.AddressOwnerChecker       Check for missing or non-primary address records
+ beid.SSINChecker                    Check for invalid SSINs
  cal.ConflictingEventsChecker        Check for conflicting calendar entries
  cal.EventGuestChecker               Entries without participants
  cal.LongEntryChecker                Too long-lasting calendar entries
  cal.ObsoleteEventTypeChecker        Obsolete generated calendar entries
  countries.PlaceChecker              Check data of geographical places.
+ courses.MemberChecker               Check membership payments
  finan.FinancialVoucherItemChecker   Check for invalid account/partner combination
  ledger.VoucherChecker               Check integrity of ledger vouchers
  memo.PreviewableChecker             Check for previewables needing update
- mixins.DupableChecker               Check for missing phonetic words
  phones.ContactDetailsOwnerChecker   Check for mismatches between contact details and owner
  printing.CachedPrintableChecker     Check for missing target files
  sepa.BankAccountChecker             Check for partner mismatches in bank accounts
  system.BleachChecker                Find unbleached html content
+ uploads.UploadChecker               Check metadata of upload files
+ uploads.UploadsFolderChecker        Find orphaned files in uploads folder
  vat.VatColumnsChecker               Check VAT columns configuration.
 =================================== ========================================================
 <BLANKLINE>
 
 
 >>> call_command('checkdata', 'cal.')
-Found 8 and fixed 0 data problems in Calendar entries.
-Done 1 check, found 8 and fixed 0 problems.
+Found 6 and fixed 0 data problems in Calendar entries.
+Done 1 check, found 6 and fixed 0 problems.
 
 >>> call_command('checkdata', 'foo')
 Traceback (most recent call last):
@@ -253,9 +281,12 @@ because `--prune` removes *all* messages, not only those that you ask to
 rebuild.
 
 >>> shell("python manage.py checkdata --prune")
-Prune 8 existing messages...
-Found 8 and fixed 0 data problems in Calendar entries.
-Done 31 checks, found 8 and fixed 0 problems.
+Prune 23 existing messages...
+Found 6 and fixed 0 data problems in Calendar entries.
+Found 15 and fixed 0 data problems in Participants.
+Found 1 and fixed 0 data problems in Upload files.
+Found 1 and fixed 0 data problems in unbound data.
+Done 33 checks, found 23 and fixed 0 problems.
 
 NB the above example uses :mod:`atelier.sheller` instead of :mod:`call_command
 <django.core.management.call_command>`.  Both methods are functionally
@@ -283,6 +314,9 @@ The correct way is like this::
 
 See :doc:`/dev/i18n` for details.
 
+Database models
+===============
+
 .. class:: Problem
 
   Django model used to store a :term:`problem message`.
@@ -309,7 +343,11 @@ See :doc:`/dev/i18n` for details.
 
 .. class:: Problems
 
-    The base table for :term:`problem message` objects.
+    The base table for :term:`problem messages <problem message>`.
+
+.. class:: MyProblems
+
+    Shows the :term:`problem messages <problem message>` assigned to me.
 
 
 .. class:: Checkers
@@ -321,7 +359,6 @@ See :doc:`/dev/i18n` for details.
     <lino.core.actors.Actor.detail_layout>`.
 
 
-
 .. class:: Checker
 
   Base class for all :term:`data checkers <data checker>`.
@@ -330,14 +367,20 @@ See :doc:`/dev/i18n` for details.
 
     The model to be checked.  If this is a string, Lino will resolve it at startup.
 
-    If this is an abstract model, :meth:`get_checkable_models`  will
-    potentially yield more than one model.
+    If this is an abstract model, :meth:`get_checkable_models` will
+    yield all models that inherit from it.
 
     If this is `None`, the checker is unbound, i.e. the problem messages will
-    not be bound to a particular database object.
+    not be bound to a particular database object.  This is used to detect
+    *missing* database objects.   For example :class:`vat.VatColumnsChecker
+    <lino_xl.lib.vat.VatColumnsChecker>` is unbound.
 
-    You might also define your own
-    :meth:`get_checkable_models` method.
+    Instead of setting :attr:`model` you might want to define your own
+    :meth:`get_checkable_models` method. For example,
+    :class:`ledger.VoucherChecker <lino_xl.lib.ledger.VoucherChecker>` does this
+    because it wants to get all MTI children (not only top-level models).
+    See :ref:`tested.core_utils` for more explanations.
+
 
   .. classmethod:: check_instance(cls, *args, **kwargs)
 
@@ -348,15 +391,16 @@ See :doc:`/dev/i18n` for details.
 
     Return a list of the models to check.
 
-    The default implementation uses the :attr:`model`.
+    The default implementation returns all top-level models that inherit from
+    :attr:`model` (or `[None]` when :attr:`model` is `None`).
 
   .. classmethod:: activate(cls)
 
     Creates an instance of this class and adds it as a choice to the
     :class:`Checkers` choicelist.
 
-    Application developers must call this on their subclass in order to
-    "register" or "activate" it.
+    The :term:`application developer` must call this on their subclass in order
+    to "register" or "activate" the checker.
 
   .. method:: update_problems(self, obj=None, delete=True, fix=False)
 
@@ -388,3 +432,43 @@ See :doc:`/dev/i18n` for details.
     responsible* defined for this site (see
     :attr:`responsible_user
     <lino.modlib.checkdata.Plugin.responsible_user>`).
+
+
+
+Automatic actions
+=================
+
+This plugin automatically installs two actions on every model for which there is
+at least one active :term:`data checker`:
+
+.. currentmodule:: lino.core.model
+
+
+.. class:: Model
+  :noindex:
+
+  .. attribute:: fix_problems
+
+    Update data problem messages and repair those which are automatically fixable.
+
+    Implementing class: :class:`lino.modlib.checkdata.FixProblemsByController`.
+
+  .. attribute:: check_data
+
+    Update data problem messages for this database object,
+    also removing messages that no longer exist.
+    This action does not change anything else in the database.
+
+    Implementing class: :class:`lino.modlib.checkdata.UpdateProblemsByController`.
+
+.. currentmodule:: lino.modlib.checkdata
+
+Internal utilities
+==================
+
+.. function:: get_checkable_models(*args)
+
+    Return an `OrderedDict` mapping each model which has at least one
+    checker to a list of these checkers.
+
+    The dict is ordered to avoid that checkers run in a random order.

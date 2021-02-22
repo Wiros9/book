@@ -45,6 +45,8 @@ Explorer --> System --> Data checkers
  printing.CachedPrintableChecker     Check for missing target files
  sepa.BankAccountChecker             Check for partner mismatches in bank accounts
  system.BleachChecker                Find unbleached html content
+ uploads.UploadChecker               Check metadata of upload files
+ uploads.UploadsFolderChecker        Find orphaned files in uploads folder
  vat.VatColumnsChecker               Check VAT columns configuration.
 =================================== ========================================================
 <BLANKLINE>
@@ -69,6 +71,7 @@ System --> Data problems` to see them.
 ============= =========================================== ============================================================== ========================================
  Responsible   Database object                             Message                                                        Checker
 ------------- ------------------------------------------- -------------------------------------------------------------- ----------------------------------------
+ Robin Rood                                                File uploads/2015/05/foo.pdf has no upload entry.              Find orphaned files in uploads folder
  Robin Rood    *Recurring event #4 Assumption of Mary*     Event conflicts with Activity #1 001  1.                       Check for conflicting calendar entries
  Robin Rood    *Recurring event #11 Ascension of Jesus*    Event conflicts with Mittagessen (14.05.2015 11:10).           Check for conflicting calendar entries
  Robin Rood    *Recurring event #12 Pentecost*             Event conflicts with 4 other events.                           Check for conflicting calendar entries
@@ -90,5 +93,6 @@ System --> Data problems` to see them.
  Robin Rood    *Marie-Louise Vandenmeulenbos (MEC)*        Member until 2015-12-31, but no payment.                       Check membership payments
  Robin Rood    *Bernd Brecht (ME)*                         Member until 2015-12-31, but no payment.                       Check membership payments
  Robin Rood    *Jérôme Jeanémart (ME)*                     Member until 2015-12-31, but no payment.                       Check membership payments
+ Robin Rood    *Source document PRC_29_2015.pdf*           Upload entry uploads/2015/05/PRC_29_2015.pdf has no file       Check metadata of upload files
 ============= =========================================== ============================================================== ========================================
 <BLANKLINE>

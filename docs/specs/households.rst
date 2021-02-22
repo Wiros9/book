@@ -19,7 +19,7 @@ house).
 .. include:: /../docs/shared/include/tested.rst
 
 >>> import lino
->>> lino.startup('lino_book.projects.avanti1.settings.demo')
+>>> lino.startup('lino_book.projects.avanti1.settings')
 >>> from lino.api.doctest import *
 
 Concepts

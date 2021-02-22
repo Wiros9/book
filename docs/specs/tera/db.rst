@@ -131,7 +131,7 @@ The database models
  tinymce.TextFieldTemplate   tinymce.TextFieldTemplates     5         2
  topics.Interest             topics.Interests               6         86
  topics.Topic                topics.Topics                  8         3
- uploads.Upload              uploads.Uploads                12        0
+ uploads.Upload              uploads.Uploads                12        7
  uploads.UploadType          uploads.UploadTypes            8         1
  uploads.Volume              uploads.Volumes                5         0
  users.Authority             users.Authorities              3         0

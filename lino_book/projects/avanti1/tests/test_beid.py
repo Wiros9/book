@@ -47,7 +47,7 @@ class BeIdTests(RemoteAuthTestCase):
 
         # is it the right settings module?
         self.assertEqual(os.environ['DJANGO_SETTINGS_MODULE'],
-                         'lino_book.projects.avanti1.settings.demo')
+                         'lino_book.projects.avanti1.settings')
 
         self.assertEqual(settings.MIDDLEWARE, (
             'django.middleware.common.CommonMiddleware',

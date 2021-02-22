@@ -15,7 +15,7 @@ This document specifies how activities are being used in
 .. include:: /../docs/shared/include/tested.rst
 
 >>> import lino
->>> lino.startup('lino_book.projects.avanti1.settings.doctests')
+>>> lino.startup('lino_book.projects.avanti1.settings')
 >>> from lino.api.doctest import *
 
 

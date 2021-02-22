@@ -44,11 +44,11 @@ For example here is how you can get all your models that implement
 
 .. rubric:: Getting only top-level models
 
-The `toplevel_only` option is used by
-:mod:`lino.modlib.checkdata`. For example the
+The `toplevel_only` option is used by :mod:`lino.modlib.checkdata`.
+For example the
 :class:`AddressOwnerChecker
 <lino.modlib.addresses.mixins.AddressOwnerChecker>` needs to run only on
-Partner, not also on Person, Company and Household...
+Partner, not also on Person, Company, Household or any other MTI children.
 
 >>> rt.models_by_base(rt.models.contacts.Partner, toplevel_only=True)
 [<class 'lino_xl.lib.contacts.models.Partner'>]

@@ -15,7 +15,7 @@ This document describes the :mod:`lino_avanti.lib.avanti` plugin.
 .. include:: /../docs/shared/include/tested.rst
 
 >>> import lino
->>> lino.startup('lino_book.projects.avanti1.settings.doctests')
+>>> lino.startup('lino_book.projects.avanti1.settings')
 >>> from lino.api.doctest import *
 
 
@@ -326,6 +326,8 @@ Clients
  memo.PreviewableChecker           Check for previewables needing update
  printing.CachedPrintableChecker   Check for missing target files
  system.BleachChecker              Find unbleached html content
+ uploads.UploadChecker             Check metadata of upload files
+ uploads.UploadsFolderChecker      Find orphaned files in uploads folder
 ================================= ========================================
 <BLANKLINE>
 

@@ -16,7 +16,7 @@ This document describes how standard CV functionality is being extended by
 .. include:: /../docs/shared/include/tested.rst
 
 >>> import lino
->>> lino.startup('lino_book.projects.avanti1.settings.doctests')
+>>> lino.startup('lino_book.projects.avanti1.settings')
 >>> from lino.api.doctest import *
 
 
@@ -30,7 +30,7 @@ Lino Avanti defines a plugin :mod:`lino_avanti.lib.cv`  which inherits from
 
     .. attribute:: foreign_education_level
 
-      
+
 
     .. attribute:: recognized
 

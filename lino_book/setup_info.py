@@ -196,8 +196,7 @@ lino_book.projects.apc
 lino_book.projects.apc.settings
 lino_book.projects.apc.tests
 lino_book.projects.avanti1
-lino_book.projects.avanti1.settings
-lino_book.projects.avanti1.settings.fixtures
+lino_book.projects.avanti1.fixtures
 lino_book.projects.avanti1.tests
 lino_book.projects.cosi_ee
 lino_book.projects.cosi_ee.settings
