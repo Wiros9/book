@@ -8,10 +8,21 @@
 This is the 2021 :term:`change log` for :ref:`book`. General information about
 how to read and maintain this document in :ref:`dev.changes`.
 
+2021-02-22
+==========
+
+.. currentmodule:: lino.modlib.uploads
+
+Optimizations in :mod:`lino.modlib.uploads`: Added new
+plugin options :attr:`remove_orphaned_files <Plugin.remove_orphaned_files>`
+and :attr:`max_file_size <Plugin.max_file_size>`, and two
+data checkers :class:`UploadChecker` and :class:`UploadsFolderChecker`.
+
+
 2021-02-17
 ==========
 
-Rename :class:`lino.mixins.Uploadable` to
+API change: Rename :class:`lino.mixins.Uploadable` to
 :class:`lino.modlib.uploads.mixins.UploadBase`.
 
 Fixed a typo bug in :class:`renderer_mixin.JsCacheRenderer` which caused Lino to
