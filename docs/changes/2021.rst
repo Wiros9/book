@@ -18,6 +18,13 @@ Fixed :ticket:`3986`. New methods :meth:`get_request_detail_action
 :class:`set` but a :class:`list`. The case is covered in
 :ref:`avanti.specs.get_request_detail_action`.
 
+Release to PyPI: Lino 21.2.4 and XL 21.2.2
+
+Fixed :ticket:`3987` (checkdata says 'SiteConfig' object has no attribute
+'pupil_guestrole'). The error occurred only when the :attr:`guest_role
+<lino_xl.lib.courses.Line.guest_role>` of an :term:`activity line` was empty,
+that's why it slipped through the test suite.
+
 
 2021-02-23
 ==========
