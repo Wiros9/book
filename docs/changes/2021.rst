@@ -8,6 +8,23 @@
 This is the 2021 :term:`change log` for :ref:`book`. General information about
 how to read and maintain this document in :ref:`dev.changes`.
 
+2021-02-24
+==========
+
+Fixed :ticket:`3986`. New methods :meth:`get_request_detail_action
+<lino.core.actors.Actor.get_request_detail_action>`  and
+:meth:`lino.core.layouts.Layout.add_datasource` to fix a subtle problem in
+:ref:`avanti`.  Also :attr:`Layout._other_datasources` is no longer a
+:class:`set` but a :class:`list`. The case is covered in
+:ref:`avanti.specs.get_request_detail_action`.
+
+
+2021-02-23
+==========
+
+Released Lino 21.2.3 and XL 21.2.1 to PyPI (to fix issues like
+`this one <https://gitlab.com/lino-framework/mentori/-/jobs/1047909420>`__).
+
 2021-02-22
 ==========
 

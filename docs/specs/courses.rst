@@ -139,6 +139,16 @@ The ``Course`` model
     :attr:`RecurrenceSet.every`
     :attr:`RecurrenceSet.every_unit`
 
+    .. method:: get_detail_action(self, ar)
+
+      Custom :meth:`get_detail_action
+      <lino.core.model.Model.get_detail_action>` because the
+      detail_layout to use depends on the
+      :term:`activity layout`, which is given by the
+      :attr:`Line.course_area` field of the activity's line.
+
+
+
 
 
 .. class:: Courses

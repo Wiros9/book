@@ -170,6 +170,9 @@ Social worker
 Teacher
 =======
 
+>>> rt.login('laura').user.user_type
+<users.UserTypes.teacher:100>
+
 >>> show_menu('laura')
 ... #doctest: +ELLIPSIS +NORMALIZE_WHITESPACE +REPORT_UDIFF -SKIP
 - Calendar : My appointments, My unconfirmed appointments, My tasks, My guests, My presences, My overdue appointments
@@ -332,7 +335,7 @@ Not everybody can see the names of participants
 
 The names of the participants are confidential data in :ref:`avanti`.
 
-System admins can see the full names:
+A :term:`site administrator` can see the full names:
 
 >>> obj = courses.Course.objects.get(pk=1)
 >>> rt.login('rolf').show('courses.EnrolmentsByCourse', obj, show_links=True)
@@ -389,7 +392,7 @@ click on a name to see any detail.
 <BLANKLINE>
 
 
-But auditors see only the pupil's number and place:
+Auditors cannot even see the name. They see only the pupil's number and place:
 
 >>> rt.login('audrey').show('courses.EnrolmentsByCourse', obj, show_links=True)
 ... #doctest: +NORMALIZE_WHITESPACE -REPORT_UDIFF
@@ -411,9 +414,9 @@ But auditors see only the pupil's number and place:
 Teachers can see the names of their pupils, but must not see all the clients in
 the database.  Accordingly they cannot create new enrolments or new presences
 since this would require them to specify a client in the combobox (which would
-show all clients). OTHO a teacher *can*  edit other fields on these records
-(e.g. change the workflow or write a remark).  Since we cannot make the whoe
-record read-only, we disable the fields.
+show all clients). OTHO a teacher *can* edit other fields on these records (e.g.
+change the workflow or write a remark).  Since we cannot make the whole record
+read-only, we disable the fields.
 
 >>> ar = rt.login("laura")
 >>> "pupil" in courses.Enrolment.objects.first().disabled_fields(ar)
