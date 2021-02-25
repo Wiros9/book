@@ -23,7 +23,7 @@ Code snippets in this document are tested using the
 :mod:`lino_book.projects.noi1e` demo project.
 
 >>> import lino
->>> lino.startup('lino_book.projects.noi1e.settings.doctests')
+>>> lino.startup('lino_book.projects.noi1e.settings.demo')
 >>> from lino.api.doctest import *
 
 

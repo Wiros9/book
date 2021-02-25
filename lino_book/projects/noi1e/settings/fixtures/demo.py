@@ -1,23 +1,19 @@
 # -*- coding: UTF-8 -*-
-# Copyright 2015-2020 Rumma & Ko Ltd
+# Copyright 2015-2021 Rumma & Ko Ltd
 # License: BSD (see file COPYING for details)
-
 
 import datetime
 
 from lino.api import rt, dd, _
 from lino.utils import Cycler, i2d
-
 from lino.core.roles import SiteAdmin
 from lino_xl.lib.cal.choicelists import DurationUnits
 from lino_xl.lib.working.roles import Worker
 from lino.utils.quantities import Duration
 from lino.utils.mldbc import babel_named as named
 from lino.modlib.users.utils import create_user
-
 from lino_xl.lib.working.choicelists import ReportingTypes
 from lino_xl.lib.tickets.choicelists import SiteStates
-
 from lino_xl.lib.tickets.roles import Reporter, TicketsStaff
 
 UserTypes = rt.models.users.UserTypes
@@ -106,9 +102,9 @@ def tickets_objects():
     COMPANIES = Cycler(Company.objects.order_by("id"))
     end_users = []
 
-    for ref in "welket welsch pypi docs bugs".split():
+    for ref in "welket welsch pypi docs bugs aab bcc dde".split():
         kw = dict(ref=ref, reporting_type=RTYPES.pop(), group=GROUPS.pop(), state=SiteStates.active)
-        if ref in ("pypi", "docs", "bugs"):
+        if ref in ("pypi", "docs", "bugs", "aab", "bcc", "dde"):
             kw.update(name=ref)
         else:
             obj = COMPANIES.pop()
@@ -316,12 +312,18 @@ def working_objects():
     Ticket = rt.models.tickets.Ticket
     User = rt.models.users.User
     UserTypes = rt.models.users.UserTypes
+    Group = rt.models.groups.Group
     # devs = (UserTypes.developer, UserTypes.senior)
     devs = [p for p in UserTypes.items()
             if p.has_required_roles([Worker])
             and not p.has_required_roles([SiteAdmin])]
-    workers = User.objects.filter(user_type__in=devs)
-    WORKERS = Cycler(workers)
+    WORKERS_BY_GROUP = dict()
+    for g in Group.objects.all():
+        workers = User.objects.filter(
+            # user_type__in=devs,
+            groups_membership_set_by_user__group=g)  # .distinct()
+        WORKERS_BY_GROUP[g] = Cycler(workers)
+
     TYPES = Cycler(SessionType.objects.all())
     # TICKETS = Cycler(Ticket.objects.all())
     DURATIONS = Cycler([12, 138, 90, 10, 122, 209, 37, 62, 179, 233, 5])
@@ -329,37 +331,34 @@ def working_objects():
     # every fourth ticket is unassigned and thus listed in
     # PublicTickets
     # for i, t in enumerate(Ticket.objects.exclude(private=True)):
-    for i, t in enumerate(Ticket.objects.all()):
+    for i, t in enumerate(Ticket.objects.filter(site__isnull=False)):
         if i % 4:
-            t.assigned_to = WORKERS.pop()
+            t.assigned_to = WORKERS_BY_GROUP[t.site.group].pop()
             yield t
 
-    for u in workers:
-
-        # VOTES = Cycler(Vote.objects.filter(user=u))
-        # TICKETS = Cycler(Ticket.objects.filter(assigned_to=u))
-        TICKETS = Cycler(Ticket.objects.filter())
-        # if len(VOTES) == 0:
-        #     continue
-
-        for offset in (0, -1, -3, -4):
-
-            date = dd.demo_date(offset)
-            worked = Duration()
-            ts = datetime.datetime.combine(date, datetime.time(9, 0, 0))
-            for i in range(7):
-                obj = Session(
-                    ticket=TICKETS.pop(),
-                    session_type=TYPES.pop(), user=u)
-                obj.set_datetime('start', ts)
-                d = DURATIONS.pop()
-                worked += d
-                if offset < 0:
-                    ts = DurationUnits.minutes.add_duration(ts, d)
-                    obj.set_datetime('end', ts)
-                yield obj
-                if offset == 0 or worked > 8:
-                    break
+    for group in Group.objects.all():
+        workers = User.objects.filter(
+            user_type__in=devs,
+            groups_membership_set_by_user__group=group)  # .distinct()
+        TICKETS = Cycler(Ticket.objects.filter(site__group=group))
+        for u in workers:
+            for offset in (0, -1, -3, -4):
+                date = dd.demo_date(offset)
+                ts = datetime.datetime.combine(date, datetime.time(9, 0, 0))
+                worked = Duration()
+                for i in range(7):
+                    obj = Session(
+                        ticket=TICKETS.pop(),
+                        session_type=TYPES.pop(), user=u)
+                    obj.set_datetime('start', ts)
+                    d = DURATIONS.pop()
+                    worked += d
+                    if offset < 0:
+                        ts = DurationUnits.minutes.add_duration(ts, d)
+                        obj.set_datetime('end', ts)
+                    yield obj
+                    if offset == 0 or worked > 8:
+                        break
 
     ServiceReport = rt.models.working.ServiceReport
     # welket = Company.objects.get(name="welket")

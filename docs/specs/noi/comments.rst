@@ -48,7 +48,7 @@ Tests
 >>> rt.models.comments.Comment.objects.all().count()
 168
 >>> rt.models.comments.Comment.objects.filter(private=True).count()
-140
+133
 
 >>> rt.login("robin").show(comments.Comments,
 ...     column_names="id ticket__site user owner",
@@ -79,23 +79,19 @@ The demo database contains 168 comments, 84 about a team and 84 about a ticket.
 >>> comments.Comment.objects.filter(group=None).count()
 84
 >>> comments.Comment.objects.filter(private=False).count()
-28
+35
 
 
 >>> rt.login("marc").show(comments.RecentComments)
 ... #doctest: +ELLIPSIS +NORMALIZE_WHITESPACE +REPORT_UDIFF
 `... <Detail>`__ by **marc** in reply to **jean** about `#12 <Detail>`__@welket : Lorem ipsum ... (...)
 ...
-`... <Detail>`__ by **robin** in reply to **romain** about `#9 <Detail>`__@bugs : Lorem ipsum dolor ... (...)
+`... <Detail>`__ by **luc** in reply to **jean** about `#11 <Detail>`__@aab : Lorem ipsum dolor ... (...)
 ...
 
 
 >>> rt.show(comments.RecentComments)
 ... #doctest: +ELLIPSIS +NORMALIZE_WHITESPACE +REPORT_UDIFF
-`... <Detail>`__ by **robin** in reply to **marc** about `#10 <Detail>`__ :
-Who What Done?
-<BLANKLINE>
-...
-<BLANKLINE>
-`... <Detail>`__ by **romain** about `#9 <Detail>`__@bugs (2 replies) : Styled comment pasted from word!
+`... <Detail>`__ by **robin** in reply to **rolf** about `#11 <Detail>`__@aab : Styled comment pasted from word!
+`... <Detail>`__ by **rolf** about `#11 <Detail>`__@aab (1 reply) : Two paragraphs of plain text. (...)
 ...

@@ -16,7 +16,7 @@ action is actually executed. The fields of this dialog window are called
 .. include:: /../docs/shared/include/tested.rst
 
 >>> from lino import startup
->>> startup('lino_book.projects.noi1e.settings.doctests')
+>>> startup('lino_book.projects.noi1e.settings.demo')
 >>> from lino.api.doctest import *
 
 
@@ -142,7 +142,12 @@ to make it possible).
 True
 >>> msg = ar.response['message']
 >>> print(tostring(msg))
-<div class="htmlText"><p>Are you sure you want to merge #1 (⚹ Föö fails to bar when baz) into #2 (☎ Bar is not always baz)?</p><ul><li>1 Dependencies <b>will be deleted.</b></li><li>3 Sessions, 7 Comments <b>will get reassigned.</b></li><li>#1 (⚹ Föö fails to bar when baz) will be deleted</li></ul></div>
+... #doctest: +ELLIPSIS +NORMALIZE_WHITESPACE +REPORT_UDIFF
+<div class="htmlText"><p>Are you sure you want to merge #1 (⚹ Föö fails
+to bar when baz) into #2 (☎ Bar is not always baz)?</p><ul><li>1 Dependencies
+<b>will be deleted.</b></li><li>1 Sessions, 7 Comments <b>will get
+reassigned.</b></li><li>#1 (⚹ Föö fails to bar when baz) will be
+deleted</li></ul></div>
 
 
 

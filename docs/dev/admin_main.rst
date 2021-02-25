@@ -61,7 +61,7 @@ Code snippets in this document are tested using the
 :mod:`lino_book.projects.noi1e` demo project.
 
 >>> import lino
->>> lino.startup('lino_book.projects.noi1e.settings.doctests')
+>>> lino.startup('lino_book.projects.noi1e.settings.demo')
 >>> from lino.api.doctest import *
 >>> ar = rt.login("robin")
 >>> user = ar.get_user()
@@ -141,15 +141,14 @@ messages" for this user on this site. :meth:`get_welcome_messages
 
 >>> print(tostring(settings.SITE.get_welcome_messages(ar)))
 ... #doctest: +ELLIPSIS +NORMALIZE_WHITESPACE +REPORT_UDIFF
-<p><span><a href="Detail">Jean</a> is working on: <a title="Föö fails to bar
-when baz" href="Detail">#1 (⚹ Föö fails to bar when
-baz)</a>.</span><br/><span><a href="Detail">Luc</a> is working on: <a title="Föö
-fails to bar when baz" href="Detail">#1 (⚹ Föö fails to bar when
-baz)</a>.</span><br/><span><a href="Detail">Mathieu</a> is working on: <a
-title="Föö fails to bar when baz" href="Detail">#1 (⚹ Föö fails to bar when
-baz)</a>.</span></p><span>You have <b>15 items in Tickets to
+<p><span><a href="Detail">Luc</a> is working on: <a title="Föö fails to bar when
+baz" href="Detail">#1 (⚹ Föö fails to bar when baz)</a>.</span><br/><span><a
+href="Detail">Jean</a> is working on: <a title="Cannot create Foo"
+href="Detail">#5 (☾ Cannot create Foo)</a>.</span><br/><span><a
+href="Detail">Mathieu</a> is working on: <a title="Default account in invoices
+per partner" href="Detail">#69 (☾ Default account in invoices per
+partner)</a>.</span></p><span>You have <b>15 items in Tickets to
 triage</b>.</span><span>You have <b>7 items in New user applications</b>.</span>
-
 
 
 

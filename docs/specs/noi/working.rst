@@ -18,7 +18,7 @@ time tracking.
 .. include:: /../docs/shared/include/tested.rst
 
 >>> from lino import startup
->>> startup('lino_book.projects.noi1e.settings.doctests')
+>>> startup('lino_book.projects.noi1e.settings.demo')
 >>> from lino.api.doctest import *
 
 Note that the demo data is on fictive demo date **May 23, 2015**:
@@ -76,24 +76,24 @@ All sessions of the demo project:
 
 >>> rt.show(working.Sessions, limit=15)
 ... #doctest: -REPORT_UDIFF
-================================== ========= ============ ============ ============ ========== ============ ========= =========== =================
- Ticket                             Worker    Start date   Start time   End Date     End Time   Break Time   Summary   Duration    Ticket #
----------------------------------- --------- ------------ ------------ ------------ ---------- ------------ --------- ----------- -----------------
- #1 (⚹ Föö fails to bar when baz)   Jean      23/05/2015   09:00:00                                                                `#1 <Detail>`__
- #1 (⚹ Föö fails to bar when baz)   Luc       23/05/2015   09:00:00                                                                `#1 <Detail>`__
- #1 (⚹ Föö fails to bar when baz)   Mathieu   23/05/2015   09:00:00                                                                `#1 <Detail>`__
- #2 (☎ Bar is not always baz)       Jean      22/05/2015   09:00:00     22/05/2015   11:18:00                          2:18        `#2 <Detail>`__
- #2 (☎ Bar is not always baz)       Luc       22/05/2015   09:00:00     22/05/2015   12:29:00                          3:29        `#2 <Detail>`__
- #2 (☎ Bar is not always baz)       Mathieu   22/05/2015   09:00:00     22/05/2015   12:53:00                          3:53        `#2 <Detail>`__
- #4 (⚒ Foo and bar don't baz)       Mathieu   20/05/2015   09:05:00     20/05/2015   09:17:00                          0:12        `#4 <Detail>`__
- #3 (☉ Baz sucks)                   Jean      20/05/2015   09:00:00     20/05/2015   10:30:00                          1:30        `#3 <Detail>`__
- #3 (☉ Baz sucks)                   Luc       20/05/2015   09:00:00     20/05/2015   09:37:00                          0:37        `#3 <Detail>`__
- #3 (☉ Baz sucks)                   Mathieu   20/05/2015   09:00:00     20/05/2015   09:05:00                          0:05        `#3 <Detail>`__
- #4 (⚒ Foo and bar don't baz)       Jean      19/05/2015   09:00:00     19/05/2015   09:10:00                          0:10        `#4 <Detail>`__
- #4 (⚒ Foo and bar don't baz)       Luc       19/05/2015   09:00:00     19/05/2015   10:02:00                          1:02        `#4 <Detail>`__
- #5 (☾ Cannot create Foo)           Mathieu   19/05/2015   09:00:00     19/05/2015   11:18:00                          2:18        `#5 <Detail>`__
- **Total (13 rows)**                                                                                                   **15:34**
-================================== ========= ============ ============ ============ ========== ============ ========= =========== =================
+================================================= ========= ============ ============ ============ ========== ============ ========= =========== ===================
+ Ticket                                            Worker    Start date   Start time   End Date     End Time   Break Time   Summary   Duration    Ticket #
+------------------------------------------------- --------- ------------ ------------ ------------ ---------- ------------ --------- ----------- -------------------
+ #1 (⚹ Föö fails to bar when baz)                  Luc       23/05/2015   09:00:00                                                                `#1 <Detail>`__
+ #5 (☾ Cannot create Foo)                          Jean      23/05/2015   09:00:00                                                                `#5 <Detail>`__
+ #69 (☾ Default account in invoices per partner)   Mathieu   23/05/2015   09:00:00                                                                `#69 <Detail>`__
+ #4 (⚒ Foo and bar don't baz)                      Luc       22/05/2015   09:00:00     22/05/2015   11:18:00                          2:18        `#4 <Detail>`__
+ #21 (☾ Irritating message when bar)               Jean      22/05/2015   09:00:00     22/05/2015   12:29:00                          3:29        `#21 <Detail>`__
+ #85 (☾ How can I see where bar?)                  Mathieu   22/05/2015   09:00:00     22/05/2015   12:53:00                          3:53        `#85 <Detail>`__
+ #11 (☉ Class-based Foos and Bars?)                Mathieu   20/05/2015   09:05:00     20/05/2015   09:17:00                          0:12        `#11 <Detail>`__
+ #12 (⚒ Foo cannot bar)                            Luc       20/05/2015   09:00:00     20/05/2015   10:30:00                          1:30        `#12 <Detail>`__
+ #37 (☾ Cannot delete foo)                         Jean      20/05/2015   09:00:00     20/05/2015   09:37:00                          0:37        `#37 <Detail>`__
+ #101 (☾ Why is foo so bar)                        Mathieu   20/05/2015   09:00:00     20/05/2015   09:05:00                          0:05        `#101 <Detail>`__
+ #14 (☐ Bar cannot baz)                            Luc       19/05/2015   09:00:00     19/05/2015   09:10:00                          0:10        `#14 <Detail>`__
+ #53 (☾ Foo never bars)                            Jean      19/05/2015   09:00:00     19/05/2015   10:02:00                          1:02        `#53 <Detail>`__
+ #27 (☉ No more foo when bar is gone)              Mathieu   19/05/2015   09:00:00     19/05/2015   11:18:00                          2:18        `#27 <Detail>`__
+ **Total (13 rows)**                                                                                                                  **15:34**
+================================================= ========= ============ ============ ============ ========== ============ ========= =========== ===================
 <BLANKLINE>
 
 
@@ -102,14 +102,13 @@ Some sessions are on private tickets:
 >>> from django.db.models import Q
 >>> rt.show(working.Sessions, column_names="ticket user duration", filter=Q(ticket__private=True))
 ... #doctest: -REPORT_UDIFF
-============================== ========= ==========
- Ticket                         Worker    Duration
------------------------------- --------- ----------
- #4 (⚒ Foo and bar don't baz)   Mathieu   0:12
- #4 (⚒ Foo and bar don't baz)   Jean      0:10
- #4 (⚒ Foo and bar don't baz)   Luc       1:02
- **Total (3 rows)**                       **1:24**
-============================== ========= ==========
+============================== ======== ==========
+ Ticket                         Worker   Duration
+------------------------------ -------- ----------
+ #4 (⚒ Foo and bar don't baz)   Luc      2:18
+ #12 (⚒ Foo cannot bar)         Luc      1:30
+ **Total (2 rows)**                      **3:48**
+============================== ======== ==========
 <BLANKLINE>
 
 
@@ -119,18 +118,18 @@ Worked hours
 
 >>> rt.login('jean').show(working.WorkedHours)
 ... #doctest: -REPORT_UDIFF
-============================= ================= ========== ========== ====== ==========
- Description                   Worked tickets    Regular    Extra      Free   Total
------------------------------ ----------------- ---------- ---------- ------ ----------
- `Sat 23/05/2015 <Detail>`__   `#1 <Detail>`__   0:01                         0:01
- `Fri 22/05/2015 <Detail>`__   `#2 <Detail>`__              2:18              2:18
- `Thu 21/05/2015 <Detail>`__                                                  0:00
- `Wed 20/05/2015 <Detail>`__   `#3 <Detail>`__              1:30              1:30
- `Tue 19/05/2015 <Detail>`__   `#4 <Detail>`__   0:10                         0:10
- `Mon 18/05/2015 <Detail>`__                                                  0:00
- `Sun 17/05/2015 <Detail>`__                                                  0:00
- **Total (7 rows)**                              **0:11**   **3:48**          **3:59**
-============================= ================= ========== ========== ====== ==========
+============================= ================== ========= ======= ========== ==========
+ Description                   Worked tickets     Regular   Extra   Free       Total
+----------------------------- ------------------ --------- ------- ---------- ----------
+ `Sat 23/05/2015 <Detail>`__   `#5 <Detail>`__                      0:01       0:01
+ `Fri 22/05/2015 <Detail>`__   `#21 <Detail>`__                     3:29       3:29
+ `Thu 21/05/2015 <Detail>`__                                                   0:00
+ `Wed 20/05/2015 <Detail>`__   `#37 <Detail>`__                     0:37       0:37
+ `Tue 19/05/2015 <Detail>`__   `#53 <Detail>`__                     1:02       1:02
+ `Mon 18/05/2015 <Detail>`__                                                   0:00
+ `Sun 17/05/2015 <Detail>`__                                                   0:00
+ **Total (7 rows)**                                                 **5:09**   **5:09**
+============================= ================== ========= ======= ========== ==========
 <BLANKLINE>
 
 
@@ -144,9 +143,7 @@ started some days ago.
     ...     qs = tickets.Site.objects.filter(tickets_by_site__sessions_by_ticket__user=u).distinct()
     ...     if qs.count() > 1:
     ...         print("{} {} {}".format(str(u.username), "worked on", [o for o in qs]))
-    jean worked on [Site #1 ('welket'), Site #2 ('welsch')]
-    luc worked on [Site #1 ('welket'), Site #2 ('welsch')]
-    mathieu worked on [Site #1 ('welket'), Site #2 ('welsch'), Site #3 ('pypi')]
+    mathieu worked on [Site #3 ('pypi'), Site #6 ('aab')]
 
     Render this table to HTML in order to reproduce :ticket:`523`:
 
@@ -218,21 +215,22 @@ Partner #100 ('Rumma & Ko OÜ')
 <BLANKLINE>
 
 Note that sessions on #1 have actually no duration because they are active. But
-in the report they are shown with one minute. That's a bug (TODO: fix it). But
-it's not an urgent bug because that's not any normal situation (you are not
-going to write reports for a date range when there are still active session).
+in the report they are shown with one minute. That's a bug (TODO: fix it).  It's
+not an urgent bug because that's not any normal situation (you are not going to
+write reports for a date range when there are still active session).
 
 >>> rt.login("robin").show(working.TicketsByReport, obj)
 ... #doctest: -REPORT_NDIFF +NORMALIZE_WHITESPACE
 ==== =============================================== =============== ======== ========= ========== ======= ======
  ID   Ticket                                          End user        Site     State     Regular    Extra   Free
 ---- ----------------------------------------------- --------------- -------- --------- ---------- ------- ------
- 1    `#1 (⚹ Föö fails to bar when baz) <Detail>`__   Andreas Arens   welket   New       0:03
- 4    `#4 (⚒ Foo and bar don't baz) <Detail>`__       Andreas Arens   welket   Working   1:24
-                                                                                         **1:27**
+ 1    `#1 (⚹ Föö fails to bar when baz) <Detail>`__   Andreas Arens   welket   New       0:01
+ 4    `#4 (⚒ Foo and bar don't baz) <Detail>`__       Andreas Arens   welket   Working   2:18
+ 12   `#12 (⚒ Foo cannot bar) <Detail>`__             Andreas Arens   welket   Working   1:30
+ 14   `#14 (☐ Bar cannot baz) <Detail>`__             Andreas Arens   welket   Ready     0:10
+                                                                                         **3:59**
 ==== =============================================== =============== ======== ========= ========== ======= ======
 <BLANKLINE>
-
 
 
 Reporting type
@@ -303,7 +301,6 @@ Class reference
 
         :meth:`end_session` sets this to the current time.
 
-
     .. attribute:: break_time
 
        The time (in `hh:mm`) to remove from the duration resulting
@@ -317,6 +314,13 @@ Class reference
        on the ticket.
 
     .. attribute:: site_ref
+
+    .. method:: end_session
+
+        Tell Lino that you stop this session for now.
+        This will simply set the :attr:`end_time` to the current time.
+
+        Implemented by :class:`EndThisSession`.
 
 
 
@@ -339,21 +343,18 @@ Class reference
 
     Start a session on this ticket.
 
-.. class:: EndTicketSession
 
-    Close this session, i.e. stop working it for now.
+.. class:: EndSession
 
-    Common base for :class:`EndThisSession` and
-    :class:`EndTicketSession`.
-
+    Common base for :class:`EndThisSession` and :class:`EndTicketSession`.
 
 .. class:: EndTicketSession
 
-    End your running session on this ticket.
+    The action behind :class:`Workable.end_session`.
 
 .. class:: EndThisSession
 
-    Close this session, i.e. stop working on that ticket now.
+    The action behind :class:`Session.end_session`.
 
 
 
@@ -384,7 +385,10 @@ Class reference
 
     .. method:: end_session
 
-        See :class:`EndTicketSession`.
+        Tell Lino that you stop working on this ticket for now.
+        This will simply set the :attr:`Session.end_time` to the current time.
+
+        Implemented by :class:`EndTicketSession`.
 
 
 .. class:: ServiceReport
@@ -477,20 +481,18 @@ Summaries
 ==== ====== ======= ======== ================ ================== ========= ======= ======
  ID   Year   Month   Site     Active tickets   Inactive tickets   Regular   Extra   Free
 ---- ------ ------- -------- ---------------- ------------------ --------- ------- ------
- 3    2015           welket   0                0                  1:24
+ 3    2015           welket   0                0                  3:58
 ==== ====== ======= ======== ================ ================== ========= ======= ======
 <BLANKLINE>
 
 
 >>> rt.show(working.UserSummaries, exclude=dict(regular_hours=""))
 ... #doctest: -REPORT_UDIFF
-===== ====== ======= ========= ========= ======= ======
- ID    Year   Month   User      Regular   Extra   Free
------ ------ ------- --------- --------- ------- ------
- 29    2015   5       Jean      0:10      3:48
- 65    2015   5       Luc       1:02      4:06
- 137   2015   5       Mathieu   0:12      3:58    2:18
-===== ====== ======= ========= ========= ======= ======
+==== ====== ======= ====== ========= ======= ======
+ ID   Year   Month   User   Regular   Extra   Free
+---- ------ ------- ------ --------- ------- ------
+ 65   2015   5       Luc    3:58
+==== ====== ======= ====== ========= ======= ======
 <BLANKLINE>
 
 

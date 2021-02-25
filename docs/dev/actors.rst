@@ -25,7 +25,7 @@ The code snippets on this page use the :mod:`lino_book.projects.noi1e` demo
 project.
 
 >>> from lino import startup
->>> startup('lino_book.projects.noi1e.settings.doctests')
+>>> startup('lino_book.projects.noi1e.settings.demo')
 >>> from lino.api.doctest import *
 
 

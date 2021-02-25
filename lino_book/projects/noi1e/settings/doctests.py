@@ -1,3 +1,5 @@
+raise Exception("No longer used")
+
 from .demo import *
 SITE = Site(
     globals(),

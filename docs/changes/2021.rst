@@ -8,6 +8,14 @@
 This is the 2021 :term:`change log` for :ref:`book`. General information about
 how to read and maintain this document in :ref:`dev.changes`.
 
+2021-02-25
+==========
+
+Miscellaneous bugfixes and changes regarding users of type :attr:`contributor
+<lino_noi.lib.noi.UserTypes.contributor>` in :ref:`noi`.
+
+Release to PyPI : lino, XL, Noi
+
 2021-02-24
 ==========
 

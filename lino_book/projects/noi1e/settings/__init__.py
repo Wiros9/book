@@ -6,8 +6,6 @@
 .. autosummary::
    :toctree:
 
-   doctests
-   react
    demo
    www
 

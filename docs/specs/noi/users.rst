@@ -60,15 +60,33 @@ Note that "Customer" has two internal names.
 >>> users.UserTypes.customer is users.UserTypes.user
 True
 
+.. currentmodule:: lino_noi.lib.noi
 
-A **customer** is somebody who uses some part of the software being developed by
-the team. This is usually the contact person of a customer.
+.. class:: UserTypes
 
-A **contributor** can submit tickets, work on them and discuss with other team
-members.  But does not see confidential data.
+  .. attribute:: user
 
-A **developer** is a trusted contributor who can do almost everything except
-managing other users.
+    An alias for :attr:`customer`.
+
+  .. attribute:: customer
+
+    Somebody who uses some part of the software being developed by
+    the team. This is usually the contact person of a customer.
+
+  .. attribute:: contributor
+
+    Can submit tickets, work on them and discuss with other team members.  Does
+    not see confidential data nor the tickets of other teams.
+
+  .. attribute:: contributor
+
+    A trusted contributor who can do almost everything except managing other
+    users.
+
+  .. attribute:: admin
+
+    Can see everything including create new :term:`end users <end user>`, change
+    their passwords, assign them to teams.
 
 Here is a list of user types of those who can work on tickets:
 
@@ -91,6 +109,7 @@ User roles and permissions
 Here is the :class:`lino.modlib.users.UserRoles` table for :ref:`noi`:
 
 >>> rt.show(users.UserRoles)
+... #doctest: +ELLIPSIS +NORMALIZE_WHITESPACE +REPORT_UDIFF
 ================================ ===== ===== ===== ===== =====
  Name                             000   100   200   400   900
 -------------------------------- ----- ----- ----- ----- -----
@@ -100,7 +119,7 @@ Here is the :class:`lino.modlib.users.UserRoles` table for :ref:`noi`:
  comments.CommentsUser                  ☑     ☑     ☑     ☑
  comments.PrivateCommentsReader                     ☑     ☑
  contacts.ContactsStaff                                   ☑
- contacts.ContactsUser                        ☑     ☑     ☑
+ contacts.ContactsUser                              ☑     ☑
  core.SiteUser                          ☑     ☑     ☑     ☑
  courses.CoursesUser                          ☑     ☑     ☑
  excerpts.ExcerptsStaff                             ☑     ☑
@@ -164,12 +183,12 @@ The following shows a list of all windows in :ref:`noi`  and who can see them:
 - comments.Comments.detail : visible for customer contributor developer admin
 - comments.Comments.insert : visible for customer contributor developer admin
 - comments.CommentsByRFC.insert : visible for customer contributor developer admin
-- contacts.Companies.detail : visible for contributor developer admin
-- contacts.Companies.insert : visible for contributor developer admin
+- contacts.Companies.detail : visible for developer admin
+- contacts.Companies.insert : visible for developer admin
 - contacts.Companies.merge_row : visible for admin
 - contacts.Partners.merge_row : visible for admin
-- contacts.Persons.detail : visible for contributor developer admin
-- contacts.Persons.insert : visible for contributor developer admin
+- contacts.Persons.detail : visible for developer admin
+- contacts.Persons.insert : visible for developer admin
 - contacts.Persons.merge_row : visible for admin
 - countries.Countries.detail : visible for admin
 - countries.Countries.insert : visible for admin
@@ -182,11 +201,11 @@ The following shows a list of all windows in :ref:`noi`  and who can see them:
 - github.Commits.detail : visible for customer contributor developer admin
 - github.Repositories.detail : visible for developer admin
 - github.Repositories.insert : visible for developer admin
-- groups.Groups.detail : visible for customer contributor developer admin
-- groups.Groups.insert : visible for customer contributor developer admin
+- groups.Groups.detail : visible for admin
+- groups.Groups.insert : visible for admin
 - groups.Groups.merge_row : visible for admin
-- groups.Memberships.detail : visible for customer contributor developer admin
-- groups.Memberships.insert : visible for customer contributor developer admin
+- groups.Memberships.detail : visible for admin
+- groups.Memberships.insert : visible for admin
 - invoicing.Plans.detail : visible for admin
 - invoicing.SalesRules.detail : visible for admin
 - ledger.AccountingPeriods.merge_row : visible for admin
@@ -200,11 +219,11 @@ The following shows a list of all windows in :ref:`noi`  and who can see them:
 - ledger.PaymentTerms.detail : visible for admin
 - ledger.PaymentTerms.merge_row : visible for admin
 - ledger.Situation.show : visible for admin
-- lists.Lists.detail : visible for contributor developer admin
-- lists.Lists.insert : visible for contributor developer admin
+- lists.Lists.detail : visible for developer admin
+- lists.Lists.insert : visible for developer admin
 - lists.Lists.merge_row : visible for admin
-- lists.Members.detail : visible for contributor developer admin
-- lists.MembersByPartner.insert : visible for contributor developer admin
+- lists.Members.detail : visible for developer admin
+- lists.MembersByPartner.insert : visible for developer admin
 - mailbox.Mailboxes.detail : visible for customer contributor developer admin
 - mailbox.Mailboxes.insert : visible for customer contributor developer admin
 - mailbox.MessageAttachments.detail : visible for customer contributor developer admin
@@ -251,8 +270,8 @@ The following shows a list of all windows in :ref:`noi`  and who can see them:
 - vat.Invoices.detail : visible for admin
 - vat.Invoices.insert : visible for admin
 - vat.InvoicesByJournal.insert : visible for admin
-- working.ServiceReports.detail : visible for contributor developer admin
-- working.ServiceReports.insert : visible for contributor developer admin
+- working.ServiceReports.detail : visible for developer admin
+- working.ServiceReports.insert : visible for developer admin
 - working.Sessions.detail : visible for contributor developer admin
 - working.Sessions.insert : visible for contributor developer admin
 - working.SiteSummaries.detail : visible for customer contributor developer admin

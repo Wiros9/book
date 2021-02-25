@@ -12,7 +12,7 @@ Sometimes you require the current user to determine the choices for a field.
 .. include:: /../docs/shared/include/tested.rst
 
 >>> from lino import startup
->>> startup('lino_book.projects.noi1e.settings.doctests')
+>>> startup('lino_book.projects.noi1e.settings.demo')
 >>> from lino.api.doctest import *
 
 If your chooser method needs to know the current user to determine the choices
@@ -28,8 +28,10 @@ everybody can see every site.
 >>> show_choices("robin", url) #doctest: +ELLIPSIS
 <br/>
 pypi
+aab
 
 >>> show_choices("luc", url) #doctest: +ELLIPSIS
 <br/>
 welket
 docs
+bcc

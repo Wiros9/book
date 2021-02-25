@@ -15,7 +15,7 @@ This document describes the database structure.
 .. include:: /../docs/shared/include/tested.rst
 
 >>> import lino
->>> lino.startup('lino_book.projects.noi1e.settings.doctests')
+>>> lino.startup('lino_book.projects.noi1e.settings.demo')
 >>> from lino.api.doctest import *
 
 
@@ -130,7 +130,7 @@ The database models
  system.SiteConfig                  system.SiteConfigs               9         1
  tickets.CheckListItem              tickets.CheckListItems           4         0
  tickets.Link                       tickets.Links                    4         1
- tickets.Site                       tickets.Sites                    16        5
+ tickets.Site                       tickets.Sites                    16        8
  tickets.Ticket                     tickets.Tickets                  28        116
  tickets.TicketType                 tickets.TicketTypes              5         3
  tinymce.TextFieldTemplate          tinymce.TextFieldTemplates       5         2
@@ -145,7 +145,7 @@ The database models
  working.ServiceReport              working.ServiceReports           10        1
  working.Session                    working.Sessions                 14        13
  working.SessionType                working.SessionTypes             4         1
- working.SiteSummary                working.SiteSummaries            9         15
+ working.SiteSummary                working.SiteSummaries            9         24
  working.UserSummary                working.UserSummaries            7         252
 ================================== ================================ ========= =======
 <BLANKLINE>

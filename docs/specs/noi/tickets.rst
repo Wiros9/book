@@ -100,7 +100,10 @@ Anonymous users can see only public sites:
 =========== ============= ======== ================ ======== ============== ====
  Reference   Designation   Client   Contact person   Remark   Workflow       ID
 ----------- ------------- -------- ---------------- -------- -------------- ----
+ aab         aab                                              **⚒ Active**   6
+ bcc         bcc                                              **⚒ Active**   7
  bugs        bugs                                             **⚒ Active**   5
+ dde         dde                                              **⚒ Active**   8
  docs        docs                                             **⚒ Active**   4
  pypi        pypi                                             **⚒ Active**   3
 =========== ============= ======== ================ ======== ============== ====
@@ -110,7 +113,10 @@ Anonymous users can see only public sites:
 =========== ===================== ===================== ================ ======== ================================ ====
  Reference   Designation           Client                Contact person   Remark   Workflow                         ID
 ----------- --------------------- --------------------- ---------------- -------- -------------------------------- ----
+ aab         aab                                                                   **⚒ Active**                     6
+ bcc         bcc                                                                   **⚒ Active**                     7
  bugs        bugs                                                                  **⚒ Active** → [⚹] [☉] [☾] [☑]   5
+ dde         dde                                                                   **⚒ Active** → [⚹] [☉] [☾] [☑]   8
  docs        docs                                                                  **⚒ Active**                     4
  pypi        pypi                                                                  **⚒ Active**                     3
  welsch      Bäckerei Ausdemwald   Bäckerei Ausdemwald   Annette Arens             **⚒ Active** → [⚹] [☉] [☾] [☑]   2
@@ -121,7 +127,10 @@ Anonymous users can see only public sites:
 =========== ===================== ===================== ================ ======== ================================ ====
  Reference   Designation           Client                Contact person   Remark   Workflow                         ID
 ----------- --------------------- --------------------- ---------------- -------- -------------------------------- ----
+ aab         aab                                                                   **⚒ Active** → [⚹] [☉] [☾] [☑]   6
+ bcc         bcc                                                                   **⚒ Active** → [⚹] [☉] [☾] [☑]   7
  bugs        bugs                                                                  **⚒ Active** → [⚹] [☉] [☾] [☑]   5
+ dde         dde                                                                   **⚒ Active** → [⚹] [☉] [☾] [☑]   8
  docs        docs                                                                  **⚒ Active** → [⚹] [☉] [☾] [☑]   4
  pypi        pypi                                                                  **⚒ Active** → [⚹] [☉] [☾] [☑]   3
  welket      Rumma & Ko OÜ         Rumma & Ko OÜ         Andreas Arens             **⚒ Active** → [⚹] [☉] [☾] [☑]   1
@@ -129,11 +138,15 @@ Anonymous users can see only public sites:
 =========== ===================== ===================== ================ ======== ================================ ====
 <BLANKLINE>
 
+
 >>> rt.login("mathieu").show(tickets.Sites)
 =========== ============= ======== ================ ======== ================================ ====
  Reference   Designation   Client   Contact person   Remark   Workflow                         ID
 ----------- ------------- -------- ---------------- -------- -------------------------------- ----
+ aab         aab                                              **⚒ Active** → [⚹] [☉] [☾] [☑]   6
+ bcc         bcc                                              **⚒ Active**                     7
  bugs        bugs                                             **⚒ Active**                     5
+ dde         dde                                              **⚒ Active**                     8
  docs        docs                                             **⚒ Active**                     4
  pypi        pypi                                             **⚒ Active** → [⚹] [☉] [☾] [☑]   3
 =========== ============= ======== ================ ======== ================================ ====
@@ -147,6 +160,7 @@ where Jean is member):
 =================== ============= ================================
  Site                Description   Workflow
 ------------------- ------------- --------------------------------
+ `aab <Detail>`__                  **⚒ Active** → [⚹] [☉] [☾] [☑]
  `pypi <Detail>`__                 **⚒ Active** → [⚹] [☉] [☾] [☑]
 =================== ============= ================================
 <BLANKLINE>
@@ -156,28 +170,29 @@ List of tickets that have not yet been assigned to a site:
 >>> pv = dict(has_site=dd.YesNo.no)
 >>> rt.login("robin").show(tickets.AllTickets, param_values=pv)
 ... #doctest: -REPORT_UDIFF +ELLIPSIS
-===== ============================================== ========== ================================== ======
- ID    Summary                                        Priority   Workflow                           Site
------ ---------------------------------------------- ---------- ---------------------------------- ------
- 110   Why is foo so bar                              Normal     [▶] **☐ Ready** → [☒]
- 108   No more foo when bar is gone                   Normal     [▶] **⚒ Working** → [☾] [☐] [☒]
- 100   Cannot delete foo                              Normal     [▶] **⚒ Working** → [☾] [☐] [☒]
- 94    How can I see where bar?                       Normal     [▶] **☐ Ready** → [☒]
- 90    No more foo when bar is gone                   Normal     [▶] **☎ Talk** → [☾] [☉] [☐] [☒]
- 80    Foo never bars                                 Normal     [▶] **☒ Refused**
- 70    'NoneType' object has no attribute 'isocode'   Normal     [▶] **☐ Ready** → [☒]
- 66    Irritating message when bar                    Normal     [▶] **☎ Talk** → [☾] [☉] [☐] [☒]
- 60    Default account in invoices per partner        Normal     [▶] **⚒ Working** → [☾] [☐] [☒]
- 52    'NoneType' object has no attribute 'isocode'   Normal     [▶] **⚒ Working** → [☾] [☐] [☒]
- 50    Misc optimizations in Baz                      Normal     [▶] **☎ Talk** → [☾] [☉] [☐] [☒]
- 40    How can I see where bar?                       Normal     [▶] **☒ Refused**
- 38    Why is foo so bar                              Normal     [▶] **☐ Ready** → [☒]
- 30    Irritating message when bar                    Normal     [▶] **☐ Ready** → [☒]
- 24    Default account in invoices per partner        Normal     [▶] **☒ Refused**
- 20    Why is foo so bar                              Normal     [▶] **⚒ Working** → [☾] [☐] [☒]
- 10    Where can I find a Foo when bazing Bazes?      Normal     [▶] **☎ Talk** → [☾] [☉] [☐] [☒]
-===== ============================================== ========== ================================== ======
+===== ============================================== ========== ====================================== ======
+ ID    Summary                                        Priority   Workflow                               Site
+----- ---------------------------------------------- ---------- -------------------------------------- ------
+ 110   Why is foo so bar                              Normal     [✋] [▶] **☐ Ready** → [☒]
+ 108   No more foo when bar is gone                   Normal     [✋] [▶] **⚒ Working** → [☾] [☐] [☒]
+ 100   Cannot delete foo                              Normal     [✋] [▶] **⚒ Working** → [☾] [☐] [☒]
+ 94    How can I see where bar?                       Normal     [✋] [▶] **☐ Ready** → [☒]
+ 90    No more foo when bar is gone                   Normal     [✋] [▶] **☎ Talk** → [☾] [☉] [☐] [☒]
+ 80    Foo never bars                                 Normal     [✋] [▶] **☒ Refused**
+ 70    'NoneType' object has no attribute 'isocode'   Normal     [✋] [▶] **☐ Ready** → [☒]
+ 66    Irritating message when bar                    Normal     [✋] [▶] **☎ Talk** → [☾] [☉] [☐] [☒]
+ 60    Default account in invoices per partner        Normal     [✋] [▶] **⚒ Working** → [☾] [☐] [☒]
+ 52    'NoneType' object has no attribute 'isocode'   Normal     [✋] [▶] **⚒ Working** → [☾] [☐] [☒]
+ 50    Misc optimizations in Baz                      Normal     [✋] [▶] **☎ Talk** → [☾] [☉] [☐] [☒]
+ 40    How can I see where bar?                       Normal     [✋] [▶] **☒ Refused**
+ 38    Why is foo so bar                              Normal     [✋] [▶] **☐ Ready** → [☒]
+ 30    Irritating message when bar                    Normal     [✋] [▶] **☐ Ready** → [☒]
+ 24    Default account in invoices per partner        Normal     [✋] [▶] **☒ Refused**
+ 20    Why is foo so bar                              Normal     [✋] [▶] **⚒ Working** → [☾] [☐] [☒]
+ 10    Where can I find a Foo when bazing Bazes?      Normal     [✋] [▶] **☎ Talk** → [☾] [☉] [☐] [☒]
+===== ============================================== ========== ====================================== ======
 <BLANKLINE>
+
 
 Ticket types
 ============
@@ -202,22 +217,23 @@ Show all active tickets reported by me.
 
 >>> rt.login('jean').show(tickets.MyTickets)
 ... #doctest: -REPORT_UDIFF
-========== ==================================================================== ============= ============== ========= ======= ====== =============================================
- Priority   Ticket                                                               Assigned to   Planned time   Regular   Extra   Free   Workflow
----------- -------------------------------------------------------------------- ------------- -------------- --------- ------- ------ ---------------------------------------------
- Normal     `#113 (⚹ Misc optimizations in Baz) <Detail>`__                                                                            [✋] [▶] **⚹ New** → [☾] [☎] [☉] [⚒] [☐] [☑]
- Normal     `#106 (☎ 'NoneType' object has no attribute 'isocode') <Detail>`__   Jean                                                  [▶] **☎ Talk** → [☾] [☉] [⚒] [☐] [☑] [☒]
- Normal     `#99 (☉ No more foo when bar is gone) <Detail>`__                    Luc                                                   [▶] **☉ Open** → [☾] [☎] [⚒] [☐] [☑] [☒]
- Normal     `#92 (⚒ Why is foo so bar) <Detail>`__                               Mathieu                                               [▶] **⚒ Working** → [☾] [☎] [☐] [☑] [☒]
- Normal     `#78 (☐ Default account in invoices per partner) <Detail>`__         Jean                                                  [▶] **☐ Ready** → [☎] [☑] [☒]
- Normal     `#57 (⚹ Irritating message when bar) <Detail>`__                                                                           [✋] [▶] **⚹ New** → [☾] [☎] [☉] [⚒] [☐] [☑]
- Normal     `#50 (☎ Misc optimizations in Baz) <Detail>`__                       Jean                                                  [▶] **☎ Talk** → [☾] [☉] [☐] [☒]
- Normal     `#43 (☉ 'NoneType' object has no attribute 'isocode') <Detail>`__    Luc                                                   [▶] **☉ Open** → [☾] [☎] [⚒] [☐] [☑] [☒]
- Normal     `#36 (⚒ No more foo when bar is gone) <Detail>`__                    Mathieu                                               [▶] **⚒ Working** → [☾] [☎] [☐] [☑] [☒]
- Normal     `#22 (☐ How can I see where bar?) <Detail>`__                        Jean                                                  [▶] **☐ Ready** → [☎] [☑] [☒]
- Normal     `#1 (⚹ Föö fails to bar when baz) <Detail>`__                                                                              [✋] [■] **⚹ New** → [☾] [☎] [☉] [⚒] [☐] [☑]
-========== ==================================================================== ============= ============== ========= ======= ====== =============================================
+========== ==================================================================== ================= ============== ========= ======= ====== ==============================================
+ Priority   Ticket                                                               Assigned to       Planned time   Regular   Extra   Free   Workflow
+---------- -------------------------------------------------------------------- ----------------- -------------- --------- ------- ------ ----------------------------------------------
+ Normal     `#113 (⚹ Misc optimizations in Baz) <Detail>`__                      Romain Raffault                                           [▶] **⚹ New** → [☾] [☎] [☉] [⚒] [☐] [☑]
+ Normal     `#106 (☎ 'NoneType' object has no attribute 'isocode') <Detail>`__   Romain Raffault                                           [▶] **☎ Talk** → [☾] [☉] [⚒] [☐] [☑] [☒]
+ Normal     `#99 (☉ No more foo when bar is gone) <Detail>`__                                                                              [✋] [▶] **☉ Open** → [☾] [☎] [⚒] [☐] [☑] [☒]
+ Normal     `#92 (⚒ Why is foo so bar) <Detail>`__                               Rolf Rompen                                               [▶] **⚒ Working** → [☾] [☎] [☐] [☑] [☒]
+ Normal     `#78 (☐ Default account in invoices per partner) <Detail>`__         Rolf Rompen                                               [▶] **☐ Ready** → [☎] [☑] [☒]
+ Normal     `#57 (⚹ Irritating message when bar) <Detail>`__                                                                               [✋] [▶] **⚹ New** → [☾] [☎] [☉] [⚒] [☐] [☑]
+ Normal     `#50 (☎ Misc optimizations in Baz) <Detail>`__                                                                                 [✋] [▶] **☎ Talk** → [☾] [☉] [☐] [☒]
+ Normal     `#43 (☉ 'NoneType' object has no attribute 'isocode') <Detail>`__                                                              [✋] [▶] **☉ Open** → [☾] [☎] [⚒] [☐] [☑] [☒]
+ Normal     `#36 (⚒ No more foo when bar is gone) <Detail>`__                    Luc                                                       [▶] **⚒ Working** → [☾] [☎] [☐] [☑] [☒]
+ Normal     `#22 (☐ How can I see where bar?) <Detail>`__                        Rolf Rompen                                               [▶] **☐ Ready** → [☎] [☑] [☒]
+ Normal     `#1 (⚹ Föö fails to bar when baz) <Detail>`__                                                                                  [✋] [▶] **⚹ New** → [☾] [☎] [☉] [⚒] [☐] [☑]
+========== ==================================================================== ================= ============== ========= ======= ====== ==============================================
 <BLANKLINE>
+
 
 
 The backlog
@@ -229,38 +245,44 @@ a scrum backlog.
 >>> welket = tickets.Site.objects.get(ref="welket")
 >>> rt.login("robin").show(tickets.TicketsBySite, welket)
 ... #doctest: +REPORT_UDIFF -SKIP +ELLIPSIS +NORMALIZE_WHITESPACE
-===================== ==================================================================== ============== ========== ======= ====== =============================================
+===================== ==================================================================== ============== ========== ======= ====== ==============================================
  Priority              Ticket                                                               Planned time   Regular    Extra   Free   Workflow
---------------------- -------------------------------------------------------------------- -------------- ---------- ------- ------ ---------------------------------------------
- Normal                `#114 (☎ Default account in invoices per partner) <Detail>`__                                                 [▶] **☎ Talk** → [☾] [☉] [⚒] [☐] [☑] [☒]
+--------------------- -------------------------------------------------------------------- -------------- ---------- ------- ------ ----------------------------------------------
+ Normal                `#114 (☎ Default account in invoices per partner) <Detail>`__                                                 [✋] [▶] **☎ Talk** → [☾] [☉] [⚒] [☐] [☑] [☒]
+ Normal                `#113 (⚹ Misc optimizations in Baz) <Detail>`__                                                               [▶] **⚹ New** → [☾] [☎] [☉] [⚒] [☐] [☑]
  Normal                `#106 (☎ 'NoneType' object has no attribute 'isocode') <Detail>`__                                            [▶] **☎ Talk** → [☾] [☉] [⚒] [☐] [☑] [☒]
- Normal                `#91 (☉ Cannot delete foo) <Detail>`__                                                                        [▶] **☉ Open** → [☾] [☎] [⚒] [☐] [☑] [☒]
+ Normal                `#97 (⚹ 'NoneType' object has no attribute 'isocode') <Detail>`__                                             [▶] **⚹ New** → [☾] [☎] [☉] [⚒] [☐] [☑]
  Normal                `#84 (⚒ Irritating message when bar) <Detail>`__                                                              [▶] **⚒ Working** → [☾] [☎] [☐] [☑] [☒]
  Normal                `#82 (☎ Cannot delete foo) <Detail>`__                                                                        [▶] **☎ Talk** → [☾] [☉] [⚒] [☐] [☑] [☒]
  Normal                `#81 (⚹ No more foo when bar is gone) <Detail>`__                                                             [✋] [▶] **⚹ New** → [☾] [☎] [☉] [⚒] [☐] [☑]
  Normal                `#74 (☎ Why is foo so bar) <Detail>`__                                                                        [▶] **☎ Talk** → [☾] [☉] [⚒] [☐] [☑] [☒]
  Normal                `#68 (⚒ Misc optimizations in Baz) <Detail>`__                                                                [▶] **⚒ Working** → [☾] [☎] [☐] [☑] [☒]
- Normal                `#62 (☐ Foo never bars) <Detail>`__                                                                           [▶] **☐ Ready** → [☎] [☑] [☒]
+ Normal                `#65 (⚹ Why is foo so bar) <Detail>`__                                                                        [▶] **⚹ New** → [☾] [☎] [☉] [⚒] [☐] [☑]
+ Normal                `#62 (☐ Foo never bars) <Detail>`__                                                                           [✋] [▶] **☐ Ready** → [☎] [☑] [☒]
  Normal                `#58 (☎ How can I see where bar?) <Detail>`__                                                                 [▶] **☎ Talk** → [☾] [☉] [⚒] [☐] [☑] [☒]
- Normal                `#51 (☉ Default account in invoices per partner) <Detail>`__                                                  [▶] **☉ Open** → [☾] [☎] [⚒] [☐] [☑] [☒]
+ Normal                `#49 (⚹ How can I see where bar?) <Detail>`__                                                                 [▶] **⚹ New** → [☾] [☎] [☉] [⚒] [☐] [☑]
  Normal                `#44 (⚒ Foo never bars) <Detail>`__                                                                           [▶] **⚒ Working** → [☾] [☎] [☐] [☑] [☒]
  Normal                `#42 (☎ Default account in invoices per partner) <Detail>`__                                                  [▶] **☎ Talk** → [☾] [☉] [⚒] [☐] [☑] [☒]
- Normal                `#41 (⚹ Misc optimizations in Baz) <Detail>`__                                                                [✋] [▶] **⚹ New** → [☾] [☎] [☉] [⚒] [☐] [☑]
  Normal                `#36 (⚒ No more foo when bar is gone) <Detail>`__                                                             [▶] **⚒ Working** → [☾] [☎] [☐] [☑] [☒]
- Normal                `#18 (☎ No more foo when bar is gone) <Detail>`__                                                             [▶] **☎ Talk** → [☾] [☉] [⚒] [☐] [☑] [☒]
- Normal                `#14 (☐ Bar cannot baz) <Detail>`__                                                                           [▶] **☐ Ready** → [☎] [☑] [☒]
- Normal                `#12 (⚒ Foo cannot bar) <Detail>`__                                                                           [▶] **⚒ Working** → [☾] [☎] [☐] [☑] [☒]
- Normal                `#11 (☉ Class-based Foos and Bars?) <Detail>`__                                                               [▶] **☉ Open** → [☾] [☎] [⚒] [☐] [☑] [☒]
- Normal                `#4 (⚒ Foo and bar don't baz) <Detail>`__                                           1:24                      [▶] **⚒ Working** → [☾] [☎] [☐] [☑] [☒]
+ Normal                `#33 (⚹ Default account in invoices per partner) <Detail>`__                                                  [✋] [▶] **⚹ New** → [☾] [☎] [☉] [⚒] [☐] [☑]
+ Normal                `#18 (☎ No more foo when bar is gone) <Detail>`__                                                             [✋] [▶] **☎ Talk** → [☾] [☉] [⚒] [☐] [☑] [☒]
+ Normal                `#17 (⚹ Foo never bars) <Detail>`__                                                                           [▶] **⚹ New** → [☾] [☎] [☉] [⚒] [☐] [☑]
+ Normal                `#14 (☐ Bar cannot baz) <Detail>`__                                                 0:10                      [✋] [▶] **☐ Ready** → [☎] [☑] [☒]
+ Normal                `#12 (⚒ Foo cannot bar) <Detail>`__                                                 1:30                      [▶] **⚒ Working** → [☾] [☎] [☐] [☑] [☒]
+ Normal                `#4 (⚒ Foo and bar don't baz) <Detail>`__                                           2:18                      [▶] **⚒ Working** → [☾] [☎] [☐] [☑] [☒]
  Normal                `#1 (⚹ Föö fails to bar when baz) <Detail>`__                                                                 [✋] [▶] **⚹ New** → [☾] [☎] [☉] [⚒] [☐] [☑]
- **Total (21 rows)**                                                                                       **1:24**
-===================== ==================================================================== ============== ========== ======= ====== =============================================
+ **Total (23 rows)**                                                                                       **3:58**
+===================== ==================================================================== ============== ========== ======= ====== ==============================================
 <BLANKLINE>
 
-
-Note that anonymous cannot see tickets without a site.
+Note that anonymous cannot see tickets of a non-public site.
 
 >>> rt.show(tickets.TicketsBySite, welket)
+... #doctest: +REPORT_UDIFF -SKIP +ELLIPSIS +NORMALIZE_WHITESPACE
+No data to display
+
+>>> pypi = tickets.Site.objects.get(ref="pypi")
+>>> rt.show(tickets.TicketsBySite, pypi)
 ... #doctest: +REPORT_UDIFF -SKIP +ELLIPSIS +NORMALIZE_WHITESPACE
 No data to display
 

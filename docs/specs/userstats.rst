@@ -8,7 +8,7 @@
 .. doctest init:
    
    >>> import lino
-   >>> lino.startup('lino_book.projects.noi1e.settings.doctests')
+   >>> lino.startup('lino_book.projects.noi1e.settings.demo')
    >>> from lino.api.doctest import *
 
 .. currentmodule:: lino_xl.lib.userstats   

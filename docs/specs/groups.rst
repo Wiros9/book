@@ -17,7 +17,7 @@ The :mod:`lino_xl.lib.groups` plugin adds the notions of :term:`users groups
 .. include:: /../docs/shared/include/tested.rst
 
 >>> import lino
->>> lino.startup('lino_book.projects.noi1e.settings.doctests')
+>>> lino.startup('lino_book.projects.noi1e.settings.demo')
 >>> from lino.api.doctest import *
 >>> from django.db.models import Q
 
@@ -34,13 +34,12 @@ Overview
 
   user membership
 
-    The fact that a given user is member of a given :term:`users group`.
+    The fact that a given :term:`end user` is member of a given :term:`users
+    group`.
 
-Application developers can add a panel "Memberships"
+The :term:`application developer` can add a panel "Memberships"
 (:class:`MembershipsByUser`) to the  detail window of
 :class:`lino.modlib.users.User`.
-
-
 
 In :ref:`noi` the verbose name of "Group" is changed to "Team".
 
@@ -73,7 +72,8 @@ Groups
 
     .. attribute:: ref
 
-        The reference.
+        The reference. An optional alphanumeric identifier that, unlike the
+        primary key, is editable.
 
         See :attr:`lino.mixins.ref.StructuredReferrable.ref`
 

@@ -18,7 +18,7 @@ virtual tables and choicelists, but no database models. See also :doc:`search`
 .. include:: /../docs/shared/include/tested.rst
 
 >>> import lino
->>> lino.startup('lino_book.projects.noi1e.settings.doctests')
+>>> lino.startup('lino_book.projects.noi1e.settings.demo')
 >>> from lino.api.doctest import *
 
 Which means that code snippets in this document are tested using the
