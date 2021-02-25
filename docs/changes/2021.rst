@@ -14,7 +14,7 @@ how to read and maintain this document in :ref:`dev.changes`.
 Miscellaneous bugfixes and changes regarding users of type :attr:`contributor
 <lino_noi.lib.noi.UserTypes.contributor>` in :ref:`noi`.
 
-Release to PyPI : lino, XL, Noi
+Release to PyPI : lino 21.2.5, XL 21.2.3, Noi 21.2.0.
 
 2021-02-24
 ==========

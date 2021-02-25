@@ -78,7 +78,7 @@ True
     Can submit tickets, work on them and discuss with other team members.  Does
     not see confidential data nor the tickets of other teams.
 
-  .. attribute:: contributor
+  .. attribute:: developer
 
     A trusted contributor who can do almost everything except managing other
     users.
