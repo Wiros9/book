@@ -13,6 +13,14 @@ how to read and maintain this document in :ref:`dev.changes`.
 
 Fixed :ticket:`3993` (session has no ticket).
 
+Added a first series of primeicon icons as Sphinx `substitution definitions
+<https://docutils.sourceforge.io/docs/ref/rst/restructuredtext.html#substitution-definitions>`__.
+No we can insert the buttons |filter|, |plus|, |refresh|, |trash| and |user|
+into doc pages. The doctree must use the :mod:`lino.sphinxcontrib.logo`
+extension, and  the page must include a file similar to our
+:file:`/shared/include/defs.rst` file.
+
+
 2021-02-25
 ==========
 

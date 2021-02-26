@@ -1,4 +1,5 @@
 .. doctest docs/specs/noi/working.rst
+.. include:: /shared/include/defs.rst
 .. _specs.clocking:
 .. _noi.specs.clocking:
 
@@ -6,7 +7,6 @@
 `working` : Work time tracking
 ==============================
 
-.. include:: /shared/include/defs.rst
 
 .. currentmodule:: lino_xl.lib.working
 
@@ -382,7 +382,7 @@ Tables reference
 
   Shows all my sessions.
 
-  Use the |gear| button to filter them. You can export them to Excel.
+  Use the |filter| button to filter them. You can export them to Excel.
 
 .. class:: MySessionsByDate
 
