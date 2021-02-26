@@ -2,15 +2,16 @@
 .. _specs.clocking:
 .. _noi.specs.clocking:
 
-==================
-Work time tracking
-==================
+==============================
+`working` : Work time tracking
+==============================
+
+.. include:: /shared/include/defs.rst
 
 .. currentmodule:: lino_xl.lib.working
 
 The :mod:`lino_xl.lib.working` adds functionality for managing work
 time tracking.
-
 
 .. contents::
   :local:
@@ -30,30 +31,33 @@ datetime.date(2015, 5, 23)
 Overview
 ========
 
-A **work session** is when a user works on a "ticket" for a given
-lapse of time.
+.. glossary::
 
-The :class:`WorkedHours` table shows the last seven days, one row per
-day, with your working hours.
+  work session
 
-A **service report** is a document used in various discussions with
-a stakeholder.
+    A database record expressing the fact that a given user works (or has been
+    working) on a given "ticket" for a given lapse of time.
 
+    See `Work sessions`_ below.
 
-The :attr:`ticket_model <Plugin.ticket_model>` defines what a ticket
-actually is. Theoretically it can be any model which implements
-:class:`Workable`.  In :ref:`noi` this points to
-:class:`tickets.Ticket <lino_xl.lib.tickets.Ticket>` and currently it
-probably won't work on any other model
+  service report
+
+    A document used in various discussions with a stakeholder.
+
+    See `Service reports`_ below.
+
+The :attr:`ticket_model <Plugin.ticket_model>` defines what a ticket actually
+is.  It can be any model that implements :class:`Workable`.  In :ref:`noi` this
+points to :class:`tickets.Ticket <lino_xl.lib.tickets.Ticket>`.
 
 
 Work sessions
 =============
 
-Extreme case of a work session:
+Extreme case example of a :term:`work session`:
 
 - I start to work on an existing ticket #1 at 9:23.  A customer phones
-  at 10:17 with a question. I create #2.  That call is interrupted
+  at 10:17 with a question. I create #2 for this.  That call is interrupted
   several times by the customer himself.  During the first
   interruption another customer calls, with another problem (ticket
   #3) which we solve together within 5 minutes.  During the second
@@ -72,7 +76,7 @@ Extreme case of a work session:
     #3     10:23 10:28             0:05
 
 
-All sessions of the demo project:
+A :term:`site administrator` can see all sessions of the demo project:
 
 >>> rt.show(working.Sessions, limit=15)
 ... #doctest: -REPORT_UDIFF
@@ -115,6 +119,14 @@ Some sessions are on private tickets:
 Worked hours
 ============
 
+The :class:`WorkedHours` table is useful to manually edit your working times or
+to see on which tickets you have been working recently. It is shown in your
+dashboard (unless you configured your dashboard to hide it).
+
+.. class:: WorkedHours
+
+  Shows a summary of your :term:`work sessions <work session>` of the last seven
+  days, one row per day.
 
 >>> rt.login('jean').show(working.WorkedHours)
 ... #doctest: -REPORT_UDIFF
@@ -132,10 +144,12 @@ Worked hours
 ============================= ================== ========= ======= ========== ==========
 <BLANKLINE>
 
+To manually edit your :term:`work sessions <work session>`, click on a date in
+the `Description` column to open :class:`MySessionsByDate`.
 
-In the "description" column you see a list of the tickets on which you
-worked that day. This is a convenient way to continue some work you
-started some days ago.
+In the :guilabel:`Worked tickets` column you see a list of the tickets on which
+you worked that day. This is a convenient way to continue some work you started
+some days ago.
 
 ..
     Find the users who worked on more than one site:
@@ -175,7 +189,7 @@ started some days ago.
 Service reports
 ===============
 
-A **service report** is a document used in various discussions with
+A :term:`service report` is a document used in various discussions with
 a stakeholder.
 It reports about the working time invested during a given date range.
 This report can serve as a base for writing invoices.
@@ -192,6 +206,35 @@ A service report currently contains three tables:
   invested time
 - a list of sites mentioned in the work sessions and their invested
   time
+
+
+.. class:: ServiceReport
+
+    Django model representing a :term:`service report`.
+
+    Database fields:
+
+    .. attribute:: user
+
+        This can be empty and will then show the working time of all
+        users.
+
+    .. attribute:: start_date
+    .. attribute:: end_date
+
+
+    .. attribute:: interesting_for
+
+        Show only tickets on sites assigned to this partner.
+
+    .. attribute:: ticket_state
+
+        Show only tickets having this state.
+
+    .. attribute:: printed
+
+        See :attr:`lino_xl.lib.exerpts.Certifiable.printed`
+
 
 
 >>> obj = working.ServiceReport.objects.get(pk=1)
@@ -264,17 +307,16 @@ defines a default reporting type:
 <working.ReportingTypes.regular:10>
 
 
-Class reference
+Database models
 ===============
 
-.. class:: Plugin
 .. class:: SessionType
 
     The type of a :class:`Session`.
 
 .. class:: Session
 
-    Django model representing a **work session**.
+    Django model representing a :term:`work session`.
 
     .. attribute:: start_date
 
@@ -323,6 +365,8 @@ Class reference
         Implemented by :class:`EndThisSession`.
 
 
+Tables reference
+================
 
 .. class:: Sessions
 
@@ -336,12 +380,31 @@ Class reference
 
 .. class:: MySessions
 
+  Shows all my sessions.
+
+  Use the |gear| button to filter them. You can export them to Excel.
+
 .. class:: MySessionsByDate
 
+  Shows my sessions of a given day.
+
+  Use this to manually edit your :term:`work sessions <work session>`.
+
+.. class:: SessionsByReport
+.. class:: TicketsReport
+.. class:: SitesByReport
+
+     The list of tickets mentioned in a service report.
+
+.. class:: WorkersByReport
+
+
+Actions reference
+=================
 
 .. class:: StartTicketSession
 
-    Start a session on this ticket.
+    The action behind :class:`Workable.start_session`.
 
 
 .. class:: EndSession
@@ -357,6 +420,8 @@ Class reference
     The action behind :class:`Session.end_session`.
 
 
+The `Workable` model mixin
+==========================
 
 .. class:: Workable
 
@@ -364,7 +429,6 @@ Class reference
 
     The model specified in :attr:`ticket_model <Plugin.ticket_model>`
     must be a subclass of this.
-
     For example, in :ref:`noi` tickets are workable.
 
     .. method:: is_workable_for
@@ -372,16 +436,17 @@ Class reference
         Return True if the given user can start a *work session* on
         this object.
 
-
     .. method:: on_worked
 
         This is automatically called when a *work session* has been
         created or modified.
 
-
     .. method:: start_session
 
+        Start a :term:`work session` on this ticket.
+
         See :class:`StartTicketSession`.
+
 
     .. method:: end_session
 
@@ -391,47 +456,14 @@ Class reference
         Implemented by :class:`EndTicketSession`.
 
 
-.. class:: ServiceReport
 
-    The Django model representing a *service report*.
-
-    Database fields:
-
-    .. attribute:: user
-
-        This can be empty and will then show the working time of all
-        users.
-
-    .. attribute:: start_date
-    .. attribute:: end_date
-
-
-    .. attribute:: interesting_for
-
-        Show only tickets on sites assigned to this partner.
-
-    .. attribute:: ticket_state
-
-        Show only tickets having this state.
-
-    .. attribute:: printed
-
-        See :attr:`lino_xl.lib.exerpts.Certifiable.printed`
-
-
-.. class:: SessionsByReport
-.. class:: TicketsReport
-.. class:: SitesByReport
-
-     The list of tickets mentioned in a service report.
-
-.. class:: WorkersByReport
+Actions reference
+=================
 
 
 .. class:: ShowMySessionsByDay
 
-    Show all sessions on the same day.
-
+    Shows your :term:`work sessions <work session>` per day.
 
 
 .. class:: TicketHasSessions
@@ -453,8 +485,6 @@ Class reference
 
     A user who is candidate for working on a ticket.
 
-
-.. class:: WorkedHours
 
 
 Summaries

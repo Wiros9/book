@@ -273,7 +273,6 @@ The following shows a list of all windows in :ref:`noi`  and who can see them:
 - working.ServiceReports.detail : visible for developer admin
 - working.ServiceReports.insert : visible for developer admin
 - working.Sessions.detail : visible for contributor developer admin
-- working.Sessions.insert : visible for contributor developer admin
 - working.SiteSummaries.detail : visible for customer contributor developer admin
 - working.UserSummaries.detail : visible for customer contributor developer admin
 - working.WorkedHours.detail : visible for customer contributor developer admin

@@ -8,6 +8,11 @@
 This is the 2021 :term:`change log` for :ref:`book`. General information about
 how to read and maintain this document in :ref:`dev.changes`.
 
+2021-02-26
+==========
+
+Fixed :ticket:`3993` (session has no ticket).
+
 2021-02-25
 ==========
 
