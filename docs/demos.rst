@@ -9,6 +9,20 @@ fictive data.  All names of persons are generated. You may edit according to the
 user permissions, but any changes will be lost each time we reinitialize the
 demo data.
 
+- `cosi1e <https://cosi1e.lino-framework.org>`__ :
+  Minimalistic accounting software :ref:`cosi` using ExtJS :term:`front end`.
+- `noi1r <https://noi1r.lino-framework.org>`__ :
+  :ref:`noi` (Ticket and team management) with :ref:`react` :term:`front end`.
+- `voga1e <https://voga1e.lino-framework.org>`__ :
+  Paying courses management :ref:`voga` using ExtJS :term:`front end`.
+- `voga1r <https://voga1r.lino-framework.org>`__ :
+  like voga1e, but using React :term:`front end`.
+
+Screen casts :
+
+- `Lino Così, das kleine Buchhaltungsprogramm <https://youtu.be/yT3FEuCEFWU>`__
+
+
 .. _belref: http://belref.lino-framework.org
 .. _demo1: http://demo1.lino-framework.org
 .. _demo3: http://demo3.lino-framework.org
@@ -24,22 +38,6 @@ demo data.
 .. _team: http://team.lino-framework.org/
 
 
-Screen casts :
-
-- `Lino Così, das kleine Buchhaltungsprogramm <https://youtu.be/yT3FEuCEFWU>`__
-
-Demo sites:
-
-We currently have three demos of larger lino apps.
-
-- `cosi1e <https://cosi1e.lino-framework.org>`__ :
-  Minimalistic accounting software :ref:`cosi` using ExtJS :term:`front end`.
-- `noi1r <https://noi1r.lino-framework.org>`__ :
-  :ref:`noi` (Ticket and team management) with :ref:`react` :term:`front end`.
-- `voga1e <https://voga1e.lino-framework.org>`__ :
-  Paying courses management :ref:`voga` using ExtJS :term:`front end`.
-- `voga1r <https://voga1r.lino-framework.org>`__ :
-  like voga1e, but using React :term:`front end`.
 
 .. removed:
 
