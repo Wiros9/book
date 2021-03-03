@@ -6,7 +6,7 @@ Instructions for translators
 
 Here is how your can help translating Lino into your own language.
 
-Before starting to translate,  you must have :doc:`installed a contributor
+Before starting to translate, you must have :doc:`installed a contributor
 environment </team/install/index>` of Lino.
 
 Overview
@@ -23,25 +23,25 @@ Their place is given by the :attr:`locale_dir` setting (see
 - :mod:`lino_cosi` : lino_cosi/lib/cosi/locale
 - etc.
 
-
 To edit these :xfile:`.po` files you can use either your preferred :doc:`text
 editor </dev/newbies/editor>` or a tool like Poedit_.  We recommend the latter.
 On Debian you install it with :cmd:`apt-get install poedit`.
 
 .. _Poedit: http://www.poedit.net
 
+
 Adding support for a new language to translate
 ----------------------------------------------
 
 Before you can start translating to a language, you must check whether the
-repository has translation files for your language.
+repository already has translation files for your language.
+
+If you want to translate to a language for which Lino does not yet have any
+translations,
 
 Every repository has a list of languages for which it provides translations.
-
-This list is in the :envvar:`languages` parameter in the repo's
-:xfile:`tasks.py` file.
-
-You can add you language there.
+This list is in the :envvar:`languages` parameter in the repository's
+:xfile:`tasks.py` file. You can add your language there.
 
 Lino uses the same language codes as Django.
 You can see the list of available languages in
@@ -52,24 +52,24 @@ After adding a language, you must run :cmd:`inv mm`, which will ask your
 configuration before creating the new catalog files.
 
 
-
-
 Set up a site
 -------------
 
-During translation you can use the demo projects to see your work while you are
-evolving. Don't simply translate all those messages and believe that they are
-correct.
+During translation you should use a demo project to see your work while you are
+evolving. Don't simply translate all the messages and believe that your
+translations will be correct.
 
-Let's say for example that you want to translate to *Spanish*.
+:mod:`lino`
+:mod:`lino_xl`
+:mod:`lino_noi`
 
-If you want to translate to a language for which Lino does not yet have any
-translations, then see `Adding support for a new language to translate`_.
 
 Go to some local project directory (e.g. the one you created in
 :ref:`dev.install`)::
 
   $ go first
+
+Let's say for example that you want to translate to *Spanish*.
 
 Change your project's :xfile:`settings.py` file once more so that it
 looks as follows:
@@ -79,7 +79,7 @@ looks as follows:
 That is, you specify your own language distribution (in the
 :attr:`lino.core.site.Site.languages` setting) consisting of English as first
 language and Spanish (your language) as second. The first language cannot
-currently be your language because the demo fixtures would fail
+currently be your language because some demo fixtures would fail
 (:srcref:`docs/tickets/108`).
 
 If your language is not yet covered for Lino, then you must `Create a demo user
@@ -93,9 +93,8 @@ Initialize the demo database::
 Run your development server
 ----------------------------
 
-Run the development server on the demo database::
+Run the development server::
 
-  $ go min9
   $ python manage.py runserver
 
 Point your browser to view the application. Log in as the Spanish user.
@@ -103,26 +102,28 @@ Point your browser to view the application. Log in as the Spanish user.
 .. image:: translate_1.png
   :scale: 80
 
-Find the translatable strings
------------------------------
+Find the strings that you want to translate
+-------------------------------------------
 
 The translatable strings on this page (`gettext` and Poedit_ call them
-"messages") are for exampe the menu labels ("Contacts", "Producs"
-etc), but also content texts like "Welcome", "Hi, Rodrigo!" or "This
-is a Lino demo site."
+"messages") are for example the menu labels ("Contacts", "Products" etc), but
+also content texts like "Welcome", "Hi, Rodrigo!" or "This is a Lino demo site."
 
-Now you must locate these strings in the :file:`.po` file.
+Now you must find out which :xfile:`django.po` file contains these strings. Open
+another terminal window and use :command:`grep` to find the file::
 
-Open another terminal window and go to the Lino repository.
-
-  $ cd ~/repositories/lino
+  $ grep -H Contacts ~/repositories/lino/lino/locale/es/LC_MESSAGES/*.po
+  /home/repositories/work/lino/lino/locale/es/LC_MESSAGES/django.po:#~ msgid "Contacts"
+  $ grep -H Contacts ~/repositories/xl/lino_xl/lib/xl/locale/es/LC_MESSAGES/*.po
+  /home/luc/repositories/xl/lino_xl/lib/xl/locale/es/LC_MESSAGES/django.po:msgid "Contacts"
+  /home/luc/repositories/xl/lino_xl/lib/xl/locale/es/LC_MESSAGES/django.po:msgid "Client Contacts"
+  /home/luc/repositories/xl/lino_xl/lib/xl/locale/es/LC_MESSAGES/django.po:#~ msgid "Contacts"
 
 
 Translate
 ---------
 
-Launch Poedit_, specifying the :file:`.po` file for the Spanish
-translation (international language code for Spanish is ``es``)::
+Launch Poedit_ on the :xfile:`django.po` file for the Spanish translation::
 
   $ poedit lino/locale/es/LC_MESSAGES/django.po
 
@@ -131,8 +132,8 @@ It looks similar to this screenshot:
 .. image:: poedit_es_1.png
   :scale: 60
 
-Translate one or a few messages. In our example we translated the
-following message::
+Translate one or a few messages. In our example we translated the following
+message::
 
   Hi, %(first_name)s!
 
@@ -140,17 +141,17 @@ into::
 
   ¡Hola, %(first_name)s!
 
-Save your work in Poedit_.
+Save your work in Poedit_.  Poedit will automatically compile the
+:xfile:`django.po` file into a corresponding :file:`django.mo` file.
 
-Now you should first `touch` your `settings.py` file in order to tell
-the development server process that something has changed. Open a
-third terminal window and type::
+Now you should first `touch` your `settings.py` file in order to tell runserver
+that something has changed. Open a third terminal window and type::
 
-  $ cd ~/mysite
+  $ go first
   $ touch settings.py
 
-This will cause the server process (which is running in the first
-terminal window) to reload and to rewrite any cache files.
+This will cause the server process (which is running in the first terminal
+window) to reload and to rewrite any cache files.
 
 Refresh your browser page:
 
@@ -160,8 +161,8 @@ Refresh your browser page:
 Submit your work
 ---------------------
 
-When you are satisfied with your work, you will make a pull request to
-ask us to integrate your changes into the public Lino repositories.
+When you are satisfied with your work, you must make a pull request to ask us to
+integrate your changes into the public Lino repositories.
 
 More about pull requests in :doc:`/dev/git`.
 
@@ -169,18 +170,17 @@ More about pull requests in :doc:`/dev/git`.
 Create a demo user for your language
 ------------------------------------
 
-If Lino does not yet have a default demo administrator for your language
+If Lino does not yet have a default site administrator user for your language
 (:mod:`lino.modlib.users.fixtures.demo`), then you need to create a local
-fixture that adds a demo user for your language.  It's easy::
+fixture that creates it.  It's easy::
 
   $ mkdir fixtures
   $ touch fixtures/__init__.py
   $ nano fixtures/demo.py
 
-The :file:`demo.py` file should look as folloas:
+The :file:`demo.py` file should look as follows:
 
 .. literalinclude:: fixtures/demo.py
-
 
 
 

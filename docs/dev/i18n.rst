@@ -33,7 +33,7 @@ we want to translate:
 janvier
 
 How does the :func:`ugettext` function know that "January" is
-"janvier" in French? See :cmd:`inv mm`.
+"janvier" in French? See :cmd:`inv mm` and :ref:`dev.translate`.
 
 Note that :func:`ugettext` will do the lookup in-place. The following
 code prints English and not German:
