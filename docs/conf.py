@@ -13,7 +13,7 @@
 
 import os
 import sys
-from unipath import Path
+from pathlib import Path
 from lino.sphinxcontrib import configure
 
 import lino

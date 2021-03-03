@@ -8,6 +8,16 @@
 This is the 2021 :term:`change log` for :ref:`book`. General information about
 how to read and maintain this document in :ref:`dev.changes`.
 
+2021-03-03
+==========
+
+Added `zh-hant` (traditional Chinese) to the list of supported translations for
+:mod:`lino`, :mod:`lino_xl` and :mod:`lino_cosi`. Added a demo project
+:mod:`lino_book.projects.cosi4`, which uses `zh-hant`. Increased the
+`max_length` of :class:`lino.utils.mldbc.fields.LanguageField` from 5 to 7 in
+order to support languages like `zh-hant`.  Reviewed the :ref:`dev.translate`
+page.
+
 2021-02-26
 ==========
 

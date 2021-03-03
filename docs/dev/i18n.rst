@@ -43,7 +43,8 @@ code prints English and not German:
 ...     print(s)
 January
 
-But Django has a lazy version of :func:`ugettext`
+But Django has a lazy version of :func:`ugettext`, which does the lookup only
+when it is really needed.
 
 >>> from django.utils.translation import ugettext_lazy as _
 >>> s = _("January")

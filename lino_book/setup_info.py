@@ -195,13 +195,14 @@ lino_book.projects.min9.tests
 lino_book.projects.apc
 lino_book.projects.apc.settings
 lino_book.projects.apc.tests
-lino_book.projects.avanti1
-lino_book.projects.avanti1.fixtures
-lino_book.projects.avanti1.tests
 lino_book.projects.cosi_ee
 lino_book.projects.cosi_ee.settings
 lino_book.projects.pierre
 lino_book.projects.pierre.settings
+lino_book.projects.cosi4
+lino_book.projects.avanti1
+lino_book.projects.avanti1.fixtures
+lino_book.projects.avanti1.tests
 lino_book.projects.bs3
 lino_book.projects.bs3.settings
 lino_book.projects.bs3.tests

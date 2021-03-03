@@ -9,8 +9,6 @@ Here is how your can help translating Lino into your own language.
 Before starting to translate,  you must have :doc:`installed a contributor
 environment </team/install/index>` of Lino.
 
-
-
 Overview
 --------
 
@@ -32,19 +30,46 @@ On Debian you install it with :cmd:`apt-get install poedit`.
 
 .. _Poedit: http://www.poedit.net
 
+Adding support for a new language to translate
+----------------------------------------------
+
+Before you can start translating to a language, you must check whether the
+repository has translation files for your language.
+
+Every repository has a list of languages for which it provides translations.
+
+This list is in the :envvar:`languages` parameter in the repo's
+:xfile:`tasks.py` file.
+
+You can add you language there.
+
+Lino uses the same language codes as Django.
+You can see the list of available languages in
+`django/conf/global_settings.py
+<https://github.com/django/django/blob/master/django/conf/global_settings.py>`__.
+
+After adding a language, you must run :cmd:`inv mm`, which will ask your
+configuration before creating the new catalog files.
+
+
+
 
 Set up a site
 -------------
 
-During translation you will use the demo sites to see your work while you are
-evolving. You cannot simply translate all those messages and believe that they
-are correct.
+During translation you can use the demo projects to see your work while you are
+evolving. Don't simply translate all those messages and believe that they are
+correct.
 
 Let's say for example that you want to translate to *Spanish*.
 
-Go to your local project directory::
+If you want to translate to a language for which Lino does not yet have any
+translations, then see `Adding support for a new language to translate`_.
 
-  $ cd ~/mysite
+Go to some local project directory (e.g. the one you created in
+:ref:`dev.install`)::
+
+  $ go first
 
 Change your project's :xfile:`settings.py` file once more so that it
 looks as follows:
@@ -144,10 +169,9 @@ More about pull requests in :doc:`/dev/git`.
 Create a demo user for your language
 ------------------------------------
 
-If Lino does not yet have a default demo administrator for your
-language (:mod:`lino.modlib.users.fixtures.demo`), then you need to
-create a local fixture which adds a demo user for your language.  It's
-easy::
+If Lino does not yet have a default demo administrator for your language
+(:mod:`lino.modlib.users.fixtures.demo`), then you need to create a local
+fixture that adds a demo user for your language.  It's easy::
 
   $ mkdir fixtures
   $ touch fixtures/__init__.py
@@ -156,6 +180,8 @@ easy::
 The :file:`demo.py` file should look as folloas:
 
 .. literalinclude:: fixtures/demo.py
+
+
 
 
 Trucs et astuces

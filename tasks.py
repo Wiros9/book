@@ -49,6 +49,7 @@ ns = setup_from_tasks(
         'lino_book.projects.apc',
         'lino_book.projects.pierre',
         'lino_book.projects.cosi_ee',
+        'lino_book.projects.cosi4',
         'lino_book.projects.chatter',
         'lino_book.projects.noi1e',
         'lino_book.projects.avanti1',
