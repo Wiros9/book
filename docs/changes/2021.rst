@@ -18,6 +18,11 @@ Added `zh-hant` (traditional Chinese) to the list of supported translations for
 order to support languages like `zh-hant`.  Reviewed the :ref:`dev.translate`
 page.
 
+Released to PyPI: atelier 1.1.28, lino 21.3.0, lino_xl 21.3.0 and lino_cosi
+21.3.0.
+
+https://www.lino-framework.org/dev/translate/index.html
+
 2021-02-26
 ==========
 

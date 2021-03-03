@@ -55,21 +55,23 @@ configuration before creating the new catalog files.
 Set up a site
 -------------
 
-During translation you should use a demo project to see your work while you are
-evolving. Don't simply translate all the messages and believe that your
-translations will be correct.
+Let's say for example that you want to translate to *Spanish*.
 
-:mod:`lino`
-:mod:`lino_xl`
-:mod:`lino_noi`
+Don't simply translate all the messages in the :xfile:`django.po` files because
 
+- some translations depend on the context. It's better that you
+  see where a message is being used before you decide how to translate it.
+
+- you won't need to translate *all* the messages. It's more efficient to focus
+  on the most important ones.
+
+That's why we recommend that you use a demo project to see your work while you are
+evolving.
 
 Go to some local project directory (e.g. the one you created in
 :ref:`dev.install`)::
 
   $ go first
-
-Let's say for example that you want to translate to *Spanish*.
 
 Change your project's :xfile:`settings.py` file once more so that it
 looks as follows:
@@ -88,10 +90,6 @@ for your language`_ before going on.
 Initialize the demo database::
 
   $ python manage.py prep
-
-
-Run your development server
-----------------------------
 
 Run the development server::
 
