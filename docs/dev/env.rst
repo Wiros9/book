@@ -123,20 +123,23 @@ create this file yourself, manually::
   $ mkdir ~/.atelier
   $ nano ~/.atelier/config.py
 
-Add the following content::
+Add the following content:
 
-     add_project("/home/john/projects/hello")
-     names = 'lino xl book noi voga presto welfare avanti vilma tera extjs6'
-     for p in names.split():
-         add_project("/home/john/repositories/" + p)
+.. literalinclude:: atelier_config_example.py
+  :lines: 7-
 
-Note our use of a syntactical trick to avoid typing lots of
-apostrophes: we put the names into a single string, separated just by
-spaces. And then we call the :meth:`split` method on that string which
-splits our string on every whitespace:
+..
+  add_project("/home/john/projects/hello")
+  names = 'lino xl book noi voga presto welfare avanti vilma tera extjs6'
+  for p in names.split():
 
->>> 'foo bar  baz'.split()
-['foo', 'bar', 'baz']
+  Note our use of a syntactical trick to avoid typing lots of
+  apostrophes: we put the names into a single string, separated just by
+  spaces. And then we call the :meth:`split` method on that string which
+  splits our string on every whitespace:
+
+  >>> 'foo bar  baz'.split()
+  ['foo', 'bar', 'baz']
 
 Letting :mod:`atelier` know where your projects are has the following
 advantages:
@@ -145,7 +148,7 @@ advantages:
   to run a given command over many projects.
 
 - You can use :mod:`atelier.sphinxconf.interproject` to create
-  Intersphinx links from one project's docs to the docs of another
+  intersphinx links from one project's docs to the docs of another
   project.
 
 

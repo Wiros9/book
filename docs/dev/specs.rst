@@ -14,7 +14,7 @@ reference documentation.
 
 It provides an important introduction to what a given plugin does or is expected
 to do. It ideally explains all relevant technical and functional aspects about
-its topic topic. If some functionality is covered by a separate page, it refers
+its topic. If some functionality is covered by a separate page, it refers
 to these.
 
 Specs are also an integral part of the test suite since all code examples are

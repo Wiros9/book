@@ -8,7 +8,7 @@ The :file:`docs/changes` directory of a Lino application contains:
 
 - one file per year (:file:`2019.rst`, :file:`2020.rst`) with the :term:`change log`.
 - optionally one file with :term:`release notes` for each documented release
-- an :file:`index.rst` file with a toctree directive.
+- an :file:`index.rst` file with a doctree directive.
 
 
 .. glossary::

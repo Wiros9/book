@@ -1,5 +1,5 @@
 """
-Note that thte icons downloaded by this script are
+Note that the icons downloaded by this script are
 Copyright (c) 2018 PrimeTek
 See https://github.com/primefaces/primeicons/blob/master/LICENSE
 """
