@@ -14,6 +14,7 @@ The vital basics
 .. toctree::
    :maxdepth: 1
 
+   site
    models
    tables/index
    layouts/index

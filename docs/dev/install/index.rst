@@ -145,6 +145,12 @@ Read twice before you hit :kbd:`y`!
 For details about each question or if something doesn't work as expected, see
 the documentation about :ref:`getlino`.
 
+
+Remarks about **languages** (The languages to set on new sites) [en]:
+
+  This is just the default value that getlino will put for :attr:`languages
+  <lino.core.site.Site.languages>` in the :xfile:`settings.py` of new sites.
+
 Your first Lino site
 ====================
 

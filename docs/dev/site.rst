@@ -12,113 +12,133 @@ Introducing the :class:`Site` class
 
 .. currentmodule:: lino.core.site
 
-As explained in :doc:`settings` and
-:doc:`/dev/polls/index`, Lino expects a variable named
-:setting:`SITE` in your :ref:`settings`, and this variable must
-contain an instance of the :class:`Site` class .
+Your application is defined by its :class:`Site` class
+======================================================
 
-The :class:`Site` is the base class for representing a :term:`Lino application`.
-This concept brings an additional level of encapsulation to Django.
+As explained in :doc:`settings` and :doc:`/dev/polls/index`,  a :term:`Lino
+site` is when a :term:`Django settings module` has a variable named
+:setting:`SITE`, and this variable must contain an instance of some subclass of
+the :class:`lino.core.site.Site` class.
 
-If you knew Django before Lino, you might imagine the :class:`Site` *class* as a
-kind of a "project template". Read :doc:`application` if you wonder why we chose
-that name. Django settings usually contain simple values (strings, integers, or
-lists or dictionaries thereof).  But Lino's :setting:`SITE` setting holds a
-*Python object*, which has methods that can be called by application code at
-runtime.
+This top-level :class:`Site` class is the ancestor of all Lino applications. It
+is designed to be subclassed by the :term:`application developer`, then imported
+into a local :xfile:`settings.py`, where a :term:`site maintainer` may possibly
+subclass it another time. A :term:`Lino site` starts to "live" when such a
+:class:`Site` class gets **instantiated** in a :term:`Django settings module`.
 
-A `Site` has attributes like :attr:`Site.verbose_name` (the "short"
-user-visible name) and the :attr:`Site.version` which are used by the
-method :meth:`Site.welcome_text`.  It also defines a
-:meth:`Site.startup` method and signals which fire when the
-application starts up.
+This concept brings an additional level of encapsulation to Django. Django
+settings usually contain simple values (strings, integers, or lists or
+dictionaries thereof).  But Lino's :setting:`SITE` setting holds a *Python
+object*, with methods that can be called by application code at runtime.
 
-The base :class:`Site` *class* is designed to be subclassed by the
-:term:`application developer`, then imported into a local :xfile:`settings.py`,
-where a local system administrator (:term:`site maintainer`) may subclass it
-another time.
+To hook this into Django, imagine the :class:`Site` *class* as a kind of a
+"project model". Read :doc:`application` if you wonder why we chose that name.
 
-A Lino application starts to "live" when such a :class:`Site` class gets
-**instantiated**.  The instance of your application is stored in the
-:setting:`SITE` variable of a local :xfile:`settings.py`.
+In other words, the central and fundamental definition of a :term:`Lino
+application` is formulated by a :class:`Site` class object. This  :class:`Site`
+class object is *not* defined in a :term:`Django settings module` but as part of
+the Python package that implements your application. For example, the
+:class:`Site` class for :ref:`voga` is defined in the module
+:mod:`lino_voga.lib.voga.settings`.
+
+Note that this module *defines* a :class:`Site` class object but does *not
+instantiate* it.  You can import this module into a :term:`Django settings
+module`, but you cannot use it directly as a settings module.  The following
+attempt can only fail:
+
+>>> from lino import startup
+>>> startup('lino_voga.lib.voga.settings')
+>>> from lino.api.rt import *
+Traceback (most recent call last):
+...
+AttributeError: 'Settings' object has no attribute 'SITE'
 
 
+In your :class:`Site` class you define some general description of your
+application.
 
-Instantiating a :class:`Site`
-=============================
+.. class:: Site
+  :noindex:
 
-The first argument of the instantiator must be the global namespace of
-your settings module (`globals()
-<https://docs.python.org/2/library/functions.html#globals>`__).  Lino
-uses this to fill "intelligent default values" to your settings
-module's global namespace.
+  .. attribute:: title
 
-In other words, Lino is going to automatically set certain Django
-settings.  Including for example :setting:`INSTALLED_APPS` and
-:setting:`DATABASES`.  To be precise, here are these settings:
+    The title to appear in the browser window.  If this is None, Lino will use
+    :attr:`verbose_name` as default value.
 
->>> from lino_book.projects.min9.settings import Site
->>> pseudoglobals = {}
->>> SITE = Site(pseudoglobals)
->>> sorted(pseudoglobals.keys())
-... #doctest: +ELLIPSIS +REPORT_UDIFF +NORMALIZE_WHITESPACE
-['AUTHENTICATION_BACKENDS', 'AUTH_USER_MODEL', 'DATABASES', 'FIXTURE_DIRS', 'INSTALLED_APPS', 'LANGUAGES', 'LANGUAGE_CODE', 'LOCALE_PATHS', 'LOGIN_REDIRECT_URL', 'LOGIN_URL', 'LOGOUT_REDIRECT_URL', 'MEDIA_ROOT', 'MEDIA_URL', 'MIDDLEWARE', 'ROOT_URLCONF', 'SERIALIZATION_MODULES', 'STATIC_ROOT', 'STATIC_URL', 'TEMPLATES', 'USE_L10N']
+  .. attribute:: verbose_name
 
-Note that Lino writes to your settings module's global namespace only
-while the Site class gets *instantiated*.  So if for some reason you
-want to modify one of the settings, do it *after* your
-``SITE=Site(globals())`` line.
+    The name of this application, to be displayed to end users at different
+    places.
+
+    Note the difference between :attr:`title` and :attr:`verbose_name`:
+
+    - :attr:`title` may be None, :attr:`verbose_name` not.
+
+    - :attr:`title` is used by the
+      :srcref:`index.html <lino/modlib/extjs/config/extjs/index.html>` for
+      :mod:`lino.modlib.extjs`.
+
+    - :attr:`title` and :attr:`verbose_name` are used by
+      :xfile:`admin_main.html` to generate the fragments "Welcome to the
+      **title** site" and "We are running **verbose_name** version
+      **x.y**"  (the latter only if :attr:`version` is set).
+
+    - :meth:`site_version` uses :attr:`verbose_name` (not :attr:`title`)
+
+    IOW, the :attr:`title` is rather for usage by a :term:`site maintainer`,
+    while the :attr:`verbose_name` is rather for usage by the :term:`application
+    developer`.
+
+  .. attribute:: version
+
+    An optional version number.
+
+
+  .. attribute:: url
+
+    The URL of the website that describes this application.
+    Used e.g. in a :menuselection:`Site --> About` dialog box.
+
+  .. method:: site_version(self)
+
+      Used in footnote or header of certain printed documents.
+
+  .. method:: welcome_text(self)
+
+      Returns the text to display in a console window when this
+      application starts.
+
+  .. method:: using_text(self)
+
+     Text to display in a console window when Lino starts.
 
 
 How Lino builds the :setting:`INSTALLED_APPS` setting
 =====================================================
 
-A :class:`Site` is usually meant to work for a given set of Django apps (i.e.
-what's in the :setting:`INSTALLED_APPS` setting).  It is a collection of apps
-which make up a whole.  To define this collection, the :term:`application
-developer` usually overrides the :meth:`Site.get_installed_apps` method.
+A :term:`Lino application` is usually meant to install a given set of Django
+"apps" (i.e. what's in the :setting:`INSTALLED_APPS` setting).
+An application is a collection of plugins that make up a whole.
+To define this collection, the :term:`application developer` usually overrides the
+:meth:`Site.get_installed_apps` method.
 
-Lino calls the :meth:`get_installed_apps
-<lino.core.site.Site.get_installed_apps>` method, which it expects to yield a
-list of strings.  Lino then adds some more "system" apps and stores the
-resulting list into your :setting:`INSTALLED_APPS` setting.
-
-
-Other settings
-==============
-
-Other Django setting for which Lino sets default values are:
-
-- :setting:`DATABASES` : a SQLite database in a file :file:`default.db`
-  in your project directory. On a production server you are of course going
-  to set your own :setting:`DATABASES`, but this default value is what we
-  think the best choice for beginners.
-
-- :setting:`USE_L10N` and :setting:`LANGUAGE_CODE` (see
-  :attr:`Site.languages` for details on these)
+Lino calls this method once at startup, and it expects it to yield a list of
+strings.  Lino then adds some more "system" plugins and stores the resulting
+list into your :setting:`INSTALLED_APPS` setting.
 
 
-- More documentation about the :setting:`LOGGING`
-  setting in :func:`lino.utils.log.configure`
-
-- The :setting:`ROOT_URL` setting and the files :file:`urls.py` and
-  :file:`polls/views.py` generated by Django are not necessary.  With
-  Lino you don't need to worry about URLs and views because Lino defines
-  them for you.
-
-
-Additional local apps
-=====================
+Additional local plugins
+========================
 
 An optional second positional argument can be specified by the  :term:`site
-maintainer` in order to specify additional *local plugins* These will go into
+maintainer` in order to specify additional *local plugins*. These will go into
 the :setting:`INSTALLED_APPS` setting, together with any other plugins needed by
 them.
 
->>> from lino_book.projects.min9.settings import Site
+>>> from lino_book.projects.min1.settings import Site
 >>> pseudoglobals = {}
 >>> Site(pseudoglobals, "lino_xl.lib.events")  #doctest: +ELLIPSIS
-<lino_book.projects.min9.settings.Site object at ...>
+<lino_book.projects.min1.settings.Site object at ...>
 >>> print('\n'.join(pseudoglobals['INSTALLED_APPS']))
 ... #doctest: +REPORT_UDIFF +NORMALIZE_WHITESPACE
 lino
@@ -127,137 +147,93 @@ lino.modlib.about
 lino.modlib.jinja
 lino.modlib.bootstrap3
 lino.modlib.extjs
+lino.modlib.printing
+lino.modlib.system
+lino.modlib.users
 lino.modlib.office
 lino_xl.lib.xl
 lino_xl.lib.countries
-lino.modlib.printing
-lino.modlib.system
-lino_book.projects.min9.modlib.contacts
-django.contrib.contenttypes
-lino.modlib.gfks
-lino_xl.lib.excerpts
-lino.modlib.users
-lino.modlib.checkdata
-lino_xl.lib.addresses
-lino_xl.lib.phones
-lino_xl.lib.cal
-lino_xl.lib.reception
-lino_xl.lib.courses
-lino.modlib.weasyprint
-lino.modlib.uploads
-lino_xl.lib.ledger
-lino_xl.lib.sepa
-lino.modlib.memo
-lino_xl.lib.notes
-lino_xl.lib.humanlinks
-lino_xl.lib.households
-lino_xl.lib.calview
-lino_xl.lib.pages
-lino.modlib.export_excel
-lino_xl.lib.dupable_partners
-lino.modlib.tinymce
-lino_xl.lib.appypod
-lino.modlib.notify
-lino.modlib.changes
-lino.modlib.comments
-lino_xl.lib.properties
-lino.modlib.languages
-lino_xl.lib.cv
-lino_cosi.lib.cosi
-lino_xl.lib.b2c
-lino_xl.lib.products
-lino_xl.lib.vat
-lino_xl.lib.sales
-lino_xl.lib.finan
+lino_xl.lib.contacts
 lino_xl.lib.events
 django.contrib.sessions
 
-As an application developer you won't specify this argument,
-then you should specify your installed apps by overriding
-:meth:`get_installed_apps <lino.core.site.Site.get_installed_apps>`.
+As an :term:`application developer` you won't specify this argument, you should
+specify your installed plugins by overriding :meth:`get_installed_apps
+<lino.core.site.Site.get_installed_apps>`.
 
-Besides this you can override any class argument using a keyword
-argment of same name:
+.. class:: Site
 
-- :attr:`lino.core.site.Site.title`
-- :attr:`lino.core.site.Site.verbose_name`
+  :noindex:
 
-You've maybe heard that it is not allowed to modify Django's settings
-once it has started.  But there's nothing illegal with this here
-because this happens before Django has seen your :xfile:`settings.py`.
+  .. method:: get_installed_apps(self)
 
-Lino does more than this. It will for example read the `__file__
-<http://docs.python.org/2/reference/datamodel.html#index-49>`__
-attribute of this, to know where your :file:`settings.py` is in the
-file system.
+      Yield the list of apps to be installed on this site.
 
+      Each item must be either a string or a *generator* to be iterated
+      recursively (again expecting either strings or generators of strings).
 
-
-Technical details
-=================
-
-Here are the Django settings that Lino will override:
-
->>> from lino.core.site import TestSite as Site
->>> SITE = Site()
->>> print([k for k in SITE.django_settings.keys() if k.isupper()])
-... #doctest: +NORMALIZE_WHITESPACE
-['SECRET_KEY', 'DATABASES', 'SERIALIZATION_MODULES', 'LANGUAGES',
-'INSTALLED_APPS', 'MEDIA_ROOT', 'ROOT_URLCONF', 'MEDIA_URL', 'STATIC_ROOT',
-'STATIC_URL', 'TEMPLATES', 'MIDDLEWARE', 'AUTHENTICATION_BACKENDS', 'LOGIN_URL',
-'LOGIN_REDIRECT_URL', 'LOGOUT_REDIRECT_URL', 'FIXTURE_DIRS', 'LOCALE_PATHS']
-
->>> from pprint import pprint
->>> from atelier.utils import rmu
->>> pprint(rmu(SITE.django_settings))
-... #doctest: +ELLIPSIS +REPORT_UDIFF +NORMALIZE_WHITESPACE
-{'AUTHENTICATION_BACKENDS': ['lino.core.auth.backends.ModelBackend'],
- 'DATABASES': {'default': {'ENGINE': 'django.db.backends.sqlite3',
-                           'NAME': Path('.../core/default.db')}},
- 'FIXTURE_DIRS': (),
- 'INSTALLED_APPS': ('lino',
-                    'django.contrib.staticfiles',
-                    'lino.modlib.about',
-                    'lino.modlib.jinja',
-                    'lino.modlib.bootstrap3',
-                    'lino.modlib.extjs'),
- 'LANGUAGES': [('en', 'English')],
- 'LOCALE_PATHS': (),
- 'LOGIN_REDIRECT_URL': '/',
- 'LOGIN_URL': '/accounts/login/',
- 'LOGOUT_REDIRECT_URL': None,
- 'MEDIA_ROOT': Path('.../core/media'),
- 'MEDIA_URL': '/media/',
- 'MIDDLEWARE': ('django.middleware.common.CommonMiddleware',
-                'lino.core.auth.middleware.NoUserMiddleware',
-                'lino.utils.ajax.AjaxExceptionResponse'),
- 'ROOT_URLCONF': 'lino.core.urls',
- 'SECRET_KEY': '20227',
- 'SERIALIZATION_MODULES': {'py': 'lino.utils.dpy'},
- 'STATIC_ROOT': Path('...static_root'),
- 'STATIC_URL': '/static/',
- 'TEMPLATES': [{'APP_DIRS': True,
-                'BACKEND': 'django.template.backends.django.DjangoTemplates',
-                'DIRS': [],
-                'OPTIONS': {'context_processors': ['django.template.context_processors.debug',
-                                                   'django.template.context_processors.i18n',
-                                                   'django.template.context_processors.media',
-                                                   'django.template.context_processors.static',
-                                                   'django.template.context_processors.tz',
-                                                   'django.contrib.messages.context_processors.messages']}},
-               {'BACKEND': 'django.template.backends.jinja2.Jinja2',
-                'DIRS': [],
-                'OPTIONS': {'environment': 'lino.modlib.jinja.get_environment'}}],
- '__file__': '.../lino/core/site.py...'}
+      Lino will call this method exactly once when the :class:`Site`
+      instantiates.  The resulting list of names will then possibly
+      altered by the :meth:`get_apps_modifiers` method before being
+      assigned to the :setting:`INSTALLED_APPS` setting.
 
 
-Here are the Django settings which Lino does not modify:
+  .. method:: get_plugin_configs(self)
 
->>> import lino_book.projects.lydia.settings.demo as settings
->>> print([s for s in dir(settings)
-...     if not s in SITE.django_settings and s[0].isupper()])
-... #doctest: +NORMALIZE_WHITESPACE
-['ADMINS', 'ALLOWED_HOSTS', 'AUTH_USER_MODEL', 'DEBUG',
-'DEBUG_PROPAGATE_EXCEPTIONS', 'EMAIL_HOST', 'LANGUAGE_CODE', 'MANAGERS',
-'SETUP_INFO', 'SITE', 'Site', 'TEMPLATE_DEBUG', 'TEST_RUNNER', 'TIM2LINO_LOCAL',
-'TIM2LINO_USERNAME', 'TIME_ZONE', 'USE_I18N', 'USE_L10N', 'USE_TZ']
+      Return a series of plugin configuration settings.
+
+      This is called before plugins are loaded.  :attr:`rt.plugins` is not
+      yet populated.
+
+      The method must return an iterator that yields tuples with three items
+      each: The name of the plugin, the name of the setting and the
+      value to set.
+
+      Example::
+
+        def get_plugin_configs(self):
+            yield super(Site, self).get_plugin_configs()
+            yield ('countries', 'hide_region', True)
+            yield ('countries', 'country_code', 'BE')
+            yield ('vat', 'declaration_plugin', 'lino_xl.lib.bevats')
+            yield ('ledger', 'use_pcmn', True)
+            yield ('ledger', 'start_year', 2014)
+
+
+  .. method:: get_apps_modifiers(self, **kwargs)
+
+      Override or hide individual plugins of the application.
+
+      Deprecated because this approach increases complexity instead of
+      simplifying things.
+
+      For example, if your site inherits from
+      :mod:`lino.projects.min2`::
+
+        def get_apps_modifiers(self, **kw):
+            kw = super(Site, self).get_apps_modifiers(**kw)
+            kw.update(sales=None)
+            kw.update(courses='my.modlib.courses')
+            return kw
+
+      The default implementation returns an empty dict.
+
+      This method adds an additional level of customization because
+      it lets you remove or replace individual plugins from
+      :setting:`INSTALLED_APPS` without rewriting your own
+      :meth:`get_installed_apps`.
+
+      This will be called during Site instantiation and is expected to
+      return a dict of `app_label` to `full_python_path`
+      mappings which you want to override in the list of plugins
+      returned by :meth:`get_installed_apps`.
+
+      Mapping an `app_label` to `None` will remove that plugin from
+      :setting:`INSTALLED_APPS`.
+
+      It is theoretically possible but not recommended to replace an
+      existing `app_label` by an app with a different
+      `app_label`. For example, the following might work but is not
+      recommended::
+
+         kw.update(courses='my.modlib.MyActivities')

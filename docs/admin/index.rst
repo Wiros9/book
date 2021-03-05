@@ -33,19 +33,20 @@ Setting up a new Lino server
     install_demo
     backup
 
+
 Configuring a Lino site
 =======================
 
 .. toctree::
     :maxdepth: 1
 
+    settings
     dbengine
     email
     multiple_frontends
     certbot
     security
     cron
-    settings
     snapshot
     env
     logging

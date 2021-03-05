@@ -99,19 +99,27 @@ Install your first site
 
 You will do the following for every new site on your server.
 
-   $ sudo env PATH=$PATH getlino startsite application_name site_name
+   $ sudo env PATH=$PATH getlino startsite <application_name> <site_name>
 
-Point your browser to http://first.localhost
+Where:
 
-- ``application_name`` is one of the known Lino applications (noi, cosi, avanti, voga...)
+- ``application_name`` is one of the Lino applications known by getlino (noi,
+  cosi, avanti, voga...)
 
-- ``site_name`` is the unique internal name of your site on this server.
+- ``site_name`` is a unique internal name of your site on this server.
+
+For example::
+
+   $ sudo env PATH=$PATH getlino startsite cosi first
+
+And then point your browser to http://first.localhost
 
 
 Some useful additions to your shell
 ===================================
 
-Add the following to your system-wide :file:`/etc/bash.bashrc`:
+We suggest that you add the following to your system-wide
+:file:`/etc/bash.bashrc`:
 
 .. literalinclude:: bash_aliases
 
@@ -120,7 +128,8 @@ If you want :ref:`log2syslog`, then add also this:
 .. literalinclude:: log2syslog
 
 After these changes you must close and reopen your terminal to activate them.
-You can now do the following to quickly cd to a project directory and activate
+
+You can now do the following to quickly go to a project directory and activate
 its Python environment::
 
   $ go prj1

@@ -8,6 +8,6 @@ Lino internals
 .. toctree::
    :maxdepth: 1
 
-   site
+   site_internals
    startup
    /dev/signals
