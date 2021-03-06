@@ -265,6 +265,23 @@ distribution.
     Return a dict with appropriate resolved field names for a
     BabelField `name` and a set of hard-coded values.
 
+    This function is no longer recommended to use for application code. When
+    some application code uses::
+
+      babelkw("fieldname", en="foo", de="Foo", fr="Phou", ...)
+
+    this code should be replaced by::
+
+      str2kw(_("foo"))
+
+    and after this change you must run :cmd:`inv mm`, which will add `"foo"` as
+    a translatable string to the :xfile:`.po` files. And then you must use
+    poedit to add the formerly hard-coded translations ("Foo" for `de` and
+    "Phou" for `fr`) in the the :xfile:`.po` files.
+
+    But this function is still being used in Python fixtures (where it makes
+    sense).
+
     You have some hard-coded multilingual content in a fixture:
     >>> from lino.core.site import TestSite as Site
     >>> kw = dict(de="Hallo", en="Hello", fr="Salut")

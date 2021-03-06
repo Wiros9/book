@@ -63,19 +63,18 @@ directory::
     $ python manage.py linod --list
 
 For example in the :mod:`noi1e <lino_book.projects.noi1e>` demo project
-there are 7 jobs:
+there are 6 jobs:
 
 >>> shell = Sheller("lino_book/projects/noi1e")
 >>> shell("python manage.py linod --list")
 ... #doctest: +ELLIPSIS
-7 scheduled jobs:
+6 scheduled jobs:
 [1] Every 1 day at 20:00:00 do checksummaries() (last run: [never], next run: ...)
 [2] Every 1 day at 20:00:00 do checkdata() (last run: [never], next run: ...)
 [3] Every 10 seconds do send_pending_emails_often() (last run: [never], next run: ...)
 [4] Every 1 day at 20:00:00 do send_pending_emails_daily() (last run: [never], next run: ...)
 [5] Every 1 day at 20:00:00 do clear_seen_messages() (last run: [never], next run: ...)
 [6] Every 3600 seconds do update_all_repos() (last run: [never], next run: ...)
-[7] Every 10 seconds do get_new_mail() (last run: [never], next run: ...)
 
 
 

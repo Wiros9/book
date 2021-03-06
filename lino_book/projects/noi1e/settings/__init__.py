@@ -1,5 +1,5 @@
 # -*- coding: UTF-8 -*-
-# Copyright 2014-2020 Rumma & Ko Ltd
+# Copyright 2014-2021 Rumma & Ko Ltd
 # License: BSD (see file COPYING for details)
 """
 
@@ -58,7 +58,8 @@ class Site(Site):
         yield super(Site, self).get_installed_apps()
         yield 'lino.modlib.restful'
         # yield 'lino_xl.lib.caldav'
-        yield 'lino_xl.lib.mailbox'
+        # 20210305 removed mailbox. See :mod:`lino_xl.lib.mailbox`.
+        # yield 'lino_xl.lib.mailbox'
 
     def setup_plugins(self):
         """Change the default value of certain plugin settings.

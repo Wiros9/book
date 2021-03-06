@@ -54,10 +54,6 @@ behaviour. See also :doc:`/dev/delete`.
   - PROTECT : contacts.Partner.country, countries.Place.country
 - countries.Place :
   - PROTECT : contacts.Partner.city, contacts.Partner.region, countries.Place.parent
-- django_mailbox.Mailbox :
-  - PROTECT : django_mailbox.Message.mailbox
-- django_mailbox.Message :
-  - PROTECT : django_mailbox.Message.in_reply_to, django_mailbox.MessageAttachment.message
 - excerpts.Excerpt :
   - SET_NULL : sales.VatProductInvoice.printed_by, working.ServiceReport.printed_by
 - excerpts.ExcerptType :
@@ -105,7 +101,7 @@ behaviour. See also :doc:`/dev/delete`.
   - PROTECT : tickets.Ticket.site
 - tickets.Ticket :
   - CASCADE : tickets.Link.child, tickets.Link.parent
-  - PROTECT : django_mailbox.Message.ticket, github.Commit.ticket, tickets.CheckListItem.ticket, tickets.Ticket.duplicate_of, working.Session.ticket
+  - PROTECT : github.Commit.ticket, tickets.CheckListItem.ticket, tickets.Ticket.duplicate_of, working.Session.ticket
 - tickets.TicketType :
   - PROTECT : tickets.Ticket.ticket_type
 - uploads.UploadType :

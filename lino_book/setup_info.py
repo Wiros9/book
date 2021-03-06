@@ -26,7 +26,7 @@ install_requires = [
     'icalendar',
     'vobject',
     'eidreader',   # required to build the book.
-    'social-auth-app-django',
+    'social-auth-app-django==3.1.0',
     'lino_cosi',
     'lino_noi',
     'lino_voga',

@@ -28,7 +28,7 @@ class Site(Site):
         yield super(Site, self).get_installed_apps()
         yield 'lino.modlib.restful'
         # yield 'lino_xl.lib.caldav'
-        yield 'lino_xl.lib.mailbox'
+        # yield 'lino_xl.lib.mailbox'
 
     def setup_plugins(self):
         super(Site, self).setup_plugins()

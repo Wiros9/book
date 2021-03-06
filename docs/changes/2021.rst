@@ -8,6 +8,20 @@
 This is the 2021 :term:`change log` for :ref:`book`. General information about
 how to read and maintain this document in :ref:`dev.changes`.
 
+2021-03-06
+==========
+
+:ticket:`4007`: :meth:`babelkw <lino.core.site.Site.babelkw>` now includes
+:meth:`str2kw <lino.core.site.Site.str2kw>`. This avoids us to get locked by
+code that still uses :meth:`babelkw`. Translators can now add translations for
+new languages without having to edit the German, French and Estonian
+:xfile:`.po` files. Usage: in any existing source code for which you want to
+provide new translations, replace ``babelkw("name", en="foo", de=...)`` by
+``babelkw("name", _("foo"), de=...)``.
+
+
+
+
 2021-03-03
 ==========
 

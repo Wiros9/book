@@ -5,14 +5,16 @@ bleach
 odfpy
 num2words
 schedule
-social-auth-app-django
 appy
 
-# appy is given by `inv install -l` only if it is not yet installed:
-#svn+https://svn.forge.pallavi.be/appy-dev/dev1#egg=appy
 
 # ldap support is not yet given by `inv install`:
 git+https://github.com/khchine5/django-auth-ldap.git#egg=django-auth-ldap
 
-# compare with lino_xl.lib.mailbox
-django-mailbox@git+https://github.com/cylonoven/django-mailbox
+# Was used by lino_xl.lib.mailbox in noi1e and noi1r. No longer maintained.
+# django-mailbox@git+https://github.com/tonispiip/django-mailbox
+# django-mailbox@git+https://github.com/coddingtonbear/django-mailbox
+
+# 20210306 : version 4.0.0 of django_social (released 2020-06-21)  causes merge
+# conflicts, but the latest clone works.
+social-auth-app-django@git+https://github.com/python-social-auth/social-app-django

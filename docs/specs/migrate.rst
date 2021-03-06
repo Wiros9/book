@@ -55,7 +55,7 @@ Django:
 ... #doctest: +ELLIPSIS +REPORT_UDIFF +NORMALIZE_WHITESPACE
 `initdb std minimal_ledger demo demo2 checksummaries` started on database .../default.db.
 Operations to perform:
-  Synchronize unmigrated apps: about, appypod, bootstrap3, cal, calview, changes, checkdata, comments, contacts, countries, dashboard, django_mailbox, excerpts, export_excel, extjs, gfks, github, groups, invoicing, jinja, ledger, lino, lists, mailbox, memo, noi, notify, office, printing, products, rest_framework, restful, sales, smtpd, staticfiles, summaries, system, tickets, tinymce, uploads, users, userstats, vat, weasyprint, working, xl
+  Synchronize unmigrated apps: about, appypod, bootstrap3, cal, calview, changes, checkdata, comments, contacts, countries, dashboard, excerpts, export_excel, extjs, gfks, github, groups, invoicing, jinja, ledger, lino, lists, memo, noi, notify, office, printing, products, rest_framework, restful, sales, smtpd, staticfiles, summaries, system, tickets, tinymce, uploads, users, userstats, vat, weasyprint, working, xl
   Apply all migrations: contenttypes, sessions
 Synchronizing apps without migrations:
   Creating tables...
@@ -72,7 +72,7 @@ Updating summary data for Tickets ...
 Updating summary data for User Statistics ...
 Updating summary data for Site summaries ...
 Updating summary data for User summaries ...
-Installed 974 object(s) from 26 fixture(s)
+Installed 973 object(s) from 25 fixture(s)
 
 Tidy up:
 
@@ -95,13 +95,13 @@ but in a different way.  Django now considers all Lino plugins as "migrated":
 `initdb std minimal_ledger demo demo2 checksummaries` started on database .../default.db.
 Operations to perform:
   Synchronize unmigrated apps: staticfiles
-  Apply all migrations: cal, calview, changes, checkdata, comments, contacts, contenttypes, countries, dashboard, django_mailbox, excerpts, gfks, github, groups, invoicing, ledger, lists, notify, products, sales, sessions, system, tickets, tinymce, uploads, users, userstats, vat, working
+  Apply all migrations: cal, calview, changes, checkdata, comments, contacts, contenttypes, countries, dashboard, excerpts, gfks, github, groups, invoicing, ledger, lists, notify, products, sales, sessions, system, tickets, tinymce, uploads, users, userstats, vat, working
 Synchronizing apps without migrations:
   Creating tables...
     Running deferred SQL...
 Running migrations:
   ...
-Installed 974 object(s) from 26 fixture(s)
+Installed 973 object(s) from 25 fixture(s)
 
 
 >>> from lino import startup
@@ -131,7 +131,6 @@ plugin) and sets the :setting:`MIGRATION_MODULES` setting.
  'contacts': 'lino_book.projects.migs.settings.migrations.contacts',
  'countries': 'lino_book.projects.migs.settings.migrations.countries',
  'dashboard': 'lino_book.projects.migs.settings.migrations.dashboard',
- 'django_mailbox': 'lino_book.projects.migs.settings.migrations.django_mailbox',
  'excerpts': 'lino_book.projects.migs.settings.migrations.excerpts',
  'export_excel': 'lino_book.projects.migs.settings.migrations.export_excel',
  'extjs': 'lino_book.projects.migs.settings.migrations.extjs',
@@ -143,7 +142,6 @@ plugin) and sets the :setting:`MIGRATION_MODULES` setting.
  'ledger': 'lino_book.projects.migs.settings.migrations.ledger',
  'lino': 'lino_book.projects.migs.settings.migrations.lino',
  'lists': 'lino_book.projects.migs.settings.migrations.lists',
- 'mailbox': 'lino_book.projects.migs.settings.migrations.mailbox',
  'memo': 'lino_book.projects.migs.settings.migrations.memo',
  'noi': 'lino_book.projects.migs.settings.migrations.noi',
  'notify': 'lino_book.projects.migs.settings.migrations.notify',

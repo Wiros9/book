@@ -1,14 +1,17 @@
+.. doctest docs/specs/noi/mailbox.rst
 .. _noi.specs.mailbox:
 
 ====================
 Lino Noi and mailbox
 ====================
 
+This page is *not* being tested, the :mod:`lino_xl.lib.mailbox`
+
 
 .. How to test just this document:
 
     $ python setup.py test -s tests.SpecsTests.test_mailbox
-    
+
     doctest init:
 
     >>> from lino import startup
