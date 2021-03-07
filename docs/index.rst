@@ -13,7 +13,6 @@ framework`. For non-technical documentation about Lino see the :ref:`cg`.
    :maxdepth: 2
 
    welcome
-   /money
    /dev/about
    /demos
 

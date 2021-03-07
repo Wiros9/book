@@ -23,16 +23,13 @@ Overview diagram
         noi;
         cosi;
         tera;
-        avanti;
         voga;
+        avanti;
         weleup;
         welcht;
         amici;
-        ciao;
     }
 
-    etgen -> rstgen;
-    lino -> etgen;
     xl -> lino;
     noi -> xl;
     cosi -> xl;

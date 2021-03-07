@@ -14,6 +14,7 @@ up your opinion.
    :maxdepth: 1
 
    about/why
+   /money
    /about/overview
    about/lino_and_django
    about/auth
