@@ -169,8 +169,12 @@ Create a demo user for your language
 ------------------------------------
 
 If Lino does not yet have a default site administrator user for your language
-(:mod:`lino.modlib.users.fixtures.demo`), then you need to create a local
-fixture that creates it.  It's easy::
+(:mod:`lino.modlib.users.fixtures.demo`), then :cmd:`pm prep` will say a
+warning::
+
+  No demo user for language 'bn'.
+
+This means that you should create a local fixture that creates it.  It's easy::
 
   $ mkdir fixtures
   $ touch fixtures/__init__.py

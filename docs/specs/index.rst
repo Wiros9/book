@@ -163,3 +163,8 @@ Technical stuff
    html
    getlino/index
    react/index
+
+Lino in other languages
+=======================
+
+   cosi5/index
