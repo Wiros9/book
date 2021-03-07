@@ -46,6 +46,7 @@ Internationalization
    :maxdepth: 1
 
    /dev/translate/index
+   /specs/cosi5/index
 
 Drafts
 ======

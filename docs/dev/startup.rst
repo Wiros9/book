@@ -4,36 +4,59 @@
 When a Lino application starts up
 =================================
 
-This chapter describes what happens during the startup of a Lino process.
+This chapter describes what happens during :term:`site startup`.
 
-There are four major phases in the life of a Lino process:
+.. glossary::
 
-- **Application definition** : while Django **settings** are being loaded.
-  We see this as a separate phase because Lino does some magics there.
+  site startup
 
-- **Database definition** : while Django **models** are being loaded
+    The things that happen at the beginning of a Lino process.
 
-- **Site startup** : Django models are loaded, now Lino analyzes them and adds
-  its own data structures.
+  Lino process
 
-- **Runtime** (:mod:`lino.api.rt`) when startup has finished.
+    A Python process on a given :term:`Lino site`.  This is either some
+    :term:`django-admin command`, or a WSGI process inside a web server.
 
-There are three major :mod:`lino.api` modules named after these
-phases:
+There are four major phases in the life of a :term:`Lino process`:
 
-- :mod:`lino.api.ad` is available during Application Definition.
+.. glossary::
 
-- :mod:`lino.api.dd` is available when AD has finished, during DD and
-  Analysis.
+  application definition
 
-- :mod:`lino.api.rt` is available when `Site startup` has finised.
+    The first part of the :term:`site startup` when Django **settings** are
+    being loaded. We see this as a separate phase because Lino does some magics
+    there.
+
+  data definition
+
+    The second part of the :term:`site startup` when Django **models** are being
+    loaded.
+
+  site analysis
+
+    The third part of the :term:`site startup` when Django models are loaded,
+    and Lino analyzes them to add its own data structures.
+
+  runtime
+
+    When the :term:`site startup` has finished and the actual process does what
+    it is designed to do.
+
+There are three :mod:`lino.api` modules named after these phases:
+
+- :mod:`lino.api.ad` is available during :term:`application definition`.
+
+- :mod:`lino.api.dd` is available during :term:`data definition` and
+  :term:`site analysis`.
+
+- :mod:`lino.api.rt` is available when :term:`site analysis` has finised.
 
 A more detailed description follows.
 
-- The `manage.py` script causes the module specified by
+- The :xfile:`manage.py` script causes the module specified by
   :envvar:`DJANGO_SETTINGS_MODULE` (your :xfile:`settings.py` module) to be
-  imported. This might happen twice (e.g. with :manage:`runserver`).
-  Everything in :mod:`lino.api.ad` is usable.
+  imported. This might happen twice (e.g. with :manage:`runserver`). Everything
+  in :mod:`lino.api.ad` is usable.
 
 - Importing the :xfile:`settings.py` module will instantiate your
   :setting:`SITE`.
@@ -41,9 +64,9 @@ A more detailed description follows.
 - When settings are ready, Django will load the :xfile:`models.py` modules.
   Everything in :mod:`lino.api.dd` is usable during this step.
   :mod:`lino.api.rt` may be imported but should not be accessed at global module
-  level
+  level.
 
-- When all  :xfile:`models.py` modules are loaded, the Site will "start up".
+- When all :xfile:`models.py` modules are loaded, the Site will "start up".
 
 - Only now everything in :mod:`lino.api.rt` is usable.
 
@@ -72,11 +95,8 @@ The Site startup phase
 - Emit the :data:`lino.core.signals.post_startup` signal
 
 
-
-
 A server startup signal for Django
 ==================================
-
 
 **This section is obsolete.** It was for Django before 1.7.
 

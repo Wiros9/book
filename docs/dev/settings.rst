@@ -6,12 +6,7 @@ Lino and your Django settings
 
 Content moved to :doc:`/admin/settings` and :doc:`/dev/site`.
 
-This section explains things about your Django settings you should know as an
-:term:`application developer`. We assume that you have read
-:doc:`/admin/settings`.
-
-
-This section is obsolete.
+Remaining content is obsolete.
 
 
 .. _lino.site_module:

@@ -4,6 +4,10 @@
 Lino in Bengali
 ===============
 
+Here is a screenshot of the :mod:`lino_book.projects.cosi5` demo project.
+
+.. image:: /images/screenshots/0307_cosi5_bn.png
+
 
 .. include:: /../docs/shared/include/tested.rst
 

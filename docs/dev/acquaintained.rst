@@ -8,7 +8,6 @@ Getting acquaintained
 .. toctree::
    :maxdepth: 1
 
-   warning
    i18n
    datamig
    dump2py
@@ -34,7 +33,6 @@ Getting acquaintained
 
    online
    site_config
-   disabled_fields
 
    bleach
    story
@@ -51,4 +49,3 @@ Getting acquaintained
    /dev/qtclient
    myroles
    auto_create
-   /tested/ddh

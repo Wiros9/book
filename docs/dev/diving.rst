@@ -36,10 +36,26 @@ More basics
    pyfixtures/index
    users
    sessions
-   perms
-   settings
    quantities
    xlmenu
+
+Customizing things
+==================
+
+.. toctree::
+   :maxdepth: 1
+
+   perms
+   crud
+   create
+   search
+   format
+   disable
+   hide
+   duplicate
+   merge
+   update
+   delete
 
 Widgets
 =======

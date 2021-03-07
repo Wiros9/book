@@ -1,11 +1,6 @@
 """
-An example of a :ref:`cosi` configured for usage in Estonia.
+An example of a :ref:`cosi` configured for usage in Bangladesh.
 
-The only differences are some plugin configuration settings.
-
-.. autosummary::
-   :toctree:
-
-    settings
+Used in :doc:`/specs/cosi5/index`.
 
 """

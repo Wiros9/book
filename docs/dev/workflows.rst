@@ -111,7 +111,7 @@ Note how the first argument to :meth:`add_transition
 <lino.core.workflows.State.add_transition>` can be either a string or
 a class.  If it is a class, then it defines an action.  Here are the
 actions used in this tutorial:
-                    
+
 .. literalinclude:: /../../book/lino_book/projects/workflows/entries/actions.py
 
 Defining an explicit class for transition action is useful when you
@@ -153,13 +153,25 @@ and then add a :attr:`state` field to the :class:`Entry` model::
 
 Showing the workflow actions
 ============================
-        
+
 And finally we added the `workflow_buttons` at different places: in
 the detail layout of Entry, and in a `column_names` attribute to
 `EntriesByCompany` and `MyEntries`.  Note that `workflow_buttons` is a
 :doc:`virtual field </dev/virtualfields>` and therefore not
 automatically shown.
-      
 
 
 
+
+Reference
+=========
+
+
+.. currentmodule:: lino.core.model
+
+.. class:: Model
+  :noindex:
+
+  .. attribute:: workflow_buttons
+
+    List of actions that change the workflow state of this object.

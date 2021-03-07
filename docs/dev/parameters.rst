@@ -7,8 +7,8 @@ Introduction to actor parameters
 ================================
 
 Any table in Lino can have optional panel with :term:`actor parameters <actor
-parameter>`.  This document explains what they are. They are both similar and
-very different from :term:`action parameters <action parameter>`.
+parameter>`.  This document explains what they are. They are both similar to and
+different from :term:`action parameters <action parameter>`.
 
 .. contents::
     :depth: 2
@@ -84,6 +84,50 @@ how they influence the data to be displayed.
 TODO: continue to write documentation.
 
 
-- :meth:`lino.core.model.Model.get_simple_parameters`
-- :meth:`lino.core.model.Model.get_parameter_fields`
 - :attr:`lino.core.utils.Parametrizable.parameters`
+
+
+
+.. class:: lino.core.model.Model
+  :noindex:
+
+.. class:: lino.core.actors.Actor
+  :noindex:
+
+  .. attribute:: parameters
+
+    User-definable parameter fields for this actor or action.  Set this to a
+    `dict` of `name = models.XyzField()` pairs.
+
+  .. attribute:: params_layout = None
+
+    The layout to be used for the parameter panel.
+    If this table or action has parameters, specify here how they
+    should be laid out in the parameters panel.
+
+  .. method:: params_panel_hidden = True
+
+    If this table has parameters, set this to True if the parameters
+    panel should be initially hidden when this table is being
+    displayed.
+
+  .. method:: use_detail_param_panel = False
+
+    Set to true if you want the params panel to be displayed in the detail view.
+    Used only in :class:`lino_xl.lib.cal.CalView`.
+    
+
+
+  .. attribute:: simple_parameters = None
+
+    A tuple of names of filter parameters that are handled automatically.
+
+    Application developers should not set this attribute directly,
+    they should rather define a :meth:`get_simple_parameters` on the
+    model.
+
+  .. attribute:: get_simple_parameters(cls)
+
+    Hook for defining which parameters are simple.
+
+    Expected to return a list of names of parameter fields.

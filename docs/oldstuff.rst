@@ -25,3 +25,4 @@ Old stuff
    /dev/pull
    /team/deploy_prod
    /dev/oui5
+   /dev/settings

@@ -44,6 +44,8 @@ Examples used by a tutorial:
    watch
    watch2
    workflows
+   cosi4
+   cosi5
 
 
 Poorly documented examples at different development states:

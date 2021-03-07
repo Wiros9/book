@@ -6,11 +6,13 @@ The acronym **CRUD** stands for "create, read, update and delete". These are the
 four basic operations to use when you manipulate the content of a
 :term:`database`.
 
-- To customize whether certain fields are editable or not, you override the
-  :meth:`Model.disabled_fields` method. See :doc:`disabled_fields`.
+Lino provides many ways to customize things that can be classified as CRUD
+operations.
 
-- To customize whether a :term:`database row` can be deleted or not, you
-  override the :meth:`Model.disable_delete` method. See :doc:`disable_delete`.
-
-- There are many ways to customize how data is formatted when presented to the
-  end user. See :doc:`model_format`.
+- :doc:`create`
+- :doc:`search`
+- :doc:`format`
+- :doc:`disable`
+- :doc:`hide`
+- :doc:`merge`
+- :doc:`delete`

@@ -1,16 +1,21 @@
 .. doctest docs/dev/vtables.rst
-.. _dev.vtables: 
-   
+.. _dev.vtables:
+
 ==============
 Virtual tables
 ==============
 
-A virtual table is a table that is not connected to any database model.  Which
-means that you are responsible for defining that data.
+.. glossary::
+
+  virtual table
+
+    A :term:`table actor` that is not connected to any database model.
+
+    Which means that you are responsible for defining that data.
 
 The **rows** of a virtual table are defined by a method
 :meth:`get_data_rows <lino.core.tables.AbstractTable.get_data_rows>`.
-In :doc:`database tables </dev/tables/index>` this method has a
+In :doc:`data tables </dev/tables/index>` this method has a
 default implementation based on the :attr:`model
 <lino.core.tables.Table.model>` attribute.
 
@@ -62,6 +67,3 @@ Usage examples of virtual tables in real applications:
 - :class:`lino_xl.lib.ledger.DebtorsCreditors`
 - :class:`lino_xl.lib.ledger.VouchersByPartnerBase`
 - :class:`lino_xl.lib.polls.AnswersByResponse`
-  
-
-  

@@ -200,6 +200,7 @@ lino_book.projects.cosi_ee.settings
 lino_book.projects.pierre
 lino_book.projects.pierre.settings
 lino_book.projects.cosi4
+lino_book.projects.cosi5
 lino_book.projects.avanti1
 lino_book.projects.avanti1.fixtures
 lino_book.projects.avanti1.tests

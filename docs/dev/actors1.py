@@ -1,5 +1,3 @@
-from __future__ import print_function
-from builtins import object
 class Parametrizable(object):
     parameters = None
 
@@ -10,6 +8,7 @@ class Parametrizable(object):
 
 class Table(Parametrizable):
     pass
+
 
 class Journals(Table):
     parameters = dict(foo=1, bar=2)

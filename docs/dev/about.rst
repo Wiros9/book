@@ -26,3 +26,4 @@ up your opinion.
    about/think_python
    about/ui
    ui
+   warning

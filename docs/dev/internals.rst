@@ -11,3 +11,4 @@ Lino internals
    site_internals
    startup
    /dev/signals
+   instantiate_or_not

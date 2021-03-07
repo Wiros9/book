@@ -1,9 +1,12 @@
-.. doctest docs/dev/disabled_fields.rst
+.. doctest docs/dev/disable.rst
 .. _disabled_fields:
 
-====================================
-Controlling whether data is editable
-====================================
+========================================
+Disabling elements of the user interface
+========================================
+
+Lino provides several methods to customize whether data is editable or not.
+
 
 Disabling individual fields
 ===========================
@@ -73,10 +76,6 @@ and last name::
           return df
 
 
-You may also disable *actions* simply by adding their name to the set of
-disabled fields. (The method name :meth:`disabled_fields` is actually
-misleading, one day we might rename it to :meth:`disabled_elements`).
-
 You may want to override this method on the actor instead of per model. In that
 case it must be a `classmethod` with two arguments `obj` and `ar`::
 
@@ -90,12 +89,26 @@ Note that Lino calls the :meth:`disabled_fields <Model.disabled_fields>` method
 only once per :term:`database row` and request.  The returned set is cached in
 memory.
 
+Disabling actions
+=================
+
+You may also disable *actions* simply by adding their name to the set of
+disabled fields. (The method name :meth:`Model.disabled_fields` is actually
+misleading, one day we might rename it to :meth:`disabled_elements`).
+
+
+
 
 Disable editing of a whole table
 ================================
 
 .. class:: lino.core.actors.Actor
   :noindex:
+
+  .. attribute:: get_row_permission(cls, obj, ar, state, ba)
+
+    Return True to allow the given action request `ar` on the given
+    :term:`database row` `row`.
 
   .. attribute:: editable
 
