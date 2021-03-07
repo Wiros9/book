@@ -18,9 +18,9 @@ demo data.
 - `voga1r <https://voga1r.lino-framework.org>`__ :
   like voga1e, but using React :term:`front end`.
 
-Screen casts :
+.. Screen casts :
 
-- `Lino Così, das kleine Buchhaltungsprogramm <https://youtu.be/yT3FEuCEFWU>`__
+  - `Lino Così, das kleine Buchhaltungsprogramm <https://youtu.be/yT3FEuCEFWU>`__
 
 
 .. _belref: http://belref.lino-framework.org

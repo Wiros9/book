@@ -17,6 +17,7 @@ by providing useful pointers.
    learning
    editor
    py2lino
+   /dev/rdbms
 
 .. toctree::
    :hidden:

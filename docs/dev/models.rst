@@ -3,36 +3,37 @@
 .. _dev.models:
 
 ======================
-Introduction to models
+About database models
 ======================
 
 .. contents::
     :depth: 1
     :local:
 
+Lino applications fully use Django's :term:`ORM`.  Every :term:`database table`
+is described by a subclass of :class:`django.db.models.Model`.  Every :term:`row
+<database row>` of a database table is represented in your Python code as an
+*instance* of that class.
 
-Lino applications fully use Django's ORM.  In Django, every *database
-table* is described by a subclass of :class:`Model`.  Every row of the
-table is an *instance* of that class.
-
-The models of an application are always defined in a file named
-:xfile:`models.py`.  Here is the :xfile:`models.py` file we are going to use in
-this tutorial:
+The database models of an application are grouped into :doc:`plugins <plugins>`
+(Django calls them "applications", but we prefer the word "plugin"), and they
+always defined in a file named :xfile:`models.py`.  Here is the
+:xfile:`models.py` file we are going to use in this tutorial:
 
 .. literalinclude:: /../../book/lino_book/projects/tables/models.py
 
-This file is defined in the :mod:`lino_book.projects.tables` demo
-project.  You can try the code snippets on this page from within a
-Django shell in that project::
+This file is defined in the :mod:`lino_book.projects.tables` demo project.  You
+can try the code snippets on this page from within a Django shell in that
+project::
 
   $ go tables
   $ python manage.py shell
 
-.. doctest init:
+.. include:: /../docs/shared/include/tested.rst
 
-    >>> from lino import startup
-    >>> startup('lino_book.projects.tables.settings')
-    >>> from lino.api.doctest import *
+>>> from lino import startup
+>>> startup('lino_book.projects.tables.settings')
+>>> from lino.api.doctest import *
 
 
 .. initialize the database:
@@ -123,9 +124,16 @@ Woe, Joe
 
 
 The :meth:`all` method of the :attr:`objects` of a :class:`Model`
-returns what Django calls a **queryset**.  A queryset is a volatile
-Python object which describes an ``SQL SELECT`` statement. You can see
-the SQL if you want:
+returns what Django calls a **queryset**.
+
+.. glossary::
+
+  queryset
+
+    A volatile Python object that describes an ``SQL SELECT`` statement.
+
+When you have a queryset object, you can see the SQL that it would generate in
+order to retrieve data from the :term:`database server`:
 
 >>> qs = Author.objects.all()
 >>> print(qs.query)
