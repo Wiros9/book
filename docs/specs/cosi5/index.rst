@@ -16,30 +16,29 @@ Here is a screenshot of the :mod:`lino_book.projects.cosi5` demo project.
 >>> from lino.api.doctest import *
 
 >>> show_menu('roby')
-- যোগাযোগ : Persons, Organizations
-- অফিস : My Excerpts, My Upload files
-- Sales : Sales invoices (SLS)
-- Reports :
-  - Sales : Due invoices, Sales invoice journal
-  - Accounting : Accounting Report, Debtors, Creditors
-- Configure :
-  - System : Help Texts, Users, Site Parameters
-  - Places : Countries, Places
-  - যোগাযোগ : Organization types, Functions
-  - অফিস : Excerpt Types, Library volumes, Upload types, My Text Field Templates
-  - Sales : Products, Product Categories, Price rules, Paper types
-  - Accounting : Sheet items, Accounts, Journals, Fiscal years, Accounting periods, Payment terms
-- Explorer :
-  - System : কনটেন্ট টাইপ সমূহ, Authorities, User types, User roles, Data checkers, Data problems
-  - যোগাযোগ : Contact persons, Partners
-  - অফিস : Excerpts, Upload files, Upload areas, Text Field Templates
-  - SEPA : Bank accounts
-  - Sales : Price factors, Sales invoices, Sales invoice items
-  - Financial : Bank Statements, Journal Entries, Payment Orders
-  - Accounting : Accounting Reports, Common sheet items, General account balances, Analytic accounts balances, Partner balances, Sheet item entries, Common accounts, Match rules, Vouchers, Voucher types, Movements, Trade types, Journal groups
-  - VAT : VAT areas, VAT regimes, VAT classes, VAT columns, Invoices, VAT rules
-- Site : About, User sessions
-
+- যোগাযোগ : ব্যক্তি, সংস্থা
+- অফিস : আমার উদ্ধৃতি, আমার ফাইল আপলোড
+- বিক্রয় : বিক্রয়ের চালান (SLS)
+- রিপোর্ট :
+  - বিক্রয় : বকেয়া চালান, বিক্রয় চালান খতিয়ান
+  - হিসাবরক্ষণ : হিসাবরক্ষণ রিপোর্ট, দেনাদার, পাওনাদার
+- কনফিগার :
+  - সিস্টেম : সহায়ক বাক্য, ব্যাবহারকারী, সাইট প্যারামিটার
+  - স্থান : দেশ, স্থান
+  - যোগাযোগ : সংস্থার ধরন, কর্মরূপ
+  - অফিস : উদ্ধৃতিরূপ, গ্রন্থ খন্ড, আপলোডের ধরন, আমার টেক্সট ফিল্ড টেম্পলেট
+  - বিক্রয় : পণ্য, পণ্যের ধরন, দামের বিধি, কাগজের ধরন
+  - হিসাবরক্ষণ : শীট আইটেম, হিসাব, খতিয়ান, আর্থিক বছর, হিসাবরক্ষণ কাল, পরিশোধের সর্ত
+- অনুসন্ধান :
+  - সিস্টেম : কনটেন্ট টাইপ সমূহ, কর্তৃপক্ষ, ব্যবহারকারীর ধরন, ব্যবহারকারীর ভূমিকা, তথ্য পরীক্ষক, তথ্য সমস্যা
+  - যোগাযোগ : ব্যক্তি যোগাযোগ, অংশীদার
+  - অফিস : উদ্ধৃতি, ফাইল আপলোড, স্থান আপলোড, টেক্সট ফিল্ড টেম্পলেট
+  - SEPA : ব্যাংক হিসাব
+  - বিক্রয় : দামের প্রভাবক, বিক্রয়ের চালান, পণ্য বিক্রয় চালান
+  - আর্থিক : ব্যাংক বিবরণী, খতিয়ান লিপিভুক্তি, পরিশোধ ফরমাশ
+  - হিসাবরক্ষণ : হিসাবরক্ষন রিপোর্ট, প্রচলিত শীট আইটেম, সাধারন হিসাব ভারসাম্য, বিশ্লেষণমূলক হিসাব ভারসাম্য, অংশীদার হিসাব ভারসাম্য, শীট আইটেম লিপিভুক্তি, সাধারন হিসাব, মিলন বিধি, ভাউচার, ভাউচারের ধরন, গতিবিধি, লেনদেনের ধরন, খতিয়ান শ্রেণী
+  - কর : কর অঞ্চল, কর আমল, কর শ্রেণী, কর কলাম, চালান, কর বিধি
+- সাইট : প্রামাণ্য, ইউজার সেশন
 
 >>> rt.show(products.Products)
 ==== ================================================================ ================== ================= =============
