@@ -11,12 +11,23 @@ Doctests in Lino
 
     A documentation page that contain blocks of Python code marked by a ``>>>``
     in the beginning of each line, and which is getting tested using Python's
-    `doctest <https://docs.python.org/3/library/doctest.html>`__ command. as
-    part of a test suite.
+    `doctest <https://docs.python.org/3/library/doctest.html>`__ command as part
+    of a test suite.
 
-They are tested using the :cmd:`doctest` command, which extracts code snippets
-from any text file, runs them in a subprocess and then checks whether their
-output is the same as the one displayed in the document.
+The :cmd:`doctest` command extracts code snippets from any text file, executes
+them checks whether their output is the same as the one displayed in the
+document.
+
+When you want to use :cmd:`doctest` for testing Django code, you need to specify
+a :term:`Django settings module`. Here is an example of how you do that:
+
+>>> import lino
+>>> lino.startup('lino_book.projects.min1.settings')
+>>> from lino.api.doctest import *
+
+Yes, this is one of the important reasons why we have :term:`demo projects <demo
+project>`.  The :ref:`book` repository contains over 1000 documents, and many of
+them (actually about 176) contain doctest snippets.
 
 Most tested documents use the database of some :term:`demo project`. When your
 :doc:`developer environment is installed </dev/install/index>`, you can re-play

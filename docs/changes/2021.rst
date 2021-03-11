@@ -8,6 +8,13 @@
 This is the 2021 :term:`change log` for :ref:`book`. General information about
 how to read and maintain this document in :ref:`dev.changes`.
 
+2021-03-08
+==========
+
+Release to PyPI :  welfare, weleup and welcht 21.3.0.  Followed by bugfix
+releases  lino, welfare, weleup and welcht 21.3.1
+
+
 2021-03-06
 ==========
 

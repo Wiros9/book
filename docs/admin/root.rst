@@ -10,14 +10,16 @@ system and must be connected to a network.
 The :term:`server provider` holds root access to the server and creates user
 accounts with sudo rights for each :term:`site maintainer`.  He configures
 secure remote shell access (SSH) to that machine for each site maintainer.  He
-provides support to the site maintainers.
+provides support to the site maintainers. See `Creating a user account`_.
 
 The :term:`server provider` is *not* responsible for installing and maintaining
-specific system packages, Lino source code and configuration (these are the job
-of the :term:`site maintainers <site maintainer>`).
+specific system packages, Lino source code and configuration,  or for giving
+:term:`end-user support` to the  users of any :term:`Lino site` hosted on this
+site.
 
-The :term:`server provider` is *not* responsible for giving :term:`end-user
-support` to the site export
+The :term:`server provider` *may optionally* be responsible for providing backup
+service for the server as a whole.
+
 
 Where to get a virtual server
 =============================
@@ -30,8 +32,9 @@ have tested:
 - https://www.hetzner.com/cloud  2.89€/month
 - https://mochahost.com/vps.php  6.94€/month (Up to 50% OFF)
 
-System requirements
-===================
+
+System requirements for a Lino site
+===================================
 
 We recommend a `stable Debian <https://www.debian.org/releases/stable/>`__ as
 operating system.  Currently this means Debian 10 "Buster".
@@ -41,35 +44,22 @@ operating system.  Currently this means Debian 10 "Buster".
 You need **at least 10 GB of disk space**. You can see how much disk space you have
 by saying::
 
-    $ df -h
+  $ df -h
 
 We recommend **at least 2GB of RAM** (because we didn't yet test production
 sites with less).  How to see how much memory you have::
 
-    $ free -h
+  $ free -h
 
-The system should have installed the `sudo` package::
-
-  # apt-get install sudo
-
-
-Creating a system user
+Preparing a new server
 ======================
 
-Create a user account for every :term:`site maintainer`, e.g. ``joe``::
+Before creating system users, the root user should check the following.
 
-  # adduser joe
-
-Agree upon a password with the maintainer who is going to use this account.  The
-maintainer can later change their password using :cmd:`passwd`.
-
-Site maintainers must be members of the `sudo` and `www-data` groups::
-
-  # adduser joe sudo
-  # adduser joe www-data
-
-Note that `useradd` is a native binary compiled with the system, while `adduser`
-is a perl script which uses `useradd` in back-end.
+In your :file:`/etc/ssh/sshd_config` make sure that ``PasswordAuthentication``
+is set to ``no``.  We require site maintainers to have a
+:xfile:`~/.ssh/authorized_keys` file. They will need their password only for
+running `sudo` commands.
 
 All maintainers must have a umask `002` or `007` (not `022` or `077` as is the
 default value).
@@ -86,34 +76,63 @@ The :cmd:`umask` command is used to mask (disable) certain file permissions from
 any new file created by a given user. See :doc:`umask` for more detailed
 information.
 
-Finally the :term:`server provider` must grant SSH access to that new account
-by creating the user's :file:`.ssh/authorized_keys` file with the
-maintainer's public ssh key::
+The system should have installed the `sudo` package::
 
+  # apt-get install sudo
+
+Also run::
+
+  # apt-get update && apt-get upgrade
+
+
+Creating a user account
+=======================
+
+As a root user you will create a user account for every :term:`site maintainer`.
+
+In the following examples we assume that the user account to create is ``joe``.
+
+Agree upon a temporary password with Joe (who can later change their password
+using :cmd:`passwd`), and then type::
+
+  # adduser joe
+
+Site maintainers must be members of the `sudo` and `www-data` groups::
+
+  # adduser joe sudo
+  # adduser joe www-data
+
+Creating the user's :xfile:`~/.ssh/authorized_keys` file with the maintainer's
+public ssh key::
 
   # su - joe
-  $ mkdir .ssh
-  $ chmod 700 .ssh
-  $ touch .ssh/authorized_keys
-  $ chmod 600 .ssh/authorized_keys
+  $ mkdir .ssh && chmod 700 .ssh
+  $ touch .ssh/authorized_keys && chmod 600 .ssh/authorized_keys
   $ cat >> .ssh/authorized_keys
 
 Paste the maintainer's public key to the terminal.  Press :kbd:`ENTER` to add at
 least one newline.  Press :kbd:`Ctrl+D` to say you're finished with pasting
 content.
 
-Note that the :xfile:`.ssh` directory should have permissions set to ``700`` to
-restrict access so that only the owner can read, write, or open it.
+Footnotes:
 
-Disabling password authentication
-=================================
+- `useradd` is a native binary compiled with the system, while `adduser`
+  is a perl script that uses `useradd` in back-end.
 
-In your :file:`/etc/ssh/sshd_config` make sure that ``PasswordAuthentication``
-is set to ``no``.
+- ssh requires that the :xfile:`.ssh` directory and its content should have
+  permissions set so that only the owner can read, write, or open them.
 
 
-The hostname
-============
+How to generate a SSH key pair
+==============================
+
+As a :term:`site maintainer` you must have generated public and private ssh keys
+using the command `ssh-keygen -t rsa`.
+
+
+
+How to change the hostname
+==========================
 
 Every server has a "hostname", a relatively short "nickname" to designate it.
 The hostname is not the same as the FQDN.

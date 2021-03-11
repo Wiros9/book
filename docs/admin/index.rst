@@ -31,6 +31,7 @@ Setting up a new Lino server
     root
     install
     install_demo
+    borg
     backup
 
 

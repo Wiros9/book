@@ -4,9 +4,9 @@
 Testing Lino applications
 =========================
 
-You can write test suites for a Lino application like for any other
-Django project. But Lino adds a set of tools, conventions, ideas and
-suggestions for testing your applications.
+You write test suites for a Lino application like for any other Django project.
+But Lino adds a set of tools, conventions, ideas and suggestions for testing
+your applications.
 
 
 .. toctree::

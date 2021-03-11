@@ -1,8 +1,8 @@
 .. _hosting.backup:
 
-==========================
-Setting up a backup server
-==========================
+===========================================
+How to set up a backup server for snapshots
+===========================================
 
 How to configure a backup service that will backup snapshots of the
 :term:`production sites <production site>` of your customers.
@@ -25,7 +25,6 @@ mirror@example.com to the authorized_keys of mirror@customersite.com::
 
 The customer must also have a daily snapshot cron job (:doc:`snapshot`) and
 communicate us the full path of the snapshot file(s) they want us to backup.
-
 
 
 Setting up the backup server
