@@ -2,7 +2,8 @@
 The ``lino_book`` package
 =========================
 
-Warning: this copy of the Lino Book is obsolete. We now maintain this repository on GitLab. See https://www.lino-framework.org/team/gh2gl.html
+Warning: this copy of the Lino Book is obsolete. New project homepage is https://gitlab.com/lino-framework/book.
+See https://www.lino-framework.org/team/gh2gl.html for details.
 
 
 
