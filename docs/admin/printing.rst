@@ -15,6 +15,7 @@ Introduction to printing
 >>> startup('lino_book.projects.min9.settings')
 >>> from lino.api.shell import *
 >>> from lino.api.doctest import *
+>>> from lino.api.doctest import *
     
 
 .. currentmodule:: lino.modlib.printing
@@ -167,5 +168,8 @@ Weblinks
   
   pyratemp
     http://www.simple-is-better.org/template/pyratemp.html
+    
+  blogs
+    https://manseper.blogspot.com/
 
 
