@@ -163,7 +163,7 @@ Weblinks
     
   odtwriter
     http://www.rexx.com/~dkuhlman/odtwriter.html
-    http://www.linuxbeacon.com/doku.php?id=articles:odfwriter
+    https://manseper.blogspot.com/2020/07/smadav-pro-gratis.html
   
   pyratemp
     http://www.simple-is-better.org/template/pyratemp.html
